@@ -90,7 +90,7 @@ namespace Programming.View
             this.SeasonGB.Controls.Add(this.SeasonChooseLabel);
             this.SeasonGB.Location = new System.Drawing.Point(351, 247);
             this.SeasonGB.Name = "SeasonGB";
-            this.SeasonGB.Size = new System.Drawing.Size(432, 168);
+            this.SeasonGB.Size = new System.Drawing.Size(438, 174);
             this.SeasonGB.TabIndex = 8;
             this.SeasonGB.TabStop = false;
             this.SeasonGB.Text = "Season Handle";
@@ -128,9 +128,9 @@ namespace Programming.View
             this.WeekParseGB.Controls.Add(this.ParseButton);
             this.WeekParseGB.Controls.Add(this.ParsingValueLabel);
             this.WeekParseGB.Controls.Add(this.ParsingValueTextbox);
-            this.WeekParseGB.Location = new System.Drawing.Point(7, 247);
+            this.WeekParseGB.Location = new System.Drawing.Point(3, 247);
             this.WeekParseGB.Name = "WeekParseGB";
-            this.WeekParseGB.Size = new System.Drawing.Size(328, 168);
+            this.WeekParseGB.Size = new System.Drawing.Size(332, 174);
             this.WeekParseGB.TabIndex = 7;
             this.WeekParseGB.TabStop = false;
             this.WeekParseGB.Text = "Weekday Parsing";
@@ -225,9 +225,9 @@ namespace Programming.View
             // 
             // EnumerationsGB
             // 
-            this.EnumerationsGB.Location = new System.Drawing.Point(7, 6);
+            this.EnumerationsGB.Location = new System.Drawing.Point(3, 6);
             this.EnumerationsGB.Name = "EnumerationsGB";
-            this.EnumerationsGB.Size = new System.Drawing.Size(776, 235);
+            this.EnumerationsGB.Size = new System.Drawing.Size(786, 235);
             this.EnumerationsGB.TabIndex = 6;
             this.EnumerationsGB.TabStop = false;
             this.EnumerationsGB.Text = "Enumerations";
