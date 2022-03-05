@@ -88,18 +88,18 @@ namespace Programming.View
             this.SeasonGB.Controls.Add(this.SeasonChooseButton);
             this.SeasonGB.Controls.Add(this.SeasonChooseCombobox);
             this.SeasonGB.Controls.Add(this.SeasonChooseLabel);
-            this.SeasonGB.Location = new System.Drawing.Point(351, 247);
+            this.SeasonGB.Location = new System.Drawing.Point(398, 247);
             this.SeasonGB.Name = "SeasonGB";
-            this.SeasonGB.Size = new System.Drawing.Size(438, 174);
+            this.SeasonGB.Size = new System.Drawing.Size(391, 174);
             this.SeasonGB.TabIndex = 8;
             this.SeasonGB.TabStop = false;
             this.SeasonGB.Text = "Season Handle";
             // 
             // SeasonChooseButton
             // 
-            this.SeasonChooseButton.Location = new System.Drawing.Point(205, 69);
+            this.SeasonChooseButton.Location = new System.Drawing.Point(205, 63);
             this.SeasonChooseButton.Name = "SeasonChooseButton";
-            this.SeasonChooseButton.Size = new System.Drawing.Size(75, 20);
+            this.SeasonChooseButton.Size = new System.Drawing.Size(75, 32);
             this.SeasonChooseButton.TabIndex = 3;
             this.SeasonChooseButton.Text = "Go!";
             this.SeasonChooseButton.UseVisualStyleBackColor = true;
@@ -108,7 +108,7 @@ namespace Programming.View
             // SeasonChooseCombobox
             // 
             this.SeasonChooseCombobox.FormattingEnabled = true;
-            this.SeasonChooseCombobox.Location = new System.Drawing.Point(6, 68);
+            this.SeasonChooseCombobox.Location = new System.Drawing.Point(6, 69);
             this.SeasonChooseCombobox.Name = "SeasonChooseCombobox";
             this.SeasonChooseCombobox.Size = new System.Drawing.Size(193, 21);
             this.SeasonChooseCombobox.TabIndex = 2;
@@ -116,7 +116,7 @@ namespace Programming.View
             // SeasonChooseLabel
             // 
             this.SeasonChooseLabel.AutoSize = true;
-            this.SeasonChooseLabel.Location = new System.Drawing.Point(6, 53);
+            this.SeasonChooseLabel.Location = new System.Drawing.Point(6, 54);
             this.SeasonChooseLabel.Name = "SeasonChooseLabel";
             this.SeasonChooseLabel.Size = new System.Drawing.Size(83, 13);
             this.SeasonChooseLabel.TabIndex = 1;
@@ -130,7 +130,7 @@ namespace Programming.View
             this.WeekParseGB.Controls.Add(this.ParsingValueTextbox);
             this.WeekParseGB.Location = new System.Drawing.Point(3, 247);
             this.WeekParseGB.Name = "WeekParseGB";
-            this.WeekParseGB.Size = new System.Drawing.Size(332, 174);
+            this.WeekParseGB.Size = new System.Drawing.Size(389, 174);
             this.WeekParseGB.TabIndex = 7;
             this.WeekParseGB.TabStop = false;
             this.WeekParseGB.Text = "Weekday Parsing";
@@ -146,9 +146,9 @@ namespace Programming.View
             // 
             // ParseButton
             // 
-            this.ParseButton.Location = new System.Drawing.Point(205, 69);
+            this.ParseButton.Location = new System.Drawing.Point(202, 63);
             this.ParseButton.Name = "ParseButton";
-            this.ParseButton.Size = new System.Drawing.Size(75, 21);
+            this.ParseButton.Size = new System.Drawing.Size(75, 32);
             this.ParseButton.TabIndex = 2;
             this.ParseButton.Text = "Parse";
             this.ParseButton.UseVisualStyleBackColor = true;
@@ -165,7 +165,7 @@ namespace Programming.View
             // 
             // ParsingValueTextbox
             // 
-            this.ParsingValueTextbox.Location = new System.Drawing.Point(6, 70);
+            this.ParsingValueTextbox.Location = new System.Drawing.Point(3, 70);
             this.ParsingValueTextbox.Name = "ParsingValueTextbox";
             this.ParsingValueTextbox.Size = new System.Drawing.Size(193, 20);
             this.ParsingValueTextbox.TabIndex = 0;
