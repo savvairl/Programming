@@ -32,7 +32,6 @@ namespace Programming.View
             {
                 case Enums.Weekday:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Weekday));
-                    ValuesListBox.SelectedIndex = 0;
                     break;
                 case Enums.Color:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Color));
@@ -56,15 +55,16 @@ namespace Programming.View
 
         private void ValuesListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ValuesTextBox.Text = ValuesListBox.SelectedIndex.ToString();
+            var item = ValuesListBox.SelectedItem;
+            ValuesTextBox.Text = ((int)item).ToString();
         }
 
         private void ParseButton_Click(object sender, EventArgs e)
         {
-            Weekday wday;
-            if (Enum.TryParse(ParsingValueTextbox.Text, out wday))
+            Weekday weekday;
+            if (Enum.TryParse(ParsingValueTextbox.Text, out weekday))
             {
-                WeekParseLabel.Text = $"Это день недели ({wday.ToString()} = {(int)wday}).";
+                WeekParseLabel.Text = $"Это день недели ({weekday} = {(int)weekday}).";
             }
             else
             {
