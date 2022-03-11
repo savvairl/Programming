@@ -76,13 +76,13 @@ namespace Programming.View
             switch ((Season)SeasonChooseCombobox.SelectedItem)
             {
                 case Season.Winter:
-                    MessageBox.Show("Бррр! Холодно!", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    MessageBox.Show("Бррр! Холодно!");
                     break;
                 case Season.Spring:
                     BackColor = System.Drawing.Color.Green;
                     break;
                 case Season.Summer:
-                    MessageBox.Show("Ура! Солнце!", "", MessageBoxButtons.OKCancel, MessageBoxIcon.Information);
+                    MessageBox.Show("Ура! Солнце!");
                     break;
                 case Season.Autumn:
                     BackColor = System.Drawing.Color.Orange;
