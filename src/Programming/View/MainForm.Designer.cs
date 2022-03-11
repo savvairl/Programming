@@ -107,6 +107,7 @@ namespace Programming.View
             // 
             // SeasonChooseCombobox
             // 
+            this.SeasonChooseCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.SeasonChooseCombobox.FormattingEnabled = true;
             this.SeasonChooseCombobox.Location = new System.Drawing.Point(6, 69);
             this.SeasonChooseCombobox.Name = "SeasonChooseCombobox";
