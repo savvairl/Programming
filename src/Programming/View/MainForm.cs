@@ -32,6 +32,7 @@ namespace Programming.View
             {
                 case Enums.Weekday:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Weekday));
+                    ValuesListBox.SelectedIndex = 0;
                     break;
                 case Enums.Color:
                     ValuesListBox.DataSource = Enum.GetValues(typeof(Color));

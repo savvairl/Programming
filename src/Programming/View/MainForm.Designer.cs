@@ -139,7 +139,7 @@ namespace Programming.View
             // WeekParseLabel
             // 
             this.WeekParseLabel.AutoSize = true;
-            this.WeekParseLabel.Location = new System.Drawing.Point(7, 98);
+            this.WeekParseLabel.Location = new System.Drawing.Point(6, 93);
             this.WeekParseLabel.Name = "WeekParseLabel";
             this.WeekParseLabel.Size = new System.Drawing.Size(130, 13);
             this.WeekParseLabel.TabIndex = 3;
@@ -147,7 +147,7 @@ namespace Programming.View
             // 
             // ParseButton
             // 
-            this.ParseButton.Location = new System.Drawing.Point(202, 63);
+            this.ParseButton.Location = new System.Drawing.Point(205, 63);
             this.ParseButton.Name = "ParseButton";
             this.ParseButton.Size = new System.Drawing.Size(75, 32);
             this.ParseButton.TabIndex = 2;
@@ -166,7 +166,7 @@ namespace Programming.View
             // 
             // ParsingValueTextbox
             // 
-            this.ParsingValueTextbox.Location = new System.Drawing.Point(3, 70);
+            this.ParsingValueTextbox.Location = new System.Drawing.Point(6, 70);
             this.ParsingValueTextbox.Name = "ParsingValueTextbox";
             this.ParsingValueTextbox.Size = new System.Drawing.Size(193, 20);
             this.ParsingValueTextbox.TabIndex = 0;
