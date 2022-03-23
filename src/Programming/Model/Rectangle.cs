@@ -1,6 +1,6 @@
 ﻿namespace Programming.Model
 {
-    class Rectangle
+    public class Rectangle
     {
         private double _length;
         private double _width;
