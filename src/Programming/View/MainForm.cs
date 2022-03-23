@@ -160,7 +160,7 @@ namespace Programming.View
             }
             catch (Exception)
             {
-                LengthTextBox.BackColor = System.Drawing.Color.Red;
+                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
             LengthTextBox.BackColor = System.Drawing.Color.White;
@@ -176,7 +176,7 @@ namespace Programming.View
             }
             catch (Exception)
             {
-                WidthTextBox.BackColor = System.Drawing.Color.Red;
+                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
             WidthTextBox.BackColor = System.Drawing.Color.White;
@@ -235,7 +235,7 @@ namespace Programming.View
             }
             catch (Exception)
             {
-                ReleaseTextBox.BackColor = System.Drawing.Color.Red;
+                ReleaseTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
             ReleaseTextBox.BackColor = System.Drawing.Color.White;
@@ -251,7 +251,7 @@ namespace Programming.View
             }
             catch (Exception)
             {
-                DurationTextBox.BackColor = System.Drawing.Color.Red;
+                DurationTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
             DurationTextBox.BackColor = System.Drawing.Color.White;
@@ -267,7 +267,7 @@ namespace Programming.View
             }
             catch (Exception)
             {
-                RatingTextBox.BackColor = System.Drawing.Color.Red;
+                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
             }
             RatingTextBox.BackColor = System.Drawing.Color.White;
