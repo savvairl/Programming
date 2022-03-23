@@ -9,7 +9,9 @@
         }
         public Contact(string firstname, string lastname, string number)
         {
-
+            Firstname = firstname;
+            Lastname = lastname;
+            Number = number;
         }
         public string Firstname { get; set; }
         public string Lastname { get; set; }
