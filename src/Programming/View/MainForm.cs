@@ -158,7 +158,7 @@ namespace Programming.View
                 double lengthRectangleValue = double.Parse(currentLength);
                 _currentRectangle.Length = lengthRectangleValue;
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 LengthTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
@@ -174,7 +174,7 @@ namespace Programming.View
                 double widthRectangleValue = double.Parse(currentWidthRectangle);
                 _currentRectangle.Width = widthRectangleValue;
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 WidthTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
@@ -233,7 +233,7 @@ namespace Programming.View
                 int ReleaseYearValue = int.Parse(currentReleaseYear);
                 _currentMovie.ReleaseYear = ReleaseYearValue;
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 ReleaseTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
@@ -249,7 +249,7 @@ namespace Programming.View
                 int DurationValue = int.Parse(currentDuration);
                 _currentMovie.Duration = DurationValue;
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 DurationTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;
@@ -265,7 +265,7 @@ namespace Programming.View
                 int RatingValue = int.Parse(currentRating);
                 _currentMovie.Rating = RatingValue;
             }
-            catch (Exception)
+            catch (ArgumentException)
             {
                 RatingTextBox.BackColor = System.Drawing.Color.LightPink;
                 return;

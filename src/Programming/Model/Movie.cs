@@ -10,7 +10,11 @@
         }
         public Movie(string name, string genre, int duration, int releaseYear, int rating)
         {
-
+            Name = name;
+            Genre = genre;
+            Duration = duration;
+            ReleaseYear = releaseYear;
+            Rating = rating;
         }
         public string Name { get; set; }
         public string Genre { get; set; }
