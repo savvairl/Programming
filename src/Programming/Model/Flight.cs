@@ -21,13 +21,13 @@
             }
             set
             {
-                if (value >= 0 && value <= 60)
+                if (value >= 0)
                 {
                     _time = value;
                 }
                 else
                 {
-                    throw new System.ArgumentException("Время полёта должно быть от 0 до 60");
+                    throw new System.ArgumentException("Значение должно быть больше нуля");
                 }
             }
         }
