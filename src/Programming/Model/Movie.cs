@@ -27,7 +27,7 @@
             }
             set
             {
-                if (value >= 0 && value <= 60)
+                if (value > 0 && value <= 60)
                 {
                     _duration = value;
                 }

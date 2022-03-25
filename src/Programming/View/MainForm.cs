@@ -187,6 +187,7 @@ namespace Programming.View
             string colorRectangleValue = ColorTextBox.Text;
             _currentRectangle.Color = colorRectangleValue;
         }
+
         private int FindMaxWidth(Rectangle[] rectangles)
         {
             int maxWidthIndex = 0;
@@ -272,6 +273,7 @@ namespace Programming.View
             }
             RatingTextBox.BackColor = System.Drawing.Color.White;
         }
+
         private int FindMaxRating(Movie[] movies)
         {
             int maxRatingIndex = 0;
