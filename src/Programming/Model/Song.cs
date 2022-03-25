@@ -23,13 +23,13 @@
             }
             set
             {
-                if (value <= 0)
+                if (value >= 0)
                 {
-                    throw new System.ArgumentException("Длительность должна быть больше нуля");
+                    _duration = value;
                 }
                 else
                 {
-                    _duration = value;
+                    throw new System.ArgumentException("Длительность должна быть больше 0");
                 }
             }
         }

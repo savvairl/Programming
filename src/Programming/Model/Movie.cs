@@ -4,6 +4,7 @@
     {
         private int _releaseYear;
         private int _rating;
+        private int _duration;
         public Movie()
         {
 
@@ -18,7 +19,24 @@
         }
         public string Name { get; set; }
         public string Genre { get; set; }
-        public int Duration { get; set; }
+        public int Duration
+        {
+            get
+            {
+                return _duration;
+            }
+            set
+            {
+                if (value >= 0 && value <= 60)
+                {
+                    _duration = value;
+                }
+                else
+                {
+                    throw new System.ArgumentException("Значение должно быть от 0 до 60");
+                }
+            }
+        }
         public int ReleaseYear
         {
             get
