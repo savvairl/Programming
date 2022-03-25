@@ -30,20 +30,20 @@ namespace Programming.View
 
         private Movie _currentMovie;
 
-        private Random _randomValues;
+        private Random _random;
 
         public MainForm()
         {
             InitializeComponent();
-            _randomValues = new Random();
+            _random = new Random();
             _rectangles = new Rectangle[CountElements];
             var colors = Enum.GetValues(typeof(Color));
             for (int i = 0; i < CountElements; i++)
             {
                 _currentRectangle = new Rectangle();
-                _currentRectangle.Width = _randomValues.Next(101);
-                _currentRectangle.Length = _randomValues.Next(101);
-                _currentRectangle.Color = colors.GetValue(_randomValues.Next(0, colors.Length)).ToString();
+                _currentRectangle.Width = _random.Next(101);
+                _currentRectangle.Length = _random.Next(101);
+                _currentRectangle.Color = colors.GetValue(_random.Next(0, colors.Length)).ToString();
                 _rectangles[i] = _currentRectangle;
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
@@ -54,11 +54,11 @@ namespace Programming.View
             for (int i = 0; i < CountElements; i++)
             {
                 _currentMovie = new Movie();
-                _currentMovie.Rating = _randomValues.Next(11);
-                _currentMovie.ReleaseYear = _randomValues.Next(1900, 2022);
-                _currentMovie.Genre = genres.GetValue(_randomValues.Next(0, genres.Length)).ToString();
+                _currentMovie.Rating = _random.Next(11);
+                _currentMovie.ReleaseYear = _random.Next(1900, 2022);
+                _currentMovie.Genre = genres.GetValue(_random.Next(0, genres.Length)).ToString();
                 _currentMovie.Name = $"Movie {_currentMovie.Genre} {_currentMovie.ReleaseYear}";
-                _currentMovie.Duration = _randomValues.Next(200);
+                _currentMovie.Duration = _random.Next(200);
                 _movies[i] = _currentMovie;
                 MovieListBox.Items.Add($"Movie {i + 1}");
             }
