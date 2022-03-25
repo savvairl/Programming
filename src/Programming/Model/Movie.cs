@@ -1,4 +1,7 @@
-﻿namespace Programming.Model
+﻿using System;
+
+
+namespace Programming.Model
 {
     class Movie
     {
@@ -51,9 +54,11 @@
             }
             set
             {
-                if (value < 1900 || value > 2022)
+                DateTime myDateTime = DateTime.Now;
+                int year = myDateTime.Year;
+                if (value < 1900 || value > year)
                 {
-                    throw new System.ArgumentException("Год релиза должен быть в пределах от 1900 до 2022 г.");
+                    throw new System.ArgumentException($"Год релиза должен быть в пределах от 1900 до {year} г.");
                 }
 
                 _releaseYear = value;
