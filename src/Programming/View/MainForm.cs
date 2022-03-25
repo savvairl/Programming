@@ -11,16 +11,27 @@ using Programming.Model;
 using Color = Programming.Model.Color;
 using Rectangle = Programming.Model.Rectangle;
 
+
 namespace Programming.View
 {
     public partial class MainForm : Form
     {
         const int CountElements = 5;
+
+        System.Drawing.Color ErrorColor = System.Drawing.Color.LightPink;
+
+        System.Drawing.Color CorrectColor = System.Drawing.Color.White;
+
         private Rectangle[] _rectangles;
+
         private Rectangle _currentRectangle;
+
         private Movie[] _movies;
+
         private Movie _currentMovie;
+
         private Random _randomValues;
+
         public MainForm()
         {
             InitializeComponent();
@@ -47,7 +58,7 @@ namespace Programming.View
                 _currentMovie.ReleaseYear = _randomValues.Next(1900, 2022);
                 _currentMovie.Genre = genres.GetValue(_randomValues.Next(0, genres.Length)).ToString();
                 _currentMovie.Name = $"Movie {_currentMovie.Genre} {_currentMovie.ReleaseYear}";
-                _currentMovie.Duration = _randomValues.Next(150);
+                _currentMovie.Duration = _randomValues.Next(200);
                 _movies[i] = _currentMovie;
                 MovieListBox.Items.Add($"Movie {i + 1}");
             }
@@ -158,12 +169,12 @@ namespace Programming.View
                 double lengthRectangleValue = double.Parse(currentLength);
                 _currentRectangle.Length = lengthRectangleValue;
             }
-            catch (ArgumentException)
+            catch
             {
-                LengthTextBox.BackColor = System.Drawing.Color.LightPink;
+                LengthTextBox.BackColor = ErrorColor;
                 return;
             }
-            LengthTextBox.BackColor = System.Drawing.Color.White;
+            LengthTextBox.BackColor = CorrectColor;
         }
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
@@ -174,12 +185,12 @@ namespace Programming.View
                 double widthRectangleValue = double.Parse(currentWidthRectangle);
                 _currentRectangle.Width = widthRectangleValue;
             }
-            catch (ArgumentException)
+            catch
             {
-                WidthTextBox.BackColor = System.Drawing.Color.LightPink;
+                WidthTextBox.BackColor = ErrorColor;
                 return;
             }
-            WidthTextBox.BackColor = System.Drawing.Color.White;
+            WidthTextBox.BackColor = CorrectColor;
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
@@ -234,12 +245,12 @@ namespace Programming.View
                 int ReleaseYearValue = int.Parse(currentReleaseYear);
                 _currentMovie.ReleaseYear = ReleaseYearValue;
             }
-            catch (ArgumentException)
+            catch
             {
-                ReleaseTextBox.BackColor = System.Drawing.Color.LightPink;
+                ReleaseTextBox.BackColor = ErrorColor;
                 return;
             }
-            ReleaseTextBox.BackColor = System.Drawing.Color.White;
+            ReleaseTextBox.BackColor = CorrectColor;
         }
 
         private void DurationTextBox_TextChanged(object sender, EventArgs e)
@@ -250,12 +261,12 @@ namespace Programming.View
                 int DurationValue = int.Parse(currentDuration);
                 _currentMovie.Duration = DurationValue;
             }
-            catch (ArgumentException)
+            catch
             {
-                DurationTextBox.BackColor = System.Drawing.Color.LightPink;
+                DurationTextBox.BackColor = ErrorColor;
                 return;
             }
-            DurationTextBox.BackColor = System.Drawing.Color.White;
+            DurationTextBox.BackColor = CorrectColor;
         }
 
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
@@ -266,12 +277,12 @@ namespace Programming.View
                 int RatingValue = int.Parse(currentRating);
                 _currentMovie.Rating = RatingValue;
             }
-            catch (ArgumentException)
+            catch
             {
-                RatingTextBox.BackColor = System.Drawing.Color.LightPink;
+                RatingTextBox.BackColor = ErrorColor;
                 return;
             }
-            RatingTextBox.BackColor = System.Drawing.Color.White;
+            RatingTextBox.BackColor = CorrectColor;
         }
 
         private int FindMaxRating(Movie[] movies)

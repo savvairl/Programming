@@ -3,19 +3,23 @@
     public class Rectangle
     {
         private double _length;
+
         private double _width;
 
         public Rectangle()
         {
 
         }
+
         public Rectangle(double length, double width, string color)
         {
             Length = length;
             Width = width;
             Color = color;
         }
+
         public string Color { get; set; }
+
         public double Length
         {
             get
@@ -24,16 +28,15 @@
             }
             set
             {
-                if (value >= 0)
-                {
-                    _length = value;
-                }
-                else
+                if (value < 0)
                 {
                     throw new System.ArgumentException("Значение длины должно быть положительным");
                 }
+
+                _length = value;
             }
         }
+
         public double Width
         {
             get
@@ -42,14 +45,12 @@
             }
             set
             {
-                if (value >= 0)
-                {
-                    _width = value;
-                }
-                else
+                if (value < 0)
                 {
                     throw new System.ArgumentException("Значение ширины должно быть положительным");
                 }
+
+                _width = value;
             }
         }
     }
