@@ -1,6 +1,8 @@
-﻿namespace Programming.Model
+﻿using System;
+
+namespace Programming.Model
 {
-    class Song
+    public class Song
     {
         private int _duration;
 
@@ -30,7 +32,7 @@
             {
                 if (value < 0)
                 {
-                    throw new System.ArgumentException("Длительность должна быть больше 0");
+                    throw new ArgumentException("Длительность должна быть больше 0");
                 }
 
                 _duration = value;

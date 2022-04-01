@@ -1,6 +1,8 @@
-﻿namespace Programming.Model
+﻿using System;
+
+namespace Programming.Model
 {
-    class Contact
+    public class Contact
     {
         private string _number;
 
@@ -30,12 +32,12 @@
             {
                 if (!long.TryParse(value, out long num))
                 {
-                    throw new System.ArgumentException("Номер должно состоять только из цифр");
+                    throw new ArgumentException("Номер должно состоять только из цифр");
                 }
 
                 if (value.Length != 11)
                 {
-                    throw new System.ArgumentException("Номер должен состоять из 11 цифр");
+                    throw new ArgumentException("Номер должен состоять из 11 цифр");
                 }
 
                 _number = value;

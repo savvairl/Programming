@@ -1,4 +1,6 @@
-﻿namespace Programming.Model
+﻿using System;
+
+namespace Programming.Model
 {
     class Flight
     {
@@ -26,7 +28,7 @@
             {
                 if (value < 0)
                 {
-                    throw new System.ArgumentException("Значение должно быть больше нуля");
+                    throw new ArgumentException("Значение должно быть больше нуля");
                 }
 
                 _time = value;

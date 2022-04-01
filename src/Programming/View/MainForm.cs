@@ -16,11 +16,11 @@ namespace Programming.View
 {
     public partial class MainForm : Form
     {
-        const int CountElements = 5;
+        private const int CountElements = 5;
 
-        System.Drawing.Color ErrorColor = System.Drawing.Color.LightPink;
+        private readonly System.Drawing.Color ErrorColor = System.Drawing.Color.LightPink;
 
-        System.Drawing.Color CorrectColor = System.Drawing.Color.White;
+        private readonly System.Drawing.Color CorrectColor = System.Drawing.Color.White;
 
         private Rectangle[] _rectangles;
 

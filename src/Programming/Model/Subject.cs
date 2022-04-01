@@ -1,6 +1,8 @@
-﻿namespace Programming.Model
+﻿using System;
+
+namespace Programming.Model
 {
-    class Subject
+    public class Subject
     {
         private int _mark;
 
@@ -30,7 +32,7 @@
             {
                 if (value <= 1 && value >= 5)
                 {
-                    throw new System.ArgumentException("Оценка должна быть от 1 до 5");
+                    throw new ArgumentException("Оценка должна быть от 1 до 5");
                 }
 
                 _mark = value;

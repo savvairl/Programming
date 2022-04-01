@@ -1,4 +1,6 @@
-﻿namespace Programming.Model
+﻿using System;
+
+namespace Programming.Model
 {
     public class Rectangle
     {
@@ -30,7 +32,7 @@
             {
                 if (value < 0)
                 {
-                    throw new System.ArgumentException("Значение длины должно быть положительным");
+                    throw new ArgumentException("Значение длины должно быть положительным");
                 }
 
                 _length = value;
@@ -47,7 +49,7 @@
             {
                 if (value < 0)
                 {
-                    throw new System.ArgumentException("Значение ширины должно быть положительным");
+                    throw new ArgumentException("Значение ширины должно быть положительным");
                 }
 
                 _width = value;

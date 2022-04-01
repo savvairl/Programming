@@ -1,6 +1,8 @@
-﻿namespace Programming.Model
+﻿using System;
+
+namespace Programming.Model
 {
-    class Time
+    public class Time
     {
         private int _hours;
 
@@ -30,7 +32,7 @@
             {
                 if (value < 0 || value > 23)
                 {
-                    throw new System.ArgumentException("Значение часов должно быть от 0 до 23");
+                    throw new ArgumentException("Значение часов должно быть от 0 до 23");
                 }
 
                 _hours = value;
@@ -45,9 +47,9 @@
             }
             set
             {
-                if (value < 0 || value > 60)
+                if (value < 0 || value > 59)
                 {
-                    throw new System.ArgumentException("Значение минут должно быть от 0 до 60");
+                    throw new ArgumentException("Значение минут должно быть от 0 до 60");
                 }
 
                 _minutes = value;
@@ -62,9 +64,9 @@
             }
             set
             {
-                if (value < 0 || value > 60)
+                if (value < 0 || value > 59)
                 {
-                    throw new System.ArgumentException("Значение секунд должно быть от 0 до 60");
+                    throw new ArgumentException("Значение секунд должно быть от 0 до 60");
                 }
 
                 _seconds = value;

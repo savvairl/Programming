@@ -1,9 +1,8 @@
 ﻿using System;
 
-
 namespace Programming.Model
 {
-    class Movie
+    public class Movie
     {
         private int _releaseYear;
 
@@ -39,7 +38,7 @@ namespace Programming.Model
             {
                 if (value < 0)
                 {
-                    throw new System.ArgumentException("Значение должно быть больше нуля");
+                    throw new ArgumentException("Значение должно быть больше нуля");
                 }
 
                 _duration = value;
@@ -54,11 +53,11 @@ namespace Programming.Model
             }
             set
             {
-                DateTime myDateTime = DateTime.Now;
-                int year = myDateTime.Year;
+                DateTime currentYear = DateTime.Now;
+                int year = currentYear.Year;
                 if (value < 1900 || value > year)
                 {
-                    throw new System.ArgumentException($"Год релиза должен быть в пределах от 1900 до {year} г.");
+                    throw new ArgumentException($"Год релиза должен быть в пределах от 1900 до {year} г.");
                 }
 
                 _releaseYear = value;
@@ -75,7 +74,7 @@ namespace Programming.Model
             {
                 if (value < 0 || value > 10)
                 {
-                    throw new System.ArgumentException("Рейтинг должен быть от 0 до 10");
+                    throw new ArgumentException("Рейтинг должен быть от 0 до 10");
                 }
 
                 _rating = value;
