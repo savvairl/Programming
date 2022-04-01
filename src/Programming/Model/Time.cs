@@ -49,7 +49,7 @@ namespace Programming.Model
             {
                 if (value < 0 || value > 59)
                 {
-                    throw new ArgumentException("Значение минут должно быть от 0 до 60");
+                    throw new ArgumentException("Значение минут должно быть от 0 до 59");
                 }
 
                 _minutes = value;
@@ -66,7 +66,7 @@ namespace Programming.Model
             {
                 if (value < 0 || value > 59)
                 {
-                    throw new ArgumentException("Значение секунд должно быть от 0 до 60");
+                    throw new ArgumentException("Значение секунд должно быть от 0 до 59");
                 }
 
                 _seconds = value;

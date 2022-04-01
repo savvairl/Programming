@@ -2,7 +2,7 @@
 
 namespace Programming.Model
 {
-    class Flight
+    public class Flight
     {
         private int _time;
 

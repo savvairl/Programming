@@ -18,9 +18,9 @@ namespace Programming.View
     {
         private const int CountElements = 5;
 
-        private readonly System.Drawing.Color ErrorColor = System.Drawing.Color.LightPink;
+        private readonly System.Drawing.Color _errorcolor = System.Drawing.Color.LightPink;
 
-        private readonly System.Drawing.Color CorrectColor = System.Drawing.Color.White;
+        private readonly System.Drawing.Color _correctcolor = System.Drawing.Color.White;
 
         private Rectangle[] _rectangles;
 
@@ -35,6 +35,19 @@ namespace Programming.View
         public MainForm()
         {
             InitializeComponent();
+            InitRectangles();
+            InitMovies();
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            EnumsListBox.DataSource = Enum.GetValues(typeof(Enums));
+            EnumsListBox.SelectedIndex = 0;
+            SeasonChooseCombobox.DataSource = Enum.GetValues(typeof(Season));
+        }
+
+        private void InitRectangles()
+        {
             _random = new Random();
             _rectangles = new Rectangle[CountElements];
             var colors = Enum.GetValues(typeof(Color));
@@ -48,7 +61,11 @@ namespace Programming.View
                 RectanglesListBox.Items.Add($"Rectangle {i + 1}");
             }
             RectanglesListBox.SelectedIndex = 0;
+        }
 
+        private void InitMovies()
+        {
+            _random = new Random();
             _movies = new Movie[CountElements];
             var genres = Enum.GetValues(typeof(Genre));
             for (int i = 0; i < CountElements; i++)
@@ -65,11 +82,34 @@ namespace Programming.View
             MovieListBox.SelectedIndex = 0;
         }
 
-        private void MainForm_Load(object sender, EventArgs e)
+        private int FindMaxWidth(Rectangle[] rectangles)
         {
-            EnumsListBox.DataSource = Enum.GetValues(typeof(Enums));
-            EnumsListBox.SelectedIndex = 0;
-            SeasonChooseCombobox.DataSource = Enum.GetValues(typeof(Season));
+            int maxWidthIndex = 0;
+            double maxValue = 0;
+            for (int i = 0; i < CountElements; i++)
+            {
+                if (rectangles[i].Width > maxValue)
+                {
+                    maxValue = rectangles[i].Width;
+                    maxWidthIndex = i;
+                }
+            }
+            return maxWidthIndex;
+        }
+
+        private int FindMaxRating(Movie[] movies)
+        {
+            int maxRatingIndex = 0;
+            double maxValue = 0;
+            for (int i = 0; i < CountElements; i++)
+            {
+                if (movies[i].Rating > maxValue)
+                {
+                    maxValue = movies[i].Rating;
+                    maxRatingIndex = i;
+                }
+            }
+            return maxRatingIndex;
         }
 
         private void EnumsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -171,10 +211,10 @@ namespace Programming.View
             }
             catch
             {
-                LengthTextBox.BackColor = ErrorColor;
+                LengthTextBox.BackColor = _errorcolor;
                 return;
             }
-            LengthTextBox.BackColor = CorrectColor;
+            LengthTextBox.BackColor = _correctcolor;
         }
 
         private void WidthTextBox_TextChanged(object sender, EventArgs e)
@@ -187,31 +227,16 @@ namespace Programming.View
             }
             catch
             {
-                WidthTextBox.BackColor = ErrorColor;
+                WidthTextBox.BackColor = _errorcolor;
                 return;
             }
-            WidthTextBox.BackColor = CorrectColor;
+            WidthTextBox.BackColor = _correctcolor;
         }
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
             string colorRectangleValue = ColorTextBox.Text;
             _currentRectangle.Color = colorRectangleValue;
-        }
-
-        private int FindMaxWidth(Rectangle[] rectangles)
-        {
-            int maxWidthIndex = 0;
-            double maxValue = 0;
-            for (int i = 0; i < CountElements; i++)
-            {
-                if (rectangles[i].Width > maxValue)
-                {
-                    maxValue = rectangles[i].Width;
-                    maxWidthIndex = i;
-                }
-            }
-            return maxWidthIndex;
         }
 
         private void MovieListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -242,31 +267,31 @@ namespace Programming.View
             try
             {
                 string currentReleaseYear = ReleaseTextBox.Text;
-                int ReleaseYearValue = int.Parse(currentReleaseYear);
-                _currentMovie.ReleaseYear = ReleaseYearValue;
+                int releaseYearValue = int.Parse(currentReleaseYear);
+                _currentMovie.ReleaseYear = releaseYearValue;
             }
             catch
             {
-                ReleaseTextBox.BackColor = ErrorColor;
+                ReleaseTextBox.BackColor = _errorcolor;
                 return;
             }
-            ReleaseTextBox.BackColor = CorrectColor;
+            ReleaseTextBox.BackColor = _correctcolor;
         }
 
         private void DurationTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                string currentDuration = DurationTextBox.Text;
-                int DurationValue = int.Parse(currentDuration);
-                _currentMovie.Duration = DurationValue;
+                string durationAsString = DurationTextBox.Text;
+                int duration = int.Parse(durationAsString);
+                _currentMovie.Duration = duration;
             }
             catch
             {
-                DurationTextBox.BackColor = ErrorColor;
+                DurationTextBox.BackColor = _errorcolor;
                 return;
             }
-            DurationTextBox.BackColor = CorrectColor;
+            DurationTextBox.BackColor = _correctcolor;
         }
 
         private void RatingTextBox_TextChanged(object sender, EventArgs e)
@@ -274,30 +299,15 @@ namespace Programming.View
             try
             {
                 string currentRating = RatingTextBox.Text;
-                int RatingValue = int.Parse(currentRating);
-                _currentMovie.Rating = RatingValue;
+                int ratingValue = int.Parse(currentRating);
+                _currentMovie.Rating = ratingValue;
             }
             catch
             {
-                RatingTextBox.BackColor = ErrorColor;
+                RatingTextBox.BackColor = _errorcolor;
                 return;
             }
-            RatingTextBox.BackColor = CorrectColor;
-        }
-
-        private int FindMaxRating(Movie[] movies)
-        {
-            int maxRatingIndex = 0;
-            double maxValue = 0;
-            for (int i = 0; i < CountElements; i++)
-            {
-                if (movies[i].Rating > maxValue)
-                {
-                    maxValue = movies[i].Rating;
-                    maxRatingIndex = i;
-                }
-            }
-            return maxRatingIndex;
+            RatingTextBox.BackColor = _correctcolor;
         }
     }
 }
