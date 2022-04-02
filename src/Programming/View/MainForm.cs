@@ -205,9 +205,9 @@ namespace Programming.View
         {
             try
             {
-                string currentLength = LengthTextBox.Text;
-                double lengthRectangleValue = double.Parse(currentLength);
-                _currentRectangle.Length = lengthRectangleValue;
+                string currentRectangleLength = LengthTextBox.Text;
+                double rectangleLength = double.Parse(currentRectangleLength);
+                _currentRectangle.Length = rectangleLength;
             }
             catch
             {
@@ -221,9 +221,9 @@ namespace Programming.View
         {
             try
             {
-                string currentWidthRectangle = WidthTextBox.Text;
-                double widthRectangleValue = double.Parse(currentWidthRectangle);
-                _currentRectangle.Width = widthRectangleValue;
+                string currentRectangleWidth = WidthTextBox.Text;
+                double rectangleWidth = double.Parse(currentRectangleWidth);
+                _currentRectangle.Width = rectangleWidth;
             }
             catch
             {
@@ -235,8 +235,8 @@ namespace Programming.View
 
         private void ColorTextBox_TextChanged(object sender, EventArgs e)
         {
-            string colorRectangleValue = ColorTextBox.Text;
-            _currentRectangle.Color = colorRectangleValue;
+            string colorRectangle = ColorTextBox.Text;
+            _currentRectangle.Color = colorRectangle;
         }
 
         private void MovieListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -252,14 +252,14 @@ namespace Programming.View
 
         private void NameTextBox_TextChanged(object sender, EventArgs e)
         {
-            string nameValue = NameTextBox.Text;
-            _currentMovie.Name = nameValue;
+            string name = NameTextBox.Text;
+            _currentMovie.Name = name;
         }
 
         private void GenreTextBox_TextChanged(object sender, EventArgs e)
         {
-            string genreValue = GenreTextBox.Text;
-            _currentMovie.Genre = genreValue;
+            string genre = GenreTextBox.Text;
+            _currentMovie.Genre = genre;
         }
 
         private void ReleaseTextBox_TextChanged(object sender, EventArgs e)
@@ -267,8 +267,8 @@ namespace Programming.View
             try
             {
                 string currentReleaseYear = ReleaseTextBox.Text;
-                int releaseYearValue = int.Parse(currentReleaseYear);
-                _currentMovie.ReleaseYear = releaseYearValue;
+                int releaseYear = int.Parse(currentReleaseYear);
+                _currentMovie.ReleaseYear = releaseYear;
             }
             catch
             {
@@ -299,8 +299,8 @@ namespace Programming.View
             try
             {
                 string currentRating = RatingTextBox.Text;
-                int ratingValue = int.Parse(currentRating);
-                _currentMovie.Rating = ratingValue;
+                int rating = int.Parse(currentRating);
+                _currentMovie.Rating = rating;
             }
             catch
             {
