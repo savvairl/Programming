@@ -30,11 +30,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value <= 1 && value >= 5)
-                {
-                    throw new ArgumentException("Оценка должна быть от 1 до 5");
-                }
-
+                Validator.AssertValueInRange(nameof(Mark), value, 1, 5);
                 _mark = value;
             }
         }

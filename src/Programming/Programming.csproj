@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\CollisionManager.cs" />
     <Compile Include="Model\Color.cs" />
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\EducationForm.cs" />
@@ -57,11 +58,14 @@
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\Manufacture.cs" />
     <Compile Include="Model\Movie.cs" />
+    <Compile Include="Model\Point2D.cs" />
     <Compile Include="Model\Rectangle.cs" />
+    <Compile Include="Model\Ring.cs" />
     <Compile Include="Model\Season.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\Subject.cs" />
     <Compile Include="Model\Time.cs" />
+    <Compile Include="Model\Validator.cs" />
     <Compile Include="Model\Weekday.cs" />
     <Compile Include="View\Enums.cs" />
     <Compile Include="View\MainForm.cs">

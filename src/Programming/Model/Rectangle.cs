@@ -8,9 +8,14 @@ namespace Programming.Model
 
         private double _width;
 
+        private int _id;
+
+        private static int _allRectanglesCount;
+
         public Rectangle()
         {
-
+            _allRectanglesCount++;
+            _id = _allRectanglesCount;
         }
 
         public Rectangle(double length, double width, string color)
@@ -18,9 +23,29 @@ namespace Programming.Model
             Length = length;
             Width = width;
             Color = color;
+            _allRectanglesCount++;
+            _id = _allRectanglesCount;
         }
 
         public string Color { get; set; }
+
+        public Point2D Center { get; set; }
+
+        public int Id
+        {
+            get
+            {
+                return _id;
+            }
+        }
+
+        public static int AllRectanglesCount
+        {
+            get
+            {
+                return _allRectanglesCount;
+            }
+        }
 
         public double Length
         {
@@ -30,11 +55,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Значение длины должно быть положительным");
-                }
-
+                Validator.AssertOnPositiveValue(nameof(Length), value);
                 _length = value;
             }
         }
@@ -47,11 +68,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Значение ширины должно быть положительным");
-                }
-
+                Validator.AssertOnPositiveValue(nameof(Width), value);
                 _width = value;
             }
         }

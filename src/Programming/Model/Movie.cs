@@ -36,11 +36,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Значение должно быть больше нуля");
-                }
-
+                Validator.AssertOnPositiveValue(nameof(Duration), value);
                 _duration = value;
             }
         }
@@ -55,11 +51,7 @@ namespace Programming.Model
             {
                 DateTime currentYear = DateTime.Now;
                 int year = currentYear.Year;
-                if (value < 1900 || value > year)
-                {
-                    throw new ArgumentException($"Год релиза должен быть в пределах от 1900 до {year} г.");
-                }
-
+                Validator.AssertValueInRange(nameof(ReleaseYear), value, 1900, year);
                 _releaseYear = value;
             }
         }
@@ -72,11 +64,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 10)
-                {
-                    throw new ArgumentException("Рейтинг должен быть от 0 до 10");
-                }
-
+                Validator.AssertValueInRange(nameof(ReleaseYear), value, 0, 10);
                 _rating = value;
             }
         }

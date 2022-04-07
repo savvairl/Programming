@@ -26,11 +26,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Значение должно быть больше нуля");
-                }
-
+                Validator.AssertOnPositiveValue(nameof(Time), value);
                 _time = value;
             }
         }

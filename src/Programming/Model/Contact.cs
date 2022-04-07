@@ -6,21 +6,45 @@ namespace Programming.Model
     {
         private string _number;
 
+        private string _name;
+
+        private string _surname;
+
         public Contact()
         {
 
         }
 
-        public Contact(string firstname, string lastname, string number)
+        public Contact(string name, string surname, string number)
         {
-            Firstname = firstname;
-            Lastname = lastname;
+            Name = name;
+            Surname = surname;
             Number = number;
         }
 
-        public string Firstname { get; set; }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                _name = AssertStringContainsOnlyLetters(nameof(Name), value);
+            }
+        }
 
-        public string Lastname { get; set; }
+        public string Surname
+        {
+            get
+            {
+                return _surname;
+            }
+            set
+            {
+                _surname = AssertStringContainsOnlyLetters(nameof(Surname), value);
+            }
+        }
 
         public string Number
         {
@@ -42,6 +66,19 @@ namespace Programming.Model
 
                 _number = value;
             }
+        }
+
+        private string AssertStringContainsOnlyLetters(string propertyName, string value)
+        {
+            for (int i = 0; i < value.Length; i++)
+            {
+                if (!char.IsLetter(value[i]))
+                {
+                    throw new ArgumentException($"Значение {propertyName} должно содержать только буквы");
+                }
+            }
+
+            return value;
         }
     }
 }

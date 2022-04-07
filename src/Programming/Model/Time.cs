@@ -30,11 +30,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 23)
-                {
-                    throw new ArgumentException("Значение часов должно быть от 0 до 23");
-                }
-
+                Validator.AssertValueInRange(nameof(Hours), value, 0, 23);
                 _hours = value;
             }
         }
@@ -47,11 +43,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 59)
-                {
-                    throw new ArgumentException("Значение минут должно быть от 0 до 59");
-                }
-
+                Validator.AssertValueInRange(nameof(Minutes), value, 0, 59);
                 _minutes = value;
             }
         }
@@ -64,11 +56,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0 || value > 59)
-                {
-                    throw new ArgumentException("Значение секунд должно быть от 0 до 59");
-                }
-
+                Validator.AssertValueInRange(nameof(Seconds), value, 0, 23);
                 _seconds = value;
             }
         }

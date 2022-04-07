@@ -30,11 +30,7 @@ namespace Programming.Model
             }
             set
             {
-                if (value < 0)
-                {
-                    throw new ArgumentException("Длительность должна быть больше 0");
-                }
-
+                Validator.AssertOnPositiveValue(nameof(Duration), value);
                 _duration = value;
             }
         }
