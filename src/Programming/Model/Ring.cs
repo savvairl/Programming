@@ -49,7 +49,7 @@ namespace Programming.Model
         {
             get
             {
-                return Math.PI * (Math.Pow(_outerRadius, 2) - Math.Pow(_innerRadius, 2));
+                return Math.PI * (_outerRadius*_outerRadius - _innerRadius*_innerRadius);
             }
         }
     }
