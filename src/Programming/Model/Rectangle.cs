@@ -4,13 +4,13 @@ namespace Programming.Model
 {
     public class Rectangle
     {
+        private static int _allRectanglesCount;
+
         private double _length;
 
         private double _width;
 
         private int _id;
-
-        private static int _allRectanglesCount;
 
         public Rectangle()
         {
@@ -18,11 +18,12 @@ namespace Programming.Model
             _id = _allRectanglesCount;
         }
 
-        public Rectangle(double length, double width, string color)
+        public Rectangle(double length, double width, string color, Point2D center)
         {
             Length = length;
             Width = width;
             Color = color;
+            Center = center;
             _allRectanglesCount++;
             _id = _allRectanglesCount;
         }

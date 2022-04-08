@@ -63,6 +63,12 @@ namespace Programming.View
             this.NameTextBox = new System.Windows.Forms.TextBox();
             this.NameLabel = new System.Windows.Forms.Label();
             this.ClassesGroupBox = new System.Windows.Forms.GroupBox();
+            this.IdLabel = new System.Windows.Forms.Label();
+            this.IdTextBox = new System.Windows.Forms.TextBox();
+            this.YLabel = new System.Windows.Forms.Label();
+            this.YTextBox = new System.Windows.Forms.TextBox();
+            this.XTextBox = new System.Windows.Forms.TextBox();
+            this.XLabel = new System.Windows.Forms.Label();
             this.RectanglesFindButton = new System.Windows.Forms.Button();
             this.ColorTextBox = new System.Windows.Forms.TextBox();
             this.WidthTextBox = new System.Windows.Forms.TextBox();
@@ -71,12 +77,6 @@ namespace Programming.View
             this.WidthLabel = new System.Windows.Forms.Label();
             this.LengthLabel = new System.Windows.Forms.Label();
             this.RectanglesListBox = new System.Windows.Forms.ListBox();
-            this.XLabel = new System.Windows.Forms.Label();
-            this.XTextBox = new System.Windows.Forms.TextBox();
-            this.YTextBox = new System.Windows.Forms.TextBox();
-            this.YLabel = new System.Windows.Forms.Label();
-            this.IdTextBox = new System.Windows.Forms.TextBox();
-            this.IdLabel = new System.Windows.Forms.Label();
             this.TabControl.SuspendLayout();
             this.EnumsTabControl.SuspendLayout();
             this.SeasonGroupBox.SuspendLayout();
@@ -427,6 +427,57 @@ namespace Programming.View
             this.ClassesGroupBox.TabStop = false;
             this.ClassesGroupBox.Text = "Rectangles";
             // 
+            // IdLabel
+            // 
+            this.IdLabel.AutoSize = true;
+            this.IdLabel.Location = new System.Drawing.Point(157, 218);
+            this.IdLabel.Name = "IdLabel";
+            this.IdLabel.Size = new System.Drawing.Size(19, 13);
+            this.IdLabel.TabIndex = 13;
+            this.IdLabel.Text = "Id:";
+            // 
+            // IdTextBox
+            // 
+            this.IdTextBox.Location = new System.Drawing.Point(160, 234);
+            this.IdTextBox.Name = "IdTextBox";
+            this.IdTextBox.ReadOnly = true;
+            this.IdTextBox.Size = new System.Drawing.Size(148, 20);
+            this.IdTextBox.TabIndex = 12;
+            // 
+            // YLabel
+            // 
+            this.YLabel.AutoSize = true;
+            this.YLabel.Location = new System.Drawing.Point(157, 179);
+            this.YLabel.Name = "YLabel";
+            this.YLabel.Size = new System.Drawing.Size(17, 13);
+            this.YLabel.TabIndex = 11;
+            this.YLabel.Text = "Y:";
+            // 
+            // YTextBox
+            // 
+            this.YTextBox.Location = new System.Drawing.Point(160, 195);
+            this.YTextBox.Name = "YTextBox";
+            this.YTextBox.ReadOnly = true;
+            this.YTextBox.Size = new System.Drawing.Size(148, 20);
+            this.YTextBox.TabIndex = 10;
+            // 
+            // XTextBox
+            // 
+            this.XTextBox.Location = new System.Drawing.Point(160, 156);
+            this.XTextBox.Name = "XTextBox";
+            this.XTextBox.ReadOnly = true;
+            this.XTextBox.Size = new System.Drawing.Size(148, 20);
+            this.XTextBox.TabIndex = 9;
+            // 
+            // XLabel
+            // 
+            this.XLabel.AutoSize = true;
+            this.XLabel.Location = new System.Drawing.Point(157, 140);
+            this.XLabel.Name = "XLabel";
+            this.XLabel.Size = new System.Drawing.Size(17, 13);
+            this.XLabel.TabIndex = 8;
+            this.XLabel.Text = "X:";
+            // 
             // RectanglesFindButton
             // 
             this.RectanglesFindButton.Location = new System.Drawing.Point(160, 286);
@@ -496,57 +547,6 @@ namespace Programming.View
             this.RectanglesListBox.Size = new System.Drawing.Size(123, 290);
             this.RectanglesListBox.TabIndex = 0;
             this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
-            // 
-            // XLabel
-            // 
-            this.XLabel.AutoSize = true;
-            this.XLabel.Location = new System.Drawing.Point(157, 140);
-            this.XLabel.Name = "XLabel";
-            this.XLabel.Size = new System.Drawing.Size(14, 13);
-            this.XLabel.TabIndex = 8;
-            this.XLabel.Text = "X";
-            // 
-            // XTextBox
-            // 
-            this.XTextBox.Location = new System.Drawing.Point(160, 156);
-            this.XTextBox.Name = "XTextBox";
-            this.XTextBox.ReadOnly = true;
-            this.XTextBox.Size = new System.Drawing.Size(148, 20);
-            this.XTextBox.TabIndex = 9;
-            // 
-            // YTextBox
-            // 
-            this.YTextBox.Location = new System.Drawing.Point(160, 195);
-            this.YTextBox.Name = "YTextBox";
-            this.YTextBox.ReadOnly = true;
-            this.YTextBox.Size = new System.Drawing.Size(148, 20);
-            this.YTextBox.TabIndex = 10;
-            // 
-            // YLabel
-            // 
-            this.YLabel.AutoSize = true;
-            this.YLabel.Location = new System.Drawing.Point(157, 179);
-            this.YLabel.Name = "YLabel";
-            this.YLabel.Size = new System.Drawing.Size(14, 13);
-            this.YLabel.TabIndex = 11;
-            this.YLabel.Text = "Y";
-            // 
-            // IdTextBox
-            // 
-            this.IdTextBox.Location = new System.Drawing.Point(160, 234);
-            this.IdTextBox.Name = "IdTextBox";
-            this.IdTextBox.ReadOnly = true;
-            this.IdTextBox.Size = new System.Drawing.Size(148, 20);
-            this.IdTextBox.TabIndex = 12;
-            // 
-            // IdLabel
-            // 
-            this.IdLabel.AutoSize = true;
-            this.IdLabel.Location = new System.Drawing.Point(157, 218);
-            this.IdLabel.Name = "IdLabel";
-            this.IdLabel.Size = new System.Drawing.Size(16, 13);
-            this.IdLabel.TabIndex = 13;
-            this.IdLabel.Text = "Id";
             // 
             // MainForm
             // 

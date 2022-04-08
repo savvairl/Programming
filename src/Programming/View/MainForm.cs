@@ -55,7 +55,7 @@ namespace Programming.View
             {
                 _currentRectangle = new Rectangle();
                 _currentRectangle.Width = _random.Next(101);
-                _currentRectangle.Length = _random.Next(101);
+                _currentRectangle.Length = _random.Next(1, 101);
                 _currentRectangle.Center = new Point2D(_random.Next(1, 100), _random.Next(1, 100));
                 _currentRectangle.Color = colors.GetValue(_random.Next(0, colors.Length)).ToString();
                 _rectangles[i] = _currentRectangle;

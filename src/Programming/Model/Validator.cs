@@ -2,7 +2,7 @@
 
 namespace Programming.Model
 {
-    static class Validator
+    public static class Validator
     {
         public static void AssertOnPositiveValue(string propertyName, int value)
         {
@@ -28,7 +28,7 @@ namespace Programming.Model
             }
         }
 
-        public static void AssertValueInRange(string propertyName, double value, int min, int max)
+        public static void AssertValueInRange(string propertyName, double value, double min, double max)
         {
             if (value < min || value > max)
             {
