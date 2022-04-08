@@ -22,7 +22,7 @@ namespace Programming.Model
 
         public static void AssertValueInRange(string propertyName, int value, int min, int max)
         {
-            if (value < min || value > max)
+            if (value < min && value > max)
             {
                 throw new ArgumentException($"Значение {propertyName} должно быть между {min} и {max}");
             }
@@ -30,7 +30,7 @@ namespace Programming.Model
 
         public static void AssertValueInRange(string propertyName, double value, double min, double max)
         {
-            if (value < min || value > max)
+            if (value < min && value > max)
             {
                 throw new ArgumentException($"Значение {propertyName} должно быть между {min} и {max}");
             }
