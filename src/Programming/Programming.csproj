@@ -50,7 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\CollisionManager.cs" />
+    <Compile Include="Model\Geometry\CollisionManager.cs" />
     <Compile Include="Model\Color.cs" />
     <Compile Include="Model\Contact.cs" />
     <Compile Include="Model\EducationForm.cs" />
@@ -58,9 +58,9 @@
     <Compile Include="Model\Genre.cs" />
     <Compile Include="Model\Manufacture.cs" />
     <Compile Include="Model\Movie.cs" />
-    <Compile Include="Model\Point2D.cs" />
-    <Compile Include="Model\Rectangle.cs" />
-    <Compile Include="Model\Ring.cs" />
+    <Compile Include="Model\Geometry\Point2D.cs" />
+    <Compile Include="Model\Geometry\Rectangle.cs" />
+    <Compile Include="Model\Geometry\Ring.cs" />
     <Compile Include="Model\Season.cs" />
     <Compile Include="Model\Song.cs" />
     <Compile Include="Model\Subject.cs" />
@@ -84,6 +84,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -102,6 +103,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\rectangle_add_24x24_uncolor.png" />
+    <None Include="Resources\rectangle_remove_24x24_uncolor.png" />
+    <Content Include="Resources\rectangle_add_24x24.png" />
+    <Content Include="Resources\rectangle_edit_24x24.png" />
+    <Content Include="Resources\rectangle_edit_24x24_uncolor.png" />
+    <Content Include="Resources\rectangle_remove_24x24.png" />
     <Content Include="Resources\smog_earth_world_planet_clouds_cloudy_weather_icon_194263.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
