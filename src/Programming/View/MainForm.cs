@@ -420,6 +420,8 @@ namespace Programming.View
                 string currentRectangleX = SelectedRectangleXTextBox.Text;
                 int rectangleXValue = int.Parse(currentRectangleX);
                 _currentRectangle.Center.X = rectangleXValue;
+                CanvasPanel.Controls[RectanglesListBox2.SelectedIndex].Location = new Point(_currentRectangle.Center.X, _currentRectangle.Center.Y);
+                FindCollisions();
             }
             catch
             {
@@ -436,6 +438,8 @@ namespace Programming.View
                 string currentRectangleY = SelectedRectangleYTextBox.Text;
                 int rectangleYValue = int.Parse(currentRectangleY);
                 _currentRectangle.Center.Y = rectangleYValue;
+                CanvasPanel.Controls[RectanglesListBox2.SelectedIndex].Location = new Point(_currentRectangle.Center.X, _currentRectangle.Center.Y);
+                FindCollisions();
             }
             catch
             {
@@ -452,6 +456,8 @@ namespace Programming.View
                 string currentRectangleWidth = SelectedRectangleWidthTextBox.Text;
                 int widthRectangleValue = int.Parse(currentRectangleWidth);
                 _currentRectangle.Width = widthRectangleValue;
+                CanvasPanel.Controls[RectanglesListBox2.SelectedIndex].Width = _currentRectangle.Width;
+                FindCollisions();
             }
             catch
             {
@@ -468,6 +474,8 @@ namespace Programming.View
                 string currentRectangleHeight = SelectedRectangleHeightTextBox.Text;
                 int heightRectangleValue = int.Parse(currentRectangleHeight);
                 _currentRectangle.Height = heightRectangleValue;
+                CanvasPanel.Controls[RectanglesListBox2.SelectedIndex].Height = _currentRectangle.Height;
+                FindCollisions();
             }
             catch
             {
