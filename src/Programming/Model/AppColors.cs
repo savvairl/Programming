@@ -12,9 +12,5 @@ namespace Programming.Model
         public static System.Drawing.Color IsCollision = System.Drawing.Color.FromArgb(127, 255, 127, 127);
 
         public static System.Drawing.Color IsNotCollision = System.Drawing.Color.FromArgb(127, 127, 255, 127);
-
-        public static System.Drawing.Color Spring = ColorTranslator.FromHtml("#559c45");
-
-        public static System.Drawing.Color Autumn = ColorTranslator.FromHtml("#e29c45");
     }
 }

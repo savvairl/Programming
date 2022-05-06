@@ -4,13 +4,13 @@ using System.Windows.Forms;
 
 namespace Programming.View.Controls
 {
-    public partial class EnumerationControl : UserControl
+    public partial class EnumerationsControl : UserControl
     {
-        public EnumerationControl()
+        public EnumerationsControl()
         {
             InitializeComponent();
-            Array allEnums = Enum.GetValues(typeof(Enums));
-            foreach (Enums value in allEnums)
+            Array enums = Enum.GetValues(typeof(Enums));
+            foreach (Enums value in enums)
             {
                 EnumsListBox.Items.Add(value);
             }
@@ -56,11 +56,6 @@ namespace Programming.View.Controls
             {
                 ValuesTextBox.Text = ((int)ValuesListBox.SelectedItem).ToString();
             }
-        }
-
-        private void EnumerationControl_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

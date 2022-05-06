@@ -34,7 +34,7 @@ namespace Programming.View
             this.EnumsTabControl = new System.Windows.Forms.TabPage();
             this.seasonHandleControl1 = new Programming.View.Controls.SeasonHandleControl();
             this.weekdayParsingControl1 = new Programming.View.Controls.WeekdayParsingControl();
-            this.enumerationControl1 = new Programming.View.Controls.EnumerationControl();
+            this.enumerationControl1 = new Programming.View.Controls.EnumerationsControl();
             this.ClassesTabControl = new System.Windows.Forms.TabPage();
             this.moviesControl1 = new Programming.View.Controls.MoviesControl();
             this.rectanglesControl1 = new Programming.View.Controls.RectanglesControl();
@@ -74,6 +74,9 @@ namespace Programming.View
             // 
             // seasonHandleControl1
             // 
+            this.seasonHandleControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.seasonHandleControl1.Location = new System.Drawing.Point(352, 241);
             this.seasonHandleControl1.Name = "seasonHandleControl1";
             this.seasonHandleControl1.Size = new System.Drawing.Size(340, 89);
@@ -81,6 +84,9 @@ namespace Programming.View
             // 
             // weekdayParsingControl1
             // 
+            this.weekdayParsingControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.weekdayParsingControl1.Location = new System.Drawing.Point(-4, 242);
             this.weekdayParsingControl1.Name = "weekdayParsingControl1";
             this.weekdayParsingControl1.Size = new System.Drawing.Size(343, 95);
@@ -88,6 +94,9 @@ namespace Programming.View
             // 
             // enumerationControl1
             // 
+            this.enumerationControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.enumerationControl1.Location = new System.Drawing.Point(0, 6);
             this.enumerationControl1.Name = "enumerationControl1";
             this.enumerationControl1.Size = new System.Drawing.Size(688, 240);
@@ -107,6 +116,9 @@ namespace Programming.View
             // 
             // moviesControl1
             // 
+            this.moviesControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.moviesControl1.Location = new System.Drawing.Point(355, 6);
             this.moviesControl1.Name = "moviesControl1";
             this.moviesControl1.Size = new System.Drawing.Size(337, 327);
@@ -114,6 +126,9 @@ namespace Programming.View
             // 
             // rectanglesControl1
             // 
+            this.rectanglesControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rectanglesControl1.Location = new System.Drawing.Point(0, 6);
             this.rectanglesControl1.Name = "rectanglesControl1";
             this.rectanglesControl1.Size = new System.Drawing.Size(342, 331);
@@ -132,7 +147,9 @@ namespace Programming.View
             // 
             // rectangleCollisionControl1
             // 
-            this.rectangleCollisionControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rectangleCollisionControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.rectangleCollisionControl1.Location = new System.Drawing.Point(3, 3);
             this.rectangleCollisionControl1.Name = "rectangleCollisionControl1";
             this.rectangleCollisionControl1.Size = new System.Drawing.Size(682, 327);
@@ -162,7 +179,7 @@ namespace Programming.View
         private System.Windows.Forms.TabPage ClassesTabControl;
         private Controls.SeasonHandleControl seasonHandleControl1;
         private Controls.WeekdayParsingControl weekdayParsingControl1;
-        private Controls.EnumerationControl enumerationControl1;
+        private Controls.EnumerationsControl enumerationControl1;
         private Controls.MoviesControl moviesControl1;
         private Controls.RectanglesControl rectanglesControl1;
         private System.Windows.Forms.TabPage RectanglesTabControl;

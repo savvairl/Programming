@@ -132,10 +132,5 @@ namespace Programming.View.Controls
             string name = NameTextBox.Text;
             _currentMovie.Name = name;
         }
-
-        private void MovieGroupBox_Enter(object sender, EventArgs e)
-        {
-
-        }
     }
 }

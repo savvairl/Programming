@@ -169,7 +169,6 @@ namespace Programming.View.Controls
             this.MovieGroupBox.TabIndex = 2;
             this.MovieGroupBox.TabStop = false;
             this.MovieGroupBox.Text = "Movies";
-            this.MovieGroupBox.Enter += new System.EventHandler(this.MovieGroupBox_Enter);
             // 
             // MoviesControl
             // 
