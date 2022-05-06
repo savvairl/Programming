@@ -54,11 +54,10 @@ namespace Programming.View.Controls
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.CanvasPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.CanvasPanel.Location = new System.Drawing.Point(199, 3);
+            this.CanvasPanel.Location = new System.Drawing.Point(199, 10);
             this.CanvasPanel.Name = "CanvasPanel";
-            this.CanvasPanel.Size = new System.Drawing.Size(478, 325);
+            this.CanvasPanel.Size = new System.Drawing.Size(483, 321);
             this.CanvasPanel.TabIndex = 31;
-            this.CanvasPanel.Resize += new System.EventHandler(this.CanvasPanel_Resize);
             // 
             // SelectedRectangleHeightTextBox
             // 
@@ -188,7 +187,7 @@ namespace Programming.View.Controls
             this.RectanglesListBox.Name = "RectanglesListBox";
             this.RectanglesListBox.Size = new System.Drawing.Size(178, 121);
             this.RectanglesListBox.TabIndex = 17;
-            this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox2_SelectedIndexChanged);
+            this.RectanglesListBox.SelectedIndexChanged += new System.EventHandler(this.RectanglesListBox_SelectedIndexChanged);
             // 
             // RectanglesLabel
             // 
