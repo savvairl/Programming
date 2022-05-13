@@ -4,16 +4,34 @@ using Programming.Model;
 
 namespace Programming.View.Controls
 {
+    /// <summary>
+    /// Наследуется от класса UserControl.
+    /// </summary>
     public partial class MoviesControl : UserControl
     {
+        /// <summary>
+        /// Количество элементов.
+        /// </summary>
         const int ElementsCount = 5;
 
+        /// <summary>
+        /// Массив фильмов.
+        /// </summary>
         private Movie[] _movies;
 
+        /// <summary>
+        /// Выбранный фильм.
+        /// </summary>
         private Movie _currentMovie;
 
+        /// <summary>
+        /// Случаные значения.
+        /// </summary>
         private Random _random;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="MoviesControl"/>.
+        /// </summary>
         public MoviesControl()
         {
             InitializeComponent();
@@ -23,6 +41,10 @@ namespace Programming.View.Controls
             MovieListBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Инициализирует массив фильмов.
+        /// </summary>
+        /// <returns>Возвращает массив фильмов.</returns>
         private Movie[] CreateMovies()
         {
             Movie[] movies = new Movie[ElementsCount];
@@ -41,6 +63,11 @@ namespace Programming.View.Controls
             return movies;
         }
 
+        /// <summary>
+        /// Находит фильм, рейтинг которого больше остальных.
+        /// </summary>
+        /// <param name="movies">Массив фильмов.</param>
+        /// <returns>Возвращает индекс элемента массива, чей рейтинг больше остальных.</returns>
         private int FindMaxRating(Movie[] movies)
         {
             int maxRatingIndex = 0;

@@ -4,8 +4,14 @@ using Programming.Model;
 
 namespace Programming.View.Controls
 {
+    /// <summary>
+    /// Наследуется от класса UserControl.
+    /// </summary>
     public partial class SeasonHandleControl : UserControl
     {
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="SeasonHandleControl"/>.
+        /// </summary>
         public SeasonHandleControl()
         {
             InitializeComponent();

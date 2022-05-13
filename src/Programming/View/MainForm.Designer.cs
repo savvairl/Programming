@@ -32,13 +32,13 @@ namespace Programming.View
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.TabControl = new System.Windows.Forms.TabControl();
             this.EnumsTabControl = new System.Windows.Forms.TabPage();
+            this.ClassesTabControl = new System.Windows.Forms.TabPage();
+            this.RectanglesTabControl = new System.Windows.Forms.TabPage();
             this.seasonHandleControl1 = new Programming.View.Controls.SeasonHandleControl();
             this.weekdayParsingControl1 = new Programming.View.Controls.WeekdayParsingControl();
             this.enumerationControl1 = new Programming.View.Controls.EnumerationsControl();
-            this.ClassesTabControl = new System.Windows.Forms.TabPage();
             this.moviesControl1 = new Programming.View.Controls.MoviesControl();
             this.rectanglesControl1 = new Programming.View.Controls.RectanglesControl();
-            this.RectanglesTabControl = new System.Windows.Forms.TabPage();
             this.rectangleCollisionControl1 = new Programming.View.Controls.RectangleCollisionControl();
             this.TabControl.SuspendLayout();
             this.EnumsTabControl.SuspendLayout();
@@ -72,12 +72,35 @@ namespace Programming.View
             this.EnumsTabControl.Text = "Enums";
             this.EnumsTabControl.UseVisualStyleBackColor = true;
             // 
+            // ClassesTabControl
+            // 
+            this.ClassesTabControl.Controls.Add(this.moviesControl1);
+            this.ClassesTabControl.Controls.Add(this.rectanglesControl1);
+            this.ClassesTabControl.Location = new System.Drawing.Point(4, 22);
+            this.ClassesTabControl.Name = "ClassesTabControl";
+            this.ClassesTabControl.Padding = new System.Windows.Forms.Padding(3);
+            this.ClassesTabControl.Size = new System.Drawing.Size(688, 333);
+            this.ClassesTabControl.TabIndex = 1;
+            this.ClassesTabControl.Text = "Classes";
+            this.ClassesTabControl.UseVisualStyleBackColor = true;
+            // 
+            // RectanglesTabControl
+            // 
+            this.RectanglesTabControl.Controls.Add(this.rectangleCollisionControl1);
+            this.RectanglesTabControl.Location = new System.Drawing.Point(4, 22);
+            this.RectanglesTabControl.Name = "RectanglesTabControl";
+            this.RectanglesTabControl.Padding = new System.Windows.Forms.Padding(3);
+            this.RectanglesTabControl.Size = new System.Drawing.Size(688, 333);
+            this.RectanglesTabControl.TabIndex = 2;
+            this.RectanglesTabControl.Text = "Rectangles";
+            this.RectanglesTabControl.UseVisualStyleBackColor = true;
+            // 
             // seasonHandleControl1
             // 
             this.seasonHandleControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.seasonHandleControl1.Location = new System.Drawing.Point(352, 241);
+            this.seasonHandleControl1.Location = new System.Drawing.Point(352, 242);
             this.seasonHandleControl1.Name = "seasonHandleControl1";
             this.seasonHandleControl1.Size = new System.Drawing.Size(340, 89);
             this.seasonHandleControl1.TabIndex = 11;
@@ -102,18 +125,6 @@ namespace Programming.View
             this.enumerationControl1.Size = new System.Drawing.Size(688, 240);
             this.enumerationControl1.TabIndex = 9;
             // 
-            // ClassesTabControl
-            // 
-            this.ClassesTabControl.Controls.Add(this.moviesControl1);
-            this.ClassesTabControl.Controls.Add(this.rectanglesControl1);
-            this.ClassesTabControl.Location = new System.Drawing.Point(4, 22);
-            this.ClassesTabControl.Name = "ClassesTabControl";
-            this.ClassesTabControl.Padding = new System.Windows.Forms.Padding(3);
-            this.ClassesTabControl.Size = new System.Drawing.Size(688, 333);
-            this.ClassesTabControl.TabIndex = 1;
-            this.ClassesTabControl.Text = "Classes";
-            this.ClassesTabControl.UseVisualStyleBackColor = true;
-            // 
             // moviesControl1
             // 
             this.moviesControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -133,17 +144,6 @@ namespace Programming.View
             this.rectanglesControl1.Name = "rectanglesControl1";
             this.rectanglesControl1.Size = new System.Drawing.Size(342, 331);
             this.rectanglesControl1.TabIndex = 2;
-            // 
-            // RectanglesTabControl
-            // 
-            this.RectanglesTabControl.Controls.Add(this.rectangleCollisionControl1);
-            this.RectanglesTabControl.Location = new System.Drawing.Point(4, 22);
-            this.RectanglesTabControl.Name = "RectanglesTabControl";
-            this.RectanglesTabControl.Padding = new System.Windows.Forms.Padding(3);
-            this.RectanglesTabControl.Size = new System.Drawing.Size(688, 333);
-            this.RectanglesTabControl.TabIndex = 2;
-            this.RectanglesTabControl.Text = "Rectangles";
-            this.RectanglesTabControl.UseVisualStyleBackColor = true;
             // 
             // rectangleCollisionControl1
             // 

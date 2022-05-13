@@ -2,19 +2,41 @@
 
 namespace Programming.Model
 {
+    /// <summary>
+    /// Хранит данные о контактах человека.
+    /// </summary>
     public class Contact
     {
+        /// <summary>
+        /// Номер телефона.
+        /// </summary>
         private string _number;
 
+        /// <summary>
+        /// Имя.
+        /// </summary>
         private string _name;
 
+        /// <summary>
+        /// Фамилия.
+        /// </summary>
         private string _surname;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Contact"/>.
+        /// </summary>
         public Contact()
         {
 
         }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Contact"/>.
+        /// </summary>
+        /// <param name="name">Имя. Должно состоять только из букв английского алфавита.</param>
+        /// <param name="surname">Фамилия. Должна состоять только из букв английского алфавита.</param>
+        /// <param name="number">Номер телефона. Должен состоять только из цифр.
+        /// Должен содержать 11 символов.</param>
         public Contact(string name, string surname, string number)
         {
             Name = name;
@@ -22,6 +44,9 @@ namespace Programming.Model
             Number = number;
         }
 
+        /// <summary>
+        /// Возвращает и задаёт имя контакта. Должно состоять только из букв английского алфавита.
+        /// </summary>
         public string Name
         {
             get
@@ -30,10 +55,14 @@ namespace Programming.Model
             }
             set
             {
-                _name = AssertStringContainsOnlyLetters(nameof(Name), value);
+                Validator.AssertStringContainsOnlyLetters(nameof(Name), value);
+                _name = value;
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт фамилию контакта. Должна состоять только из букв английского алфавита.
+        /// </summary>
         public string Surname
         {
             get
@@ -42,10 +71,15 @@ namespace Programming.Model
             }
             set
             {
-                _surname = AssertStringContainsOnlyLetters(nameof(Surname), value);
+                Validator.AssertStringContainsOnlyLetters(nameof(Surname), value);
+                _surname = value;
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт номер телефона контакта. Должен состоять только из цифр.
+        /// Должен содержать 11 символов.
+        /// </summary>
         public string Number
         {
             get
@@ -54,31 +88,10 @@ namespace Programming.Model
             }
             set
             {
-                if (!long.TryParse(value, out long num))
-                {
-                    throw new ArgumentException("Номер должно состоять только из цифр");
-                }
-
-                if (value.Length != 11)
-                {
-                    throw new ArgumentException("Номер должен состоять из 11 цифр");
-                }
-
+                Validator.AssertValueContainsOnlyDigits(nameof(Number), value);
+                Validator.AssertNumberContainsElevenDigits(nameof(Number), value);
                 _number = value;
             }
-        }
-
-        private string AssertStringContainsOnlyLetters(string propertyName, string value)
-        {
-            for (int i = 0; i < value.Length; i++)
-            {
-                if (!char.IsLetter(value[i]))
-                {
-                    throw new ArgumentException($"Значение {propertyName} должно содержать только буквы");
-                }
-            }
-
-            return value;
         }
     }
 }

@@ -6,13 +6,29 @@ using Programming.Model.Geometry;
 
 namespace Programming.View.Controls
 {
+    /// <summary>
+    /// Наследуется от класса UserControl.
+    /// </summary>
     public partial class RectanglesControl : UserControl
     {
+        /// <summary>
+        /// Количество элементов.
+        /// </summary>
         const int ElementsCount = 5;
 
+        /// <summary>
+        /// Массив прямоугольников.
+        /// </summary>
         private Rectangle[] _rectangles;
 
+        /// <summary>
+        /// Выбранный прямоугольник.
+        /// </summary>
         private Rectangle _currentRectangle;
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="RectanglesControl"/>.
+        /// </summary>
         public RectanglesControl()
         {
             InitializeComponent();
@@ -21,6 +37,10 @@ namespace Programming.View.Controls
             RectanglesListBox.SelectedIndex = 0;
         }
 
+        /// <summary>
+        /// Инициализирует коллекцию прямоугольников.
+        /// </summary>
+        /// <returns>Возвращает коллекцию прямоугольников.</returns>
         private Rectangle[] CreateRectangles()
         {
             Rectangle[] rectangles = new Rectangle[ElementsCount];
@@ -33,6 +53,11 @@ namespace Programming.View.Controls
             return rectangles;
         }
 
+        /// <summary>
+        /// Находит прямоугольник, чья ширина больше остальных.
+        /// </summary>
+        /// <param name="rectangles">Прямоугольник.</param>
+        /// <returns>Индекс элемента массива, ширина прямоугольника которого больше остальных.</returns>
         private int FindMaxWidth(Rectangle[] rectangles)
         {
             int maxWidthIndex = 0;
