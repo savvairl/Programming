@@ -3,7 +3,7 @@
 namespace Programming.Model
 {
     /// <summary>
-    /// Хранит данные о контактах человека.
+    /// Хранит данные о контактных данных человека.
     /// </summary>
     public class Contact
     {

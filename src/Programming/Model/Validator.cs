@@ -10,8 +10,8 @@ namespace Programming.Model
         /// <summary>
         /// Проверяет, что число является положительным.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
-        /// <param name="value">Число. </param>
+        /// <param name="propertyName">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <param name="value">Проверяемое число. </param>
         /// <exception cref="ArgumentException">Выбрасывается, когда число меньше или равно нулю.</exception>
         public static void AssertOnPositiveValue(string propertyName, int value)
         {
@@ -24,8 +24,8 @@ namespace Programming.Model
         /// <summary>
         /// Проверяет, что число является положительным.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
-        /// <param name="value">Число.</param>
+        /// <param name="propertyName">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <param name="value">Проверяемое число.</param>
         /// <exception cref="ArgumentException">Выбрасывается, когда число меньше или равно нулю.</exception>
         public static void AssertOnPositiveValue(string propertyName, double value)
         {
@@ -38,7 +38,7 @@ namespace Programming.Model
         /// <summary>
         /// Проверяет, что число находится в определённом диапазоне.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
+        /// <param name="propertyName">Имя свойства или объекта, которое подлежит проверке.</param>
         /// <param name="value">Число.</param>
         /// <param name="min">Левая граница диапазона.</param>
         /// <param name="max">Правая граница диапазона.</param>
@@ -54,8 +54,8 @@ namespace Programming.Model
         /// <summary>
         /// Проверяет, что число находится в определённом диапазоне.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
-        /// <param name="value">Число.</param>
+        /// <param name="propertyName">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <param name="value">Проверяемое число.</param>
         /// <param name="min">Левая граница диапазона.</param>
         /// <param name="max">Правая граница диапазона.</param>
         /// <exception cref="ArgumentException">Выбрасывается, если число находится вне диапазона.</exception>
@@ -70,8 +70,8 @@ namespace Programming.Model
         /// <summary>
         /// Проверяет, что строка состоит только из букв английского алфавита.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
-        /// <param name="value">Строка.</param>
+        /// <param name="propertyName">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <param name="value">Проверяемая строка.</param>
         /// <exception cref="ArgumentException">Выбрасывается, если строка состоит не только из
         /// букв английского алфавита.</exception>
         public static void AssertStringContainsOnlyLetters(string propertyName, string value)
@@ -88,8 +88,8 @@ namespace Programming.Model
         /// <summary>
         /// Проверяет, что строка состоит только из цифр.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
-        /// <param name="value">Строка.</param>
+        /// <param name="propertyName">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <param name="value">Проверяемая строка.</param>
         /// <exception cref="ArgumentException">Выбрасывается, если строка состоит не только из цифр.</exception>
         public static void AssertValueContainsOnlyDigits(string propertyName, string value)
         {
@@ -102,8 +102,8 @@ namespace Programming.Model
         /// <summary>
         /// Проверяет, что в строке 11 символов.
         /// </summary>
-        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
-        /// <param name="value">Строка.</param>
+        /// <param name="propertyName">Имя свойства или объекта, которое подлежит проверке.</param>
+        /// <param name="value">Проверяемая строка.</param>
         /// <exception cref="System.ArgumentException">Выбрасывается, если в строке не 11 символов.</exception>
         public static void AssertNumberContainsElevenDigits(string propertyName, string value)
         {

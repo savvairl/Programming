@@ -22,7 +22,7 @@ namespace Programming.Model.Geometry
         /// </summary>
         /// <param name="canvasWidth">Ширина элемента размещения.</param>
         /// <param name="canvasHeight">Высота элемента размещения.</param>
-        /// <returns>Возвращает объект Rectangle.</returns>
+        /// <returns>Возвращает объект <see cref="Rectangle"/>.</returns>
         public static Rectangle Randomize(int canvasWidth, int canvasHeight)
         {
             var colors = Enum.GetValues(typeof(Color));
@@ -38,7 +38,7 @@ namespace Programming.Model.Geometry
         /// <summary>
         /// Создаёт прямоугольник со случайными значениями высоты, ширины и координат.
         /// </summary>
-        /// <returns>Возвращает объект Rectangle.</returns>
+        /// <returns>Возвращает объект <see cref="Rectangle"/>.</returns>
         public static Rectangle Randomize()
         {
             var colors = Enum.GetValues(typeof(Color));
