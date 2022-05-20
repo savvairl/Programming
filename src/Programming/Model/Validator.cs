@@ -95,7 +95,7 @@ namespace Programming.Model
         {
             if (!long.TryParse(value, out long number))
             {
-                throw new System.ArgumentException($"Значение {propertyName} должно состоять только из цифр");
+                throw new ArgumentException($"Значение {propertyName} должно состоять только из цифр");
             }
         }
 
@@ -104,12 +104,12 @@ namespace Programming.Model
         /// </summary>
         /// <param name="propertyName">Имя свойства или объекта, которое подлежит проверке.</param>
         /// <param name="value">Проверяемая строка.</param>
-        /// <exception cref="System.ArgumentException">Выбрасывается, если в строке не 11 символов.</exception>
+        /// <exception cref="ArgumentException">Выбрасывается, если в строке не 11 символов.</exception>
         public static void AssertNumberContainsElevenDigits(string propertyName, string value)
         {
             if (value.Length != 11)
             {
-                throw new System.ArgumentException($"Значение {propertyName} должно содержать 11 символов");
+                throw new ArgumentException($"Значение {propertyName} должно содержать 11 символов");
             }
         }
     }

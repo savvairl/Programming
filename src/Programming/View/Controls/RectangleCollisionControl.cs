@@ -9,12 +9,12 @@ using Rectangle = Programming.Model.Geometry.Rectangle;
 namespace Programming.View.Controls
 {
     /// <summary>
-    /// Наследуется от класса UserControl.
+    /// Предоставляет реализацию по представлению прямоугольников.
     /// </summary>
     public partial class RectangleCollisionControl : UserControl
     {
         /// <summary>
-        /// Коллекция прямоугольников
+        /// Коллекция прямоугольников.
         /// </summary>
         private List<Rectangle> _rectangles;
 
@@ -41,9 +41,10 @@ namespace Programming.View.Controls
 
         /// <summary>
         /// Преобразует и форматирует данные прямоугольника в удобный формат.
+        /// Вид: Id, X, Y, W, H.
         /// </summary>
         /// <param name="rectangle">Прямоугольник.</param>
-        /// <returns>Возвращает форматированный текст</returns>
+        /// <returns>Возвращает форматированный текст.</returns>
         private string FormattedText(Rectangle rectangle)
         {
             return $"{rectangle.Id}: " +

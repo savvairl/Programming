@@ -25,7 +25,7 @@ namespace Programming.Model
         /// </summary>
         /// <param name="name">Название дисциплины.</param>
         /// <param name="lecturer">Преподаватель, ведущий дисциплину.</param>
-        /// <param name="mark">Оценка по дисциплине. Должно быть в диапазоне от 0 до 5 (включительно).</param>
+        /// <param name="mark">Оценка по дисциплине. Должна быть в диапазоне от 0 до 5.</param>
         public Subject(string name, string lecturer, int mark)
         {
             Name = name;
@@ -44,7 +44,7 @@ namespace Programming.Model
         public string Lecturer { get; set; }
 
         /// <summary>
-        /// Возвращает и задаёт оценку по дисциплине. Должно быть в диапазоне от 0 до 5 (включительно).
+        /// Возвращает и задаёт оценку по дисциплине. Должна быть в диапазоне от 0 до 5.
         /// </summary>
         public int Mark
         {

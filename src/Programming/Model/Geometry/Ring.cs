@@ -18,7 +18,7 @@ namespace Programming.Model.Geometry
         private double _outerRadius;
 
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Ring"/>
+        /// Создаёт экземпляр класса <see cref="Ring"/>.
         /// </summary>
         /// <param name="center">Координаты центра.</param>
         /// <param name="outerRadius">Внешний радиус. Должен быть положительным числом.
@@ -33,7 +33,7 @@ namespace Programming.Model.Geometry
         }
 
         /// <summary>
-        /// Возвращает и задает координаты центра кольца.
+        /// Возвращает и задает координаты центра окружности.
         /// </summary>
         public Point2D Center { get; set; }
 

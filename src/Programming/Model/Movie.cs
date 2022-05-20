@@ -33,8 +33,8 @@ namespace Programming.Model
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Movie"/>.
         /// </summary>
-        /// <param name="releaseYear">Год релиза фильма. Должно быть в диапазоне от 1900 до 2022.</param>
-        /// <param name="duration">Продолжительность фильма в минутах. Должно быть положительным числом.</param>
+        /// <param name="releaseYear">Год релиза фильма. Должен быть в диапазоне от 1900 до 2022.</param>
+        /// <param name="duration">Продолжительность фильма в минутах. Должна быть положительным числом.</param>
         /// <param name="rating">Рейтинг фильма. Должен быть в диапазоне от 0 до 10.</param>
         /// <param name="name">Название фильма.</param>
         /// <param name="genre">Жанр фильма.</param>

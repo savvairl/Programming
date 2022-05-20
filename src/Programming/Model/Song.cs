@@ -23,9 +23,9 @@ namespace Programming.Model
         /// <summary>
         /// Создаёт экземпляр класса <see cref="Song"/>.
         /// </summary>
-        /// <param name="artist">Имя (псевдоним) музыканта.</param>
+        /// <param name="artist">Имя исполнителя.</param>
         /// <param name="name">Название песни.</param>
-        /// <param name="duration">Продолжительность песни в секундах. Должно быть положительным числом.</param>
+        /// <param name="duration">Продолжительность песни в секундах. Должна быть положительным числом.</param>
         public Song(string artist, string name, int duration)
         {
             Artist = artist;

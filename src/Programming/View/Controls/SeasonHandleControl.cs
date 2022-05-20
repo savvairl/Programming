@@ -5,7 +5,7 @@ using Programming.Model;
 namespace Programming.View.Controls
 {
     /// <summary>
-    /// Наследуется от класса UserControl.
+    /// Предоставляет реализацию по изменению цвета фона окна.
     /// </summary>
     public partial class SeasonHandleControl : UserControl
     {

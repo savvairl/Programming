@@ -95,6 +95,7 @@ namespace Programming.View.Controls
             // 
             this.SelectedRectangleIdTextBox.Location = new System.Drawing.Point(43, 199);
             this.SelectedRectangleIdTextBox.Name = "SelectedRectangleIdTextBox";
+            this.SelectedRectangleIdTextBox.ReadOnly = true;
             this.SelectedRectangleIdTextBox.Size = new System.Drawing.Size(100, 20);
             this.SelectedRectangleIdTextBox.TabIndex = 26;
             // 

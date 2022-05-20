@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace Programming.View
 {
     /// <summary>
-    /// Наследуется от класса Form.
+    /// Предоставляет реализацию расположения элементов на форме.
     /// </summary>
     public partial class MainForm : Form
     {

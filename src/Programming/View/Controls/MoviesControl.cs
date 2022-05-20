@@ -5,7 +5,7 @@ using Programming.Model;
 namespace Programming.View.Controls
 {
     /// <summary>
-    /// Наследуется от класса UserControl.
+    /// Предоставляет реализацию по представлению фильмов.
     /// </summary>
     public partial class MoviesControl : UserControl
     {

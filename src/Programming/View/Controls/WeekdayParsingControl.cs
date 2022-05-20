@@ -5,7 +5,7 @@ using System.Windows.Forms;
 namespace Programming.View.Controls
 {
     /// <summary>
-    /// Наследуется от класса UserControl.
+    /// Предоставляет реализацию по парсингу дней недели из перечисления.
     /// </summary>
     public partial class WeekdayParsingControl : UserControl
     {
