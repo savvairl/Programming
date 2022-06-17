@@ -6,8 +6,6 @@
 #define MyAppPublisher "Savva"
 #define MyAppExeName "MusicPlaylist.exe"
 #define MyAppAssocName MyAppName + ""
-#define MyAppAssocExt ".myp"
-#define MyAppAssocKey StringChange(MyAppAssocName, " ", "") + MyAppAssocExt
 
 [Setup]
 ; NOTE: The value of AppId uniquely identifies this application. Do not use the same AppId value in installers for other applications.
@@ -24,7 +22,7 @@ AllowNoIcons=yes
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 ;PrivilegesRequired=lowest
 OutputBaseFilename=MusicPlaylist
-SetupIconFile=C:\Users\sav\Downloads\app_icon_48x48.ico
+SetupIconFile=..\Downloads\app_icon_48x48.ico
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -37,13 +35,8 @@ Name: "russian"; MessagesFile: "compiler:Languages\Russian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "C:\Users\sav\source\repos\savvairl\Programming\src\MusicPlaylist\MusicPlaylist\bin\Debug\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sav\source\repos\savvairl\Programming\src\MusicPlaylist\MusicPlaylist\bin\Debug\MusicPlaylist.pdb"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sav\source\repos\savvairl\Programming\src\MusicPlaylist\MusicPlaylist\bin\Debug\Newtonsoft.Json.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sav\source\repos\savvairl\Programming\src\MusicPlaylist\MusicPlaylist\bin\Debug\Serialize.json"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sav\source\repos\savvairl\Programming\src\MusicPlaylist\MusicPlaylist\bin\Debug\System.Diagnostics.DiagnosticSource.xml"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sav\source\repos\savvairl\Programming\src\MusicPlaylist\MusicPlaylist\bin\Debug\MusicPlaylist.exe.config"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\sav\source\repos\savvairl\Programming\src\MusicPlaylist\MusicPlaylist\bin\Debug\MusicPlaylist.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\MusicPlaylist\MusicPlaylist\bin\Debug\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion
+Source: "..\src\MusicPlaylist\MusicPlaylist\bin\Debug\Serialize.json"; DestDir: "{app}"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Registry]
