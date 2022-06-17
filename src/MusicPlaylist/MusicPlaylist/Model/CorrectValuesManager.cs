@@ -3,7 +3,7 @@
 namespace MusicPlaylist.Model
 {
     /// <summary>
-    /// Реализует статистическую обработку данных о текстовых полях.
+    /// Реализует статистическую обработку данных текстовых полей.
     /// </summary>
     public static class CorrectValuesManager
     {

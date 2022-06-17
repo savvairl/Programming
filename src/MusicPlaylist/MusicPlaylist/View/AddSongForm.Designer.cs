@@ -147,6 +147,7 @@ namespace MusicPlaylist.View
             this.Controls.Add(this.DurationLabel);
             this.Controls.Add(this.ArtistLabel);
             this.Controls.Add(this.SongNameLabel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AddSongForm";
             this.Text = "Add";

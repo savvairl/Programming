@@ -63,29 +63,24 @@ namespace MusicPlaylist.View
         }
 
         /// <summary>
+        /// Сортирует список песен.
+        /// </summary>
+        private void SortList()
+        {
+            var orderedMusicList = from song in _songs
+                                   orderby song.Artist, song.SongName
+                                   select song;
+            _songs = orderedMusicList.ToList();
+        }
+
+        /// <summary>
         /// Ищет индекс элемента по уникальному идентификатору.
         /// </summary>
         /// <returns>Возвращает индекс найденного элемента.</returns>
         private int FindItemIndexById()
         {
-            var orderedMusicList = from song in _songs
-                orderby song.Artist, song.SongName
-                select song;
-            _songs = orderedMusicList.ToList();
-            int currentSongId = _currentSong.Id;
-            int index = -1;
-
-            for (int i = 0; i < _songs.Count; i++)
-            {
-                if (_songs[i].Id != currentSongId)
-                {
-                    continue;
-                }
-
-                index = i;
-                break;
-            }
-
+            SortList();
+            int index = _songs.IndexOf(_currentSong);
             return index;
         }
 
@@ -97,10 +92,7 @@ namespace MusicPlaylist.View
         {
             MusicListBox.Items.Clear();
 
-            var orderedMusicList = from song in _songs
-                orderby song.Artist, song.SongName
-                select song;
-            _songs = orderedMusicList.ToList();
+            SortList();
 
             foreach (Song song in _songs)
             {
@@ -168,6 +160,7 @@ namespace MusicPlaylist.View
             DurationTextBox.Text = _currentSong.Duration.ToString();
             GenreTextBox.Text = _currentSong.Genre.ToString();
         }
+
 
         private void AddSongButton_MouseEnter(object sender, EventArgs e)
         {
