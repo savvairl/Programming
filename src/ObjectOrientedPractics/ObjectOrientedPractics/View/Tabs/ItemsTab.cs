@@ -5,62 +5,83 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
-using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.View;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Предоставляет реализацию по представлению вкладки товаров.
+    /// </summary>
     public partial class ItemsTab : UserControl
     {
-        private Item _item;
+        /// <summary>
+        /// Путь до директории AppData.
+        /// </summary>
+        private string AppDataPath = Application.UserAppDataPath;
 
+        /// <summary>
+        /// Коллекция товаров.
+        /// </summary>
         private List<Item> _items;
 
+        /// <summary>
+        /// Выбранный товар.
+        /// </summary>
         private Item _selectedItem;
 
+        /// <summary>
+        /// Окно добавления товара.
+        /// </summary>
         private AddItemForm _addItemForm;
 
+        /// <summary>
+        /// Окно редактирования товара.
+        /// </summary>
         private EditItemForm _editItemForm;
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="ItemsTab"/>.
+        /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
 
-            _item = new Item();
+            _items = ItemSerializer.Deserialize(AppDataPath);
             UpdateListBox(-1);
         }
 
+        /// <summary>
+        /// Очищает все поля.
+        /// </summary>
         private void ClearAllFields()
         {
-            IdTextBox.Clear();
+            IDTextBox.Clear();
             CostTextBox.Clear();
             NameTextBox.Clear();
-            DescriptionTextBox.Clear();
+            InfoTextBox.Clear();
         }
 
-        private void SortList()
-        {
-            var orderedItemList = from item in _items
-                                   orderby item.Name, item.Cost
-                                   select item;
-            _items = orderedItemList.ToList();
-        }
-
+        /// <summary>
+        /// Ищет индекс элемента по уникальному идентификатору.
+        /// </summary>
+        /// <returns>Возвращает индекс найденного элемента.</returns>
         private int FindItemIndexById()
         {
-            SortList();
             int index = _items.IndexOf(_selectedItem);
             return index;
         }
 
+        /// <summary>
+        /// Обновляет данные в списке ListBox.
+        /// </summary>
+        /// <param name="selectedIndex">Индекс выбранного элемента.</param>
         private void UpdateListBox(int selectedIndex)
         {
             ItemsListBox.Items.Clear();
-
-            SortList();
 
             foreach (Item item in _items)
             {
@@ -70,15 +91,18 @@ namespace ObjectOrientedPractics.View.Tabs
             ItemsListBox.SelectedIndex = selectedIndex;
         }
 
-        private void AddButton_Click(object sender, EventArgs e)
+        private void AddItemButton_Click(object sender, EventArgs e)
         {
             _addItemForm = new AddItemForm();
 
+            if (_addItemForm.ShowDialog() != DialogResult.OK) return;
+
             _items.Add(ItemData.Item);
+            ItemSerializer.Serialize(AppDataPath, _items);
             UpdateListBox(0);
         }
 
-        private void RemoveButton_Click(object sender, EventArgs e)
+        private void RemoveItemButton_Click(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
 
@@ -87,9 +111,10 @@ namespace ObjectOrientedPractics.View.Tabs
             _items.RemoveAt(index);
             UpdateListBox(-1);
             ClearAllFields();
+            ItemSerializer.Serialize(AppDataPath, _items);
         }
 
-        private void EditButton_Click(object sender, EventArgs e)
+        private void EditItemButton_Click(object sender, EventArgs e)
         {
             if (ItemsListBox.SelectedIndex == -1)
             {
@@ -100,10 +125,16 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _editItemForm = new EditItemForm();
 
+            if (_editItemForm.ShowDialog() != DialogResult.OK)
+            {
+                return;
+            }
+
             _selectedItem = ItemData.Item;
 
             int index = FindItemIndexById();
             UpdateListBox(index);
+            ItemSerializer.Serialize(AppDataPath, _items);
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -115,7 +146,8 @@ namespace ObjectOrientedPractics.View.Tabs
             _selectedItem = _items[index];
             CostTextBox.Text = _selectedItem.Cost.ToString();
             NameTextBox.Text = _selectedItem.Name;
-            DescriptionTextBox.Text = _selectedItem.Info;
+            InfoTextBox.Text = _selectedItem.Info;
+            IDTextBox.Text = _selectedItem.Id.ToString();
         }
     }
 }

@@ -8,21 +8,33 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
+using System.IO;
+using ObjectOrientedPractics.Services;
 
-namespace ObjectOrientedPractics.View.Tabs
+namespace ObjectOrientedPractics.View
 {
-    public partial class AddItemForm : Form
+    /// <summary>
+    /// Предоставляет реализацию по представлению окна изменения данных товара.
+    /// </summary>
+    public partial class EditItemForm : Form
     {
+        /// <summary>
+        /// Товар.
+        /// </summary>
         private Item _item;
 
-        public AddItemForm()
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="EditItemForm"/>
+        /// </summary>
+        public EditItemForm()
         {
             InitializeComponent();
 
-            _item = new Item();
-            CostTextBox.Text = "123";
-            NameTextBox.Text = "Name";
-            DescriptionTextBox.Text = "Description";
+            _item = ItemData.Item;
+
+            CostTextBox.Text = _item.Cost.ToString();
+            NameTextBox.Text = _item.Name;
+            InfoTextBox.Text = _item.Info;
         }
 
         private void CostTextBox_TextChanged(object sender, EventArgs e)
@@ -58,25 +70,25 @@ namespace ObjectOrientedPractics.View.Tabs
             NameTextBox.BackColor = AppColors.CorrectColor;
         }
 
-        private void DescriptionTextBox_TextChanged(object sender, EventArgs e)
+        private void InfoTextBox_TextChanged(object sender, EventArgs e)
         {
             try
             {
-                string itemDescriptionString = DescriptionTextBox.Text;
-                _item.Info = itemDescriptionString;
+                string itemInfoString = InfoTextBox.Text;
+                _item.Info = itemInfoString;
             }
             catch
             {
-                DescriptionTextBox.BackColor = AppColors.ErrorColor;
+                InfoTextBox.BackColor = AppColors.ErrorColor;
                 return;
             }
 
-            DescriptionTextBox.BackColor = AppColors.CorrectColor;
+            InfoTextBox.BackColor = AppColors.CorrectColor;
         }
 
-        private void OkButton_Click(object sender, EventArgs e)
+        private void OKButton_Click(object sender, EventArgs e)
         {
-            if (CorrectValueManager.IsCorrect(CostTextBox, NameTextBox, DescriptionTextBox))
+            if (CorrectValueManager.IsCorrect(CostTextBox, NameTextBox, InfoTextBox))
             {
                 ItemData.Item = _item;
                 DialogResult = DialogResult.OK;
