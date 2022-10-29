@@ -40,6 +40,7 @@ namespace ObjectOrientedPractics.Services
             Customer customer = new Customer();
             customer.Fullname = "Ivan Ivanovich Ivanov";
             customer.Address = address;
+            customer.Cart = new Cart();
 
             return customer;
         }

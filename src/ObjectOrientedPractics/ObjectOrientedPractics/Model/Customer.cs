@@ -33,6 +33,16 @@ namespace ObjectOrientedPractics.Model
         private Address _address;
 
         /// <summary>
+        /// Корзина
+        /// </summary>
+        private Cart _cart;
+
+        /// <summary>
+        /// Коллекция заказов.
+        /// </summary>
+        private List<Order> _orders;
+
+        /// <summary>
         /// Создаёт экземпляр класс <see cref="Customer"/>
         /// </summary>
         public Customer()
@@ -93,6 +103,36 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 _address = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает корзину товаров.
+        /// </summary>
+        public Cart Cart
+        {
+            get
+            {
+                return _cart;
+            }
+            set
+            {
+                _cart = value;
+            }
+        }
+
+        /// <summary>
+        /// Возвращает и задает коллекцию заказов.
+        /// </summary>
+        public List<Order> Orders
+        {
+            get
+            {
+                return _orders;
+            }
+            set
+            {
+                _orders = value;
             }
         }
     }
