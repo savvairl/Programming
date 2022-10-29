@@ -6,23 +6,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.View;
 using ObjectOrientedPractics.Services;
+using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
     /// <summary>
-    /// Предоставляет реализацию по представлению вкладки товаров.
+    /// Представляет реализацию по представлению товаров.
     /// </summary>
     public partial class ItemsTab : UserControl
     {
-        /// <summary>
-        /// Путь до директории AppData.
-        /// </summary>
-        private string AppDataPath = Application.UserAppDataPath;
-
         /// <summary>
         /// Коллекция товаров.
         /// </summary>
@@ -34,28 +28,40 @@ namespace ObjectOrientedPractics.View.Tabs
         private Item _selectedItem;
 
         /// <summary>
-        /// Окно добавления товара.
-        /// </summary>
-        private AddItemForm _addItemForm;
-
-        /// <summary>
-        /// Окно редактирования товара.
-        /// </summary>
-        private EditItemForm _editItemForm;
-
-        /// <summary>
-        /// Создаёт экземпляр класса <see cref="ItemsTab"/>.
+        /// Создает экземпляр класса <see cref="ItemsTab"/>
         /// </summary>
         public ItemsTab()
         {
             InitializeComponent();
 
-            _items = ItemSerializer.Deserialize(AppDataPath);
-            UpdateListBox(-1);
+            var category = Enum.GetValues(typeof(Category));
+
+            foreach (var value in category)
+                CategoryComboBox.Items.Add(value);
         }
 
         /// <summary>
-        /// Очищает все поля.
+        /// Возвращает и задает коллекцию товаров.
+        /// </summary>
+        public List<Item> Items
+        {
+            get
+            {
+                return _items;
+            }
+            set
+            {
+                _items = value;
+
+                if (_items != null)
+                {
+                    UpdateListBox(-1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Очищает поля вывода информации.
         /// </summary>
         private void ClearAllFields()
         {
@@ -71,38 +77,66 @@ namespace ObjectOrientedPractics.View.Tabs
         /// <returns>Возвращает индекс найденного элемента.</returns>
         private int FindItemIndexById()
         {
-            int index = _items.IndexOf(_selectedItem);
+            var orderedListItems = from item in _items
+                                   orderby item.Name
+                                   select item;
+
+            _items = orderedListItems.ToList();
+            int currentItemId = _selectedItem.Id;
+            int index = -1;
+
+            for (int i = 0; i < _items.Count; i++)
+            {
+                if (_items[i].Id != currentItemId) continue;
+
+                index = i;
+                break;
+            }
+
             return index;
         }
 
         /// <summary>
-        /// Обновляет данные в списке ListBox.
+        /// Обновляет данные в ListBox.
         /// </summary>
-        /// <param name="selectedIndex">Индекс выбранного элемента.</param>
+        /// <param name="selectedIndex">Выбранный элемент.</param>
         private void UpdateListBox(int selectedIndex)
         {
-            ItemsListBox.Items.Clear();
+            ItemsListBox.Items.Clear()
+                ;
+            var orderedListItems = from item in _items
+                                   orderby item.Name
+                                   select item;
+
+            _items = orderedListItems.ToList();
 
             foreach (Item item in _items)
             {
-                ItemsListBox.Items.Add($"{item.Name} - {item.Cost}");
+                ItemsListBox.Items.Add(FormatText(item));
             }
 
             ItemsListBox.SelectedIndex = selectedIndex;
         }
 
-        private void AddItemButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Приводит текст к нужному формату.
+        /// </summary>
+        /// <param name="item">Товар.</param>
+        /// <returns>Возвращает отформатированный текст.</returns>
+        private string FormatText(Item item)
         {
-            _addItemForm = new AddItemForm();
+            return $"{item.Name}";
+        }
 
-            if (_addItemForm.ShowDialog() != DialogResult.OK) return;
-
-            _items.Add(ItemData.Item);
-            ItemSerializer.Serialize(AppDataPath, _items);
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            Item item = ItemFactory.Randomize();
+            _selectedItem = item;
+            _items.Add(item);
             UpdateListBox(0);
         }
 
-        private void RemoveItemButton_Click(object sender, EventArgs e)
+        private void RemoveButton_Click(object sender, EventArgs e)
         {
             int index = ItemsListBox.SelectedIndex;
 
@@ -110,31 +144,8 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _items.RemoveAt(index);
             UpdateListBox(-1);
+
             ClearAllFields();
-            ItemSerializer.Serialize(AppDataPath, _items);
-        }
-
-        private void EditItemButton_Click(object sender, EventArgs e)
-        {
-            if (ItemsListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            ItemData.Item = _selectedItem;
-
-            _editItemForm = new EditItemForm();
-
-            if (_editItemForm.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            _selectedItem = ItemData.Item;
-
-            int index = FindItemIndexById();
-            UpdateListBox(index);
-            ItemSerializer.Serialize(AppDataPath, _items);
         }
 
         private void ItemsListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -144,10 +155,85 @@ namespace ObjectOrientedPractics.View.Tabs
             if (index == -1) return;
 
             _selectedItem = _items[index];
+
+            IDTextBox.Text = _selectedItem.Id.ToString();
             CostTextBox.Text = _selectedItem.Cost.ToString();
             NameTextBox.Text = _selectedItem.Name;
             InfoTextBox.Text = _selectedItem.Info;
-            IDTextBox.Text = _selectedItem.Id.ToString();
+            CategoryComboBox.SelectedIndex = (int)_selectedItem.Category;
+        }
+
+        private void CostTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+
+            if (index == -1) return;
+
+            try
+            {
+                int cost = Convert.ToInt32(CostTextBox.Text);
+                _selectedItem.Cost = cost;
+            }
+            catch
+            {
+                CostTextBox.BackColor = AppColor.ErrorColor;
+                return;
+            }
+
+            CostTextBox.BackColor = AppColor.CorrectColor;
+        }
+
+        private void NameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+
+            if (index == -1) return;
+
+            try
+            {
+                string name = NameTextBox.Text;
+                _selectedItem.Name = name;
+
+                int indexofItem = FindItemIndexById();
+                UpdateListBox(indexofItem);
+            }
+            catch
+            {
+                NameTextBox.BackColor = AppColor.ErrorColor;
+                return;
+            }
+
+            NameTextBox.BackColor = AppColor.CorrectColor;
+        }
+
+        private void InfoTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = ItemsListBox.SelectedIndex;
+
+            if (index == -1) return;
+
+            try
+            {
+                string info = InfoTextBox.Text;
+                _selectedItem.Info = info;
+            }
+            catch
+            {
+                InfoTextBox.BackColor = AppColor.ErrorColor;
+                return;
+            }
+
+            InfoTextBox.BackColor = AppColor.CorrectColor;
+        }
+
+        private void CategoryComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int indexofCategory = CategoryComboBox.SelectedIndex;
+            int indexofListBox = ItemsListBox.SelectedIndex;
+
+            if ((indexofCategory == -1) || (indexofListBox == -1)) return;
+
+            _selectedItem.Category = (Category)CategoryComboBox.SelectedItem;
         }
     }
 }

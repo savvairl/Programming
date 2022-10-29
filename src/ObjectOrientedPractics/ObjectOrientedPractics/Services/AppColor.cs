@@ -3,14 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ObjectOrientedPractics.Model;
 
 namespace ObjectOrientedPractics.Services
 {
     /// <summary>
     /// Хранит данные об используемых цветах.
     /// </summary>
-    public static class AppColors
+    public static class AppColor
     {
         /// <summary>
         /// Цвет корректного значения.

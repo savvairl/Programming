@@ -9,7 +9,7 @@ namespace ObjectOrientedPractics.Services
     /// <summary>
     /// Предоставляет методы для проверки входных данных.
     /// </summary>
-    public class ValueValidator
+    public static class ValueValidator
     {
         /// <summary>
         /// Проверяет, что количество символов строки меньше определённого числа.
@@ -22,6 +22,22 @@ namespace ObjectOrientedPractics.Services
                                                 string value)
         {
             if (value.Length > maxLength)
+                throw new ArgumentException(
+                    $"{propertyName} должен быть меньше {maxLength} символов");
+        }
+
+        /// <summary>
+        /// Проверяет, что количество цифр в числе равно заданному.
+        /// </summary>
+        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
+        /// <param name="maxLength">Максимальная длина.</param>
+        /// <param name="value">Число.</param>
+        /// <exception cref="ArgumentException">Выбрасывается, когда количество цифр числа не равно заданному.</exception>
+        public static void AssertIntOnLength(string propertyName,
+                                             int maxLength,
+                                             int value)
+        {
+            if (value.ToString().Length != maxLength)
                 throw new ArgumentException(
                     $"{propertyName} должен быть меньше {maxLength} символов");
         }
