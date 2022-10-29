@@ -120,7 +120,7 @@ namespace ObjectOrientedPractics.View.Tabs
 
         private void AddButton_Click(object sender, EventArgs e)
         {
-            Customer customer = CustomerFactory.Randomize();
+            Customer customer = CustomerFactory.CreateCustomer();
             _selectedCustomer = customer;
             _customers.Add(customer);
             UpdateListBox(0);
