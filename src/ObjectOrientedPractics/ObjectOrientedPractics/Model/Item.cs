@@ -52,11 +52,12 @@ namespace ObjectOrientedPractics.Model
         /// <param name="name">Название товара. Должно быть до 200 символов.</param>
         /// <param name="info">Информация о товаре. Должна быть до 1000 символов.</param>
         /// <param name="cost">Стоимость товара. От 0 до 100 000.</param>
-        public Item(string name, string info, double cost)
+        public Item(string name, string info, double cost, Category category)
         {
             Name = name;
             Info = info;
             Cost = cost;
+            Category = category;
             _allItemsCount++;
             _id = _allItemsCount;
         }
@@ -119,5 +120,10 @@ namespace ObjectOrientedPractics.Model
                 _cost = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задаёт категорию товара.
+        /// </summary>
+        public Category Category { get; set; }
     }
 }

@@ -6,20 +6,17 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.View;
 using ObjectOrientedPractics.Services;
+using System.Windows.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
+    /// <summary>
+    /// Представляет реализацию по представлению покупателей.
+    /// </summary>
     public partial class CustomersTab : UserControl
     {
-        /// <summary>
-        /// Путь до директории AppData.
-        /// </summary>
-        private string AppDataPath = Application.UserAppDataPath;
-
         /// <summary>
         /// Коллекция покупателей.
         /// </summary>
@@ -31,74 +28,105 @@ namespace ObjectOrientedPractics.View.Tabs
         private Customer _selectedCustomer;
 
         /// <summary>
-        /// Окно добавления покупателя.
-        /// </summary>
-        private AddCustomerForm _addCustomerForm;
-
-        /// <summary>
-        /// Окно редактирования данных покупателя.
-        /// </summary>
-        private EditCustomerForm _editCustomerForm;
-
-        /// <summary>
-        /// Создаёт экземпляр класса <see cref="CustomersTab"/>.
+        /// Создает экземпляр класса <see cref="CustomersTab"/>
         /// </summary>
         public CustomersTab()
         {
             InitializeComponent();
-
-            _customers = CustomerSerializer.Deserialize(AppDataPath);
-            UpdateListBox(-1);
         }
 
         /// <summary>
-        /// Очищает все поля.
+        /// Возвращает и задает коллекцию покупателей.
         /// </summary>
-        private void ClearAllFields()
+        public List<Customer> Customers
         {
-            IDTextBox.Clear();
-            AddressTextBox.Clear();
-            FullNameTextBox.Clear();
+            get => _customers;
+            set
+            {
+                _customers = value;
+
+                if (_customers != null)
+                {
+                    UpdateListBox(-1);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Обновляет данные в ListBox.
+        /// </summary>
+        /// <param name="selectedIndex">Выбранный элемент.</param>
+        private void UpdateListBox(int selectedIndex)
+        {
+            CustomersListBox.Items.Clear();
+            var orderedListItems = from customer in _customers
+                                   orderby customer.Fullname
+                                   select customer;
+
+            _customers = orderedListItems.ToList();
+
+            foreach (Customer customer in _customers)
+            {
+                CustomersListBox.Items.Add(FormatText(customer));
+            }
+
+            CustomersListBox.SelectedIndex = selectedIndex;
         }
 
         /// <summary>
         /// Ищет индекс элемента по уникальному идентификатору.
         /// </summary>
         /// <returns>Возвращает индекс найденного элемента.</returns>
-        private int FindItemIndexById()
+        private int FindCustomerIndexById()
         {
-            int index = _customers.IndexOf(_selectedCustomer);
+            var orderedListItems = from customer in _customers
+                                   orderby customer.Fullname
+                                   select customer;
+
+            _customers = orderedListItems.ToList();
+            int currentCustomerId = _selectedCustomer.Id;
+            int index = -1;
+
+            for (int i = 0; i < _customers.Count; i++)
+            {
+                if (_customers[i].Id != currentCustomerId) continue;
+
+                index = i;
+                break;
+            }
+
             return index;
         }
 
         /// <summary>
-        /// Обновляет данные в списке ListBox.
+        /// Очищает поля вывода информации.
         /// </summary>
-        /// <param name="selectedIndex">Индекс выбранного элемента.</param>
-        private void UpdateListBox(int selectedIndex)
+        private void ClearAllFields()
         {
-            CustomersListBox.Items.Clear();
-
-            foreach (Customer customer in _customers)
-            {
-                CustomersListBox.Items.Add($"{customer.Fullname} - {customer.Address}");
-            }
-
-            CustomersListBox.SelectedIndex = selectedIndex;
+            IDTextBox.Clear();
+            FullNameTextBox.Clear();
+            addressControl1.Clear();
         }
 
-        private void AddCustomerButton_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Приводит текст к нужному формату.
+        /// </summary>
+        /// <param name="customer">Покупатель.</param>
+        /// <returns>Возвращает отформатированный текст.</returns>
+        private string FormatText(Customer customer)
         {
-            _addCustomerForm = new AddCustomerForm();
+            return $"{customer.Fullname}";
+        }
 
-            if (_addCustomerForm.ShowDialog() != DialogResult.OK) return;
-
-            _customers.Add(CustomerData.Customer);
-            CustomerSerializer.Serialize(AppDataPath, _customers);
+        private void AddButton_Click(object sender, EventArgs e)
+        {
+            Customer customer = CustomerFactory.CreateCustomer();
+            _selectedCustomer = customer;
+            _customers.Add(customer);
             UpdateListBox(0);
         }
 
-        private void RemoveCustomerButton_Click(object sender, EventArgs e)
+        private void RemoveButton_Click(object sender, EventArgs e)
         {
             int index = CustomersListBox.SelectedIndex;
 
@@ -107,30 +135,6 @@ namespace ObjectOrientedPractics.View.Tabs
             _customers.RemoveAt(index);
             UpdateListBox(-1);
             ClearAllFields();
-            CustomerSerializer.Serialize(AppDataPath, _customers);
-        }
-
-        private void EditCustomerButton_Click(object sender, EventArgs e)
-        {
-            if (CustomersListBox.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            CustomerData.Customer = _selectedCustomer;
-
-            _editCustomerForm = new EditCustomerForm();
-
-            if (_editCustomerForm.ShowDialog() != DialogResult.OK)
-            {
-                return;
-            }
-
-            _selectedCustomer = CustomerData.Customer;
-
-            int index = FindItemIndexById();
-            UpdateListBox(index);
-            CustomerSerializer.Serialize(AppDataPath, _customers);
         }
 
         private void CustomersListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -140,9 +144,32 @@ namespace ObjectOrientedPractics.View.Tabs
             if (index == -1) return;
 
             _selectedCustomer = _customers[index];
-            FullNameTextBox.Text = _selectedCustomer.Fullname;
-            AddressTextBox.Text = _selectedCustomer.Address;
+
             IDTextBox.Text = _selectedCustomer.Id.ToString();
+            FullNameTextBox.Text = _selectedCustomer.Fullname;
+            addressControl1.Address = _selectedCustomer.Address;
+        }
+
+        private void FullNameTextBox_TextChanged(object sender, EventArgs e)
+        {
+            int index = CustomersListBox.SelectedIndex;
+
+            if (index == -1) return;
+
+            try
+            {
+                string name = FullNameTextBox.Text;
+                _selectedCustomer.Fullname = name;
+                int indexofCustomer = FindCustomerIndexById();
+                UpdateListBox(indexofCustomer);
+            }
+            catch
+            {
+                FullNameTextBox.BackColor = AppColor.ErrorColor;
+                return;
+            }
+
+            FullNameTextBox.BackColor = AppColor.CorrectColor;
         }
     }
 }

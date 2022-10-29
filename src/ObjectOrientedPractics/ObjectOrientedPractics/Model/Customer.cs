@@ -30,7 +30,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Адрес.
         /// </summary>
-        private string _address;
+        private Address _address;
 
         /// <summary>
         /// Создаёт экземпляр класс <see cref="Customer"/>
@@ -46,7 +46,7 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullname">Полное имя. Размер строки должен быть до 200 символов.</param>
         /// <param name="address">Адрес. Размер строки должен быть до 500 символов.</param>
-        public Customer(string fullname, string address)
+        public Customer(string fullname, Address address)
         {
             Fullname = fullname;
             Address = address;
@@ -84,7 +84,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Возвращает и задаёт адрес покупателя.
         /// </summary>
-        public string Address
+        public Address Address
         {
             get
             {
@@ -92,7 +92,6 @@ namespace ObjectOrientedPractics.Model
             }
             set
             {
-                ValueValidator.AssertStringOnLength(nameof(Address), 500, value);
                 _address = value;
             }
         }
