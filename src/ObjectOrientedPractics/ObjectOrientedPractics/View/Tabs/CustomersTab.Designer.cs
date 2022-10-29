@@ -29,9 +29,9 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InitializeComponent()
         {
+            ObjectOrientedPractics.Model.Address address1 = new ObjectOrientedPractics.Model.Address();
             this.SelectedItemPanel = new System.Windows.Forms.Panel();
             this.addressControl1 = new ObjectOrientedPractics.View.Controls.AddressControl();
-            this.label5 = new System.Windows.Forms.Label();
             this.FullNameTextBox = new System.Windows.Forms.TextBox();
             this.IDTextBox = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -52,7 +52,6 @@ namespace ObjectOrientedPractics.View.Tabs
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.SelectedItemPanel.Controls.Add(this.addressControl1);
-            this.SelectedItemPanel.Controls.Add(this.label5);
             this.SelectedItemPanel.Controls.Add(this.FullNameTextBox);
             this.SelectedItemPanel.Controls.Add(this.IDTextBox);
             this.SelectedItemPanel.Controls.Add(this.label4);
@@ -65,19 +64,17 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // addressControl1
             // 
+            address1.Apartment = null;
+            address1.Building = null;
+            address1.City = null;
+            address1.Country = null;
+            address1.Index = 0;
+            address1.Street = null;
+            this.addressControl1.Address = address1;
             this.addressControl1.Location = new System.Drawing.Point(6, 97);
             this.addressControl1.Name = "addressControl1";
             this.addressControl1.Size = new System.Drawing.Size(520, 109);
             this.addressControl1.TabIndex = 6;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(3, 81);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(48, 13);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Address:";
             // 
             // FullNameTextBox
             // 
@@ -212,7 +209,6 @@ namespace ObjectOrientedPractics.View.Tabs
         private System.Windows.Forms.Button AddButton;
         private System.Windows.Forms.ListBox CustomersListBox;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
         private Controls.AddressControl addressControl1;
     }
 }
