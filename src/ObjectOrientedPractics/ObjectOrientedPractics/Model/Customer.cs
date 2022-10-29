@@ -49,8 +49,6 @@ namespace ObjectOrientedPractics.Model
         {
             _allCustomersCount++;
             _id = _allCustomersCount;
-            Orders = new List<Order>();
-            Cart = new Cart();
         }
 
         /// <summary>
@@ -58,12 +56,10 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullname">Полное имя. Размер строки должен быть до 200 символов.</param>
         /// <param name="address">Адрес. Размер строки должен быть до 500 символов.</param>
-        public Customer(string fullname, Address address, Cart cart, List<Order> orders)
+        public Customer(string fullname, Address address)
         {
             Fullname = fullname;
             Address = address;
-            Cart = cart;
-            Orders = orders;
             _allCustomersCount++;
             _id = _allCustomersCount;
         }
