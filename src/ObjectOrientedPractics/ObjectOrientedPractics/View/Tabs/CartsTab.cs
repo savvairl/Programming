@@ -185,6 +185,7 @@ namespace ObjectOrientedPractics.View.Tabs
             AmountDigitLabel.Text = SelectedCustomer.Cart.Amount.ToString();
 
             UpdateCartListBox(-1);
+            CreateOrderButton.Enabled = true;
         }
 
         private void RemoveItemButton_Click(object sender, EventArgs e)
@@ -215,9 +216,10 @@ namespace ObjectOrientedPractics.View.Tabs
             order.Status = OrderStatus.New;
             SelectedCustomer.Orders.Add(order);
             SelectedCustomer.Cart = new Cart();
-
             UpdateCartListBox(-1);
             AmountDigitLabel.Text = SelectedCustomer.Cart.Amount.ToString();
+
+            CreateOrderButton.Enabled = false;
         }
     }
 }
