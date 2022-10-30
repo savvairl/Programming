@@ -214,6 +214,7 @@ namespace ObjectOrientedPractics.View.Tabs
             order.Address = SelectedCustomer.Address;
             order.Items = SelectedCustomer.Cart.Items;
             order.Status = OrderStatus.New;
+            SelectedCustomer.Orders = new List<Order>();
             SelectedCustomer.Orders.Add(order);
             SelectedCustomer.Cart = new Cart();
             UpdateCartListBox(-1);
