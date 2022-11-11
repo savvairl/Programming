@@ -68,6 +68,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateOrders()
         {
+            _orders = new List<Order>();
             foreach (var customer in _customers)
             {
                 Address address = customer.Address;
