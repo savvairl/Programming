@@ -29,10 +29,11 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void InitializeComponent()
         {
-            ObjectOrientedPractics.Model.Address address2 = new ObjectOrientedPractics.Model.Address();
+            ObjectOrientedPractics.Model.Address address1 = new ObjectOrientedPractics.Model.Address();
             this.label1 = new System.Windows.Forms.Label();
             this.OrdersDataGridView = new System.Windows.Forms.DataGridView();
             this.IDColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.OrderStatusColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CustomerFullNameColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,8 +50,15 @@ namespace ObjectOrientedPractics.View.Tabs
             this.label6 = new System.Windows.Forms.Label();
             this.OrderItemsListBox = new System.Windows.Forms.ListBox();
             this.label7 = new System.Windows.Forms.Label();
+            this.PriorityPanel = new System.Windows.Forms.Panel();
+            this.DeliveryTimeComboBox = new System.Windows.Forms.ComboBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.TotalAmountLabel = new System.Windows.Forms.Label();
+            this.TotalAmountDigitLabel = new System.Windows.Forms.Label();
             this.AmountDigitLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).BeginInit();
+            this.PriorityPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -74,6 +82,7 @@ namespace ObjectOrientedPractics.View.Tabs
             this.OrdersDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.OrdersDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IDColumn,
+            this.TotalColumn,
             this.CreatedColumn,
             this.OrderStatusColumn,
             this.CustomerFullNameColumn,
@@ -93,31 +102,42 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.IDColumn.HeaderText = "ID";
             this.IDColumn.Name = "IDColumn";
+            this.IDColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // TotalColumn
+            // 
+            this.TotalColumn.HeaderText = "Total";
+            this.TotalColumn.Name = "TotalColumn";
             // 
             // CreatedColumn
             // 
             this.CreatedColumn.HeaderText = "Created";
             this.CreatedColumn.Name = "CreatedColumn";
+            this.CreatedColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // OrderStatusColumn
             // 
             this.OrderStatusColumn.HeaderText = "Order Status";
             this.OrderStatusColumn.Name = "OrderStatusColumn";
+            this.OrderStatusColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // CustomerFullNameColumn
             // 
             this.CustomerFullNameColumn.HeaderText = "Customer Full Name";
             this.CustomerFullNameColumn.Name = "CustomerFullNameColumn";
+            this.CustomerFullNameColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // DeliveryAddressColumn
             // 
             this.DeliveryAddressColumn.HeaderText = "Delivery Address";
             this.DeliveryAddressColumn.Name = "DeliveryAddressColumn";
+            this.DeliveryAddressColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // AmountColumn
             // 
             this.AmountColumn.HeaderText = "Amount";
             this.AmountColumn.Name = "AmountColumn";
+            this.AmountColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // label2
             // 
@@ -183,7 +203,7 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             // addressControl1
             // 
-            this.addressControl1.Address = address2;
+            this.addressControl1.Address = address1;
             this.addressControl1.Location = new System.Drawing.Point(325, 95);
             this.addressControl1.Name = "addressControl1";
             this.addressControl1.Size = new System.Drawing.Size(481, 109);
@@ -217,20 +237,85 @@ namespace ObjectOrientedPractics.View.Tabs
             this.label7.TabIndex = 12;
             this.label7.Text = "Amount:";
             // 
+            // PriorityPanel
+            // 
+            this.PriorityPanel.Controls.Add(this.DeliveryTimeComboBox);
+            this.PriorityPanel.Controls.Add(this.label9);
+            this.PriorityPanel.Controls.Add(this.label8);
+            this.PriorityPanel.Location = new System.Drawing.Point(597, 0);
+            this.PriorityPanel.Name = "PriorityPanel";
+            this.PriorityPanel.Size = new System.Drawing.Size(207, 47);
+            this.PriorityPanel.TabIndex = 14;
+            // 
+            // DeliveryTimeComboBox
+            // 
+            this.DeliveryTimeComboBox.FormattingEnabled = true;
+            this.DeliveryTimeComboBox.Location = new System.Drawing.Point(83, 19);
+            this.DeliveryTimeComboBox.Name = "DeliveryTimeComboBox";
+            this.DeliveryTimeComboBox.Size = new System.Drawing.Size(121, 21);
+            this.DeliveryTimeComboBox.TabIndex = 33;
+            this.DeliveryTimeComboBox.SelectedIndexChanged += new System.EventHandler(this.DeliveryTimeComboBox_SelectedIndexChanged);
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label9.Location = new System.Drawing.Point(3, 0);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(93, 13);
+            this.label9.TabIndex = 31;
+            this.label9.Text = "Priority Options";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(3, 23);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(74, 13);
+            this.label8.TabIndex = 32;
+            this.label8.Text = "Delivery Time:";
+            // 
+            // TotalAmountLabel
+            // 
+            this.TotalAmountLabel.AutoSize = true;
+            this.TotalAmountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TotalAmountLabel.Location = new System.Drawing.Point(715, 414);
+            this.TotalAmountLabel.Name = "TotalAmountLabel";
+            this.TotalAmountLabel.Size = new System.Drawing.Size(86, 13);
+            this.TotalAmountLabel.TabIndex = 15;
+            this.TotalAmountLabel.Text = "Total Amount:";
+            // 
+            // TotalAmountDigitLabel
+            // 
+            this.TotalAmountDigitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.TotalAmountDigitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.TotalAmountDigitLabel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.TotalAmountDigitLabel.Location = new System.Drawing.Point(604, 440);
+            this.TotalAmountDigitLabel.Name = "TotalAmountDigitLabel";
+            this.TotalAmountDigitLabel.Size = new System.Drawing.Size(200, 24);
+            this.TotalAmountDigitLabel.TabIndex = 16;
+            this.TotalAmountDigitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // AmountDigitLabel
             // 
-            this.AmountDigitLabel.AutoSize = true;
-            this.AmountDigitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.AmountDigitLabel.Location = new System.Drawing.Point(699, 373);
+            this.AmountDigitLabel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.AmountDigitLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.AmountDigitLabel.Location = new System.Drawing.Point(601, 373);
             this.AmountDigitLabel.Name = "AmountDigitLabel";
-            this.AmountDigitLabel.Size = new System.Drawing.Size(0, 26);
-            this.AmountDigitLabel.TabIndex = 13;
+            this.AmountDigitLabel.Size = new System.Drawing.Size(200, 24);
+            this.AmountDigitLabel.TabIndex = 17;
+            this.AmountDigitLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // OrdersTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.AmountDigitLabel);
+            this.Controls.Add(this.TotalAmountDigitLabel);
+            this.Controls.Add(this.TotalAmountLabel);
+            this.Controls.Add(this.PriorityPanel);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.OrderItemsListBox);
             this.Controls.Add(this.label6);
@@ -247,6 +332,8 @@ namespace ObjectOrientedPractics.View.Tabs
             this.Name = "OrdersTab";
             this.Size = new System.Drawing.Size(807, 500);
             ((System.ComponentModel.ISupportInitialize)(this.OrdersDataGridView)).EndInit();
+            this.PriorityPanel.ResumeLayout(false);
+            this.PriorityPanel.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -267,12 +354,19 @@ namespace ObjectOrientedPractics.View.Tabs
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.ListBox OrderItemsListBox;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.Label AmountDigitLabel;
+        private System.Windows.Forms.Panel PriorityPanel;
+        private System.Windows.Forms.ComboBox DeliveryTimeComboBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label TotalAmountLabel;
+        private System.Windows.Forms.Label TotalAmountDigitLabel;
         private System.Windows.Forms.DataGridViewTextBoxColumn IDColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn OrderStatusColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CustomerFullNameColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn DeliveryAddressColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn AmountColumn;
+        private System.Windows.Forms.Label AmountDigitLabel;
     }
 }

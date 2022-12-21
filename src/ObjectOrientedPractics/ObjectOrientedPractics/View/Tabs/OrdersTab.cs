@@ -1,16 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Services;
-using ObjectOrientedPractics.View.Tabs;
-using ObjectOrientedPractics.View.Controls;
+using ObjectOrientedPractics.Model.Enums;
+using ObjectOrientedPractics.Model.Orders;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -35,6 +28,24 @@ namespace ObjectOrientedPractics.View.Tabs
         private Order _selectedOrder;
 
         /// <summary>
+        /// Выбранный приоритетный заказ.
+        /// </summary>
+        private PriorityOrder _selectedPriorityOrder;
+
+        /// <summary>
+        /// Время доставки.
+        /// </summary>
+        private string[] _deliveryTime =
+        {
+            "9:00 - 11:00",
+            "11:00 - 13:00",
+            "13:00 - 15:00",
+            "15:00 - 17:00",
+            "17:00 - 19:00",
+            "19:00 - 21:00"
+        };
+
+        /// <summary>
         /// Создаёт экземпляр класса <see cref="OrdersTab"/>.
         /// </summary>
         public OrdersTab()
@@ -49,7 +60,12 @@ namespace ObjectOrientedPractics.View.Tabs
             {
                 StatusComboBox.Items.Add(value);
             }
+            foreach (var time in _deliveryTime)
+            {
+                DeliveryTimeComboBox.Items.Add(time);
+            }
 
+            PriorityPanel.Visible = false;
             StatusComboBox.Enabled = false;
         }
 
@@ -68,7 +84,6 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         private void UpdateOrders()
         {
-            _orders = new List<Order>();
             foreach (var customer in _customers)
             {
                 Address address = customer.Address;
@@ -78,7 +93,7 @@ namespace ObjectOrientedPractics.View.Tabs
                 foreach (var order in customer.Orders)
                 {
                     _orders.Add(order);
-                    OrdersDataGridView.Rows.Add(order.Id.ToString(), order.DateOfCreate,
+                    OrdersDataGridView.Rows.Add(order.Id.ToString(), order.Total.ToString(), order.DateOfCreate,
                         order.Status, customer.Fullname, fullAddress, order.Amount.ToString());
                 }
             }
@@ -94,14 +109,18 @@ namespace ObjectOrientedPractics.View.Tabs
             CreatedTextBox.Text = _selectedOrder.DateOfCreate;
             StatusComboBox.SelectedIndex = (int)_selectedOrder.Status;
             addressControl1.Address = _selectedOrder.Address;
+            AmountDigitLabel.Text = _selectedOrder.Amount.ToString();
+            TotalAmountDigitLabel.Text = _selectedOrder.Total.ToString();
 
             OrderItemsListBox.Items.Clear();
             foreach (var item in _selectedOrder.Items)
             {
                 OrderItemsListBox.Items.Add(item.Name);
             }
-
-            AmountDigitLabel.Text = _selectedOrder.Amount.ToString();
+            if(_selectedOrder is PriorityOrder priority)
+            {
+                DeliveryTimeComboBox.SelectedIndex = Array.IndexOf(_deliveryTime, _selectedPriorityOrder.DeliveryTime);
+            }
         }
 
         /// <summary>
@@ -124,9 +143,23 @@ namespace ObjectOrientedPractics.View.Tabs
         private void OrdersDataGridView_SelectionChanged(object sender, EventArgs e)
         {
             int index = OrdersDataGridView.CurrentCell.RowIndex;
-            if (index == -1) return;
+            if (index == -1)
+            {
+                return;
+            }
 
             _selectedOrder = _orders[index];
+
+            if (_selectedOrder is PriorityOrder priority)
+            {
+                _selectedPriorityOrder = (PriorityOrder)_orders[index];
+                PriorityPanel.Visible = true;
+            }
+            else
+            {
+                PriorityPanel.Visible = false;
+                _selectedPriorityOrder = null;
+            }
             FillTextBoxes();
         }
 
@@ -136,6 +169,11 @@ namespace ObjectOrientedPractics.View.Tabs
 
             _selectedOrder.Status = (OrderStatus)StatusComboBox.SelectedIndex;
             OrdersDataGridView.Rows[index].Cells[2].Value = (OrderStatus)StatusComboBox.SelectedIndex;
+        }
+
+        private void DeliveryTimeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            _selectedPriorityOrder.DeliveryTime = (string)DeliveryTimeComboBox.SelectedItem;
         }
     }
 }

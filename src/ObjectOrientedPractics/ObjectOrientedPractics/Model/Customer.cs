@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using ObjectOrientedPractics.Services;
+using ObjectOrientedPractics.Model.Orders;
+using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Model
 {
@@ -43,12 +41,21 @@ namespace ObjectOrientedPractics.Model
         private List<Order> _orders;
 
         /// <summary>
+        /// Приоритетный покупатель.
+        /// </summary>
+        private bool _isPrioritized;
+
+        /// <summary>
         /// Создаёт экземпляр класс <see cref="Customer"/>
         /// </summary>
         public Customer()
         {
             _allCustomersCount++;
             _id = _allCustomersCount;
+            Cart = new Cart();
+            Orders = new List<Order>();
+            IsPrioritized = false;
+            Discounts = new List<IDiscount>();
         }
 
         /// <summary>
@@ -56,12 +63,17 @@ namespace ObjectOrientedPractics.Model
         /// </summary>
         /// <param name="fullname">Полное имя. Размер строки должен быть до 200 символов.</param>
         /// <param name="address">Адрес. Размер строки должен быть до 500 символов.</param>
-        public Customer(string fullname, Address address)
+        public Customer(string fullname, Address address, Cart cart, List<Order> orders, bool isPrioritized)
         {
             Fullname = fullname;
             Address = address;
+            Cart = cart;
+            Orders = orders;
+            IsPrioritized = isPrioritized;
             _allCustomersCount++;
             _id = _allCustomersCount;
+            Discounts = new List<IDiscount>();
+            Discounts.Add(new PointsDiscount());
         }
 
         /// <summary>
@@ -135,5 +147,23 @@ namespace ObjectOrientedPractics.Model
                 _orders = value;
             }
         }
+
+        /// <summary>
+        /// Возвращает и задаёт bool:
+        /// является ли покупатель приоритетным.
+        /// </summary>
+        public bool IsPrioritized
+        {
+            get
+            {
+                return _isPrioritized;
+            }
+            set
+            {
+                _isPrioritized = value;
+            }
+        }
+
+        public List<IDiscount> Discounts { get; set; }
     }
 }

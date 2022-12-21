@@ -28,7 +28,9 @@ namespace ObjectOrientedPractics.Services
         {
             using (StreamWriter writer = new StreamWriter(AppDataPath + @"\StoreSerialize.json"))
             {
-                writer.Write(JsonConvert.SerializeObject(store));
+                JsonSerializerSettings settings = new JsonSerializerSettings();
+                settings.TypeNameHandling = TypeNameHandling.All;
+                writer.Write(JsonConvert.SerializeObject(store, settings));
             }
         }
 
@@ -44,7 +46,9 @@ namespace ObjectOrientedPractics.Services
             {
                 using (StreamReader reader = new StreamReader(AppDataPath + @"\StoreSerialize.json"))
                 {
-                    store = JsonConvert.DeserializeObject<Store>(reader.ReadToEnd());
+                    JsonSerializerSettings settings = new JsonSerializerSettings();
+                    settings.TypeNameHandling = TypeNameHandling.All;
+                    store = JsonConvert.DeserializeObject<Store>(reader.ReadToEnd(), settings);
                 }
 
                 if (store == null) store = new Store();

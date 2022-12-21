@@ -38,11 +38,14 @@ namespace ObjectOrientedPractics.View
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.OrdersPage = new System.Windows.Forms.TabPage();
             this.ordersTab1 = new ObjectOrientedPractics.View.Tabs.OrdersTab();
+            this.PriorityOrdersPage = new System.Windows.Forms.TabPage();
+            this.priorityOrdersTab1 = new ObjectOrientedPractics.View.Tabs.PriorityOrdersTab();
             this.CartsPage.SuspendLayout();
             this.CustomersPage.SuspendLayout();
             this.ItemsPage.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.OrdersPage.SuspendLayout();
+            this.PriorityOrdersPage.SuspendLayout();
             this.SuspendLayout();
             // 
             // CartsPage
@@ -111,6 +114,7 @@ namespace ObjectOrientedPractics.View
             this.tabControl1.Controls.Add(this.CustomersPage);
             this.tabControl1.Controls.Add(this.CartsPage);
             this.tabControl1.Controls.Add(this.OrdersPage);
+            this.tabControl1.Controls.Add(this.PriorityOrdersPage);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
@@ -138,6 +142,24 @@ namespace ObjectOrientedPractics.View
             this.ordersTab1.Size = new System.Drawing.Size(813, 505);
             this.ordersTab1.TabIndex = 0;
             // 
+            // PriorityOrdersPage
+            // 
+            this.PriorityOrdersPage.Controls.Add(this.priorityOrdersTab1);
+            this.PriorityOrdersPage.Location = new System.Drawing.Point(4, 22);
+            this.PriorityOrdersPage.Name = "PriorityOrdersPage";
+            this.PriorityOrdersPage.Size = new System.Drawing.Size(813, 505);
+            this.PriorityOrdersPage.TabIndex = 4;
+            this.PriorityOrdersPage.Text = "Priority Orders";
+            this.PriorityOrdersPage.UseVisualStyleBackColor = true;
+            // 
+            // priorityOrdersTab1
+            // 
+            this.priorityOrdersTab1.Items = null;
+            this.priorityOrdersTab1.Location = new System.Drawing.Point(3, 2);
+            this.priorityOrdersTab1.Name = "priorityOrdersTab1";
+            this.priorityOrdersTab1.Size = new System.Drawing.Size(807, 500);
+            this.priorityOrdersTab1.TabIndex = 0;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -153,6 +175,7 @@ namespace ObjectOrientedPractics.View
             this.ItemsPage.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.OrdersPage.ResumeLayout(false);
+            this.PriorityOrdersPage.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -168,6 +191,8 @@ namespace ObjectOrientedPractics.View
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage OrdersPage;
         private Tabs.OrdersTab ordersTab1;
+        private System.Windows.Forms.TabPage PriorityOrdersPage;
+        private Tabs.PriorityOrdersTab priorityOrdersTab1;
     }
 }
 

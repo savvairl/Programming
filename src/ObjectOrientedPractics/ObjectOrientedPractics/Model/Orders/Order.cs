@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using ObjectOrientedPractics.Model.Enums;
 
-namespace ObjectOrientedPractics.Model
+namespace ObjectOrientedPractics.Model.Orders
 {
     /// <summary>
     /// Представляет реализацию по оформлению заказа.
@@ -42,13 +40,28 @@ namespace ObjectOrientedPractics.Model
         private double _amount;
 
         /// <summary>
-        /// Создает экземпляр класса <see cref="Order"/>. 
+        /// Создаёт экземпляр класса <see cref="Order"/>.
         /// </summary>
         public Order()
         {
             _allOrdersCount++;
             _id = _allOrdersCount;
+            _dateOfCreate = DateTime.Today.ToString();
+        }
 
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="Order"/>
+        /// </summary>
+        /// <param name="status">Статус заказа.</param>
+        /// <param name="address">Адрес.</param>
+        /// <param name="items">Товары.</param>
+        public Order(OrderStatus status, Address address, List<Item> items)
+        {
+            Status = status;
+            Address = address;
+            Items = items;
+            _allOrdersCount++;
+            _id = _allOrdersCount;
             _dateOfCreate = DateTime.Today.ToString();
         }
 
@@ -111,7 +124,9 @@ namespace ObjectOrientedPractics.Model
         {
             get
             {
-                if (_items == null) return _amount = 0;
+                _amount = 0;
+
+                if (_items == null) return _amount;
 
                 foreach (var item in _items)
                 {
@@ -126,5 +141,21 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает и задает статус заказа.
         /// </summary>
         public OrderStatus Status { get; set; }
+
+        /// <summary>
+        /// Возвращает и задаёт скидку на товары.
+        /// </summary>
+        public double DiscountAmount { get; set; }
+
+        /// <summary>
+        /// Возвращает итоговую стоимость заказа.
+        /// </summary>
+        public double Total
+        {
+            get
+            {
+                return Amount - DiscountAmount;
+            }
+        }
     }
 }

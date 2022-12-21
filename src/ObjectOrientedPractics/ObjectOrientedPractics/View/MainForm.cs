@@ -1,7 +1,6 @@
 ﻿using System.Windows.Forms;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
-using ObjectOrientedPractics.View.Tabs;
 
 namespace ObjectOrientedPractics.View
 {
@@ -28,6 +27,7 @@ namespace ObjectOrientedPractics.View
             cartsTab1.Items = _store.Items;
             cartsTab1.Customers = _store.Customers;
             ordersTab1.Customers = _store.Customers;
+            priorityOrdersTab1.Items = _store.Items;
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
