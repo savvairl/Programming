@@ -63,6 +63,7 @@
     <Compile Include="Model\Store.cs" />
     <Compile Include="Services\AppColor.cs" />
     <Compile Include="Services\CustomerFactory.cs" />
+    <Compile Include="Services\DataTools.cs" />
     <Compile Include="Services\ItemFactory.cs" />
     <Compile Include="Services\Serializer.cs" />
     <Compile Include="Services\ValueValidator.cs" />
@@ -149,6 +150,9 @@
     <EmbeddedResource Include="View\Tabs\PriorityOrdersTab.resx">
       <DependentUpon>PriorityOrdersTab.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="..\.editorconfig">
+      <Link>.editorconfig</Link>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\ObjectOrientedPractics.Model.Order.datasource" />
     <None Include="Properties\Settings.settings">

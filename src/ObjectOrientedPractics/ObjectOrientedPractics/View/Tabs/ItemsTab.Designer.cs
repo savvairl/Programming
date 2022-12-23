@@ -46,6 +46,10 @@ namespace ObjectOrientedPractics.View.Tabs
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.OrderByComboBox = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.FindTextBox = new System.Windows.Forms.TextBox();
             this.ItemsPanel.SuspendLayout();
             this.SelectedItemPanel.SuspendLayout();
             this.SuspendLayout();
@@ -54,6 +58,10 @@ namespace ObjectOrientedPractics.View.Tabs
             // 
             this.ItemsPanel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.ItemsPanel.Controls.Add(this.FindTextBox);
+            this.ItemsPanel.Controls.Add(this.label9);
+            this.ItemsPanel.Controls.Add(this.label8);
+            this.ItemsPanel.Controls.Add(this.OrderByComboBox);
             this.ItemsPanel.Controls.Add(this.RemoveButton);
             this.ItemsPanel.Controls.Add(this.AddButton);
             this.ItemsPanel.Controls.Add(this.ItemsListBox);
@@ -90,9 +98,9 @@ namespace ObjectOrientedPractics.View.Tabs
             this.ItemsListBox.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.ItemsListBox.FormattingEnabled = true;
-            this.ItemsListBox.Location = new System.Drawing.Point(3, 19);
+            this.ItemsListBox.Location = new System.Drawing.Point(3, 45);
             this.ItemsListBox.Name = "ItemsListBox";
-            this.ItemsListBox.Size = new System.Drawing.Size(287, 420);
+            this.ItemsListBox.Size = new System.Drawing.Size(287, 368);
             this.ItemsListBox.TabIndex = 1;
             this.ItemsListBox.SelectedIndexChanged += new System.EventHandler(this.ItemsListBox_SelectedIndexChanged);
             // 
@@ -234,6 +242,41 @@ namespace ObjectOrientedPractics.View.Tabs
             this.label2.TabIndex = 0;
             this.label2.Text = "Selected Item";
             // 
+            // OrderByComboBox
+            // 
+            this.OrderByComboBox.FormattingEnabled = true;
+            this.OrderByComboBox.Location = new System.Drawing.Point(60, 418);
+            this.OrderByComboBox.Name = "OrderByComboBox";
+            this.OrderByComboBox.Size = new System.Drawing.Size(125, 21);
+            this.OrderByComboBox.TabIndex = 4;
+            this.OrderByComboBox.SelectedIndexChanged += new System.EventHandler(this.OrderByComboBox_SelectedIndexChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(4, 421);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(50, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "Order by:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(4, 26);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(30, 13);
+            this.label9.TabIndex = 6;
+            this.label9.Text = "Find:";
+            // 
+            // FindTextBox
+            // 
+            this.FindTextBox.Location = new System.Drawing.Point(40, 23);
+            this.FindTextBox.Name = "FindTextBox";
+            this.FindTextBox.Size = new System.Drawing.Size(250, 20);
+            this.FindTextBox.TabIndex = 7;
+            this.FindTextBox.TextChanged += new System.EventHandler(this.FindTextBox_TextChanged);
+            // 
             // ItemsTab
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -269,5 +312,9 @@ namespace ObjectOrientedPractics.View.Tabs
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.TextBox NameTextBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox OrderByComboBox;
+        private System.Windows.Forms.TextBox FindTextBox;
+        private System.Windows.Forms.Label label9;
     }
 }

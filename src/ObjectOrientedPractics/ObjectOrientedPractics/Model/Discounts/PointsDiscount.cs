@@ -7,7 +7,7 @@ namespace ObjectOrientedPractics.Model.Discounts
     /// <summary>
     /// Предоставляет реализацию накопительных баллов.
     /// </summary>
-    public class PointsDiscount : IDiscount
+    public class PointsDiscount : IDiscount, IComparable, IComparable<PointsDiscount>
     {
         /// <summary>
         /// Баллы.
@@ -101,6 +101,40 @@ namespace ObjectOrientedPractics.Model.Discounts
             }
 
             _points += (int)Math.Ceiling(amount * 0.1);
+        }
+
+        public int CompareTo(PointsDiscount other)
+        {
+            if (ReferenceEquals(this, other))
+            {
+                return 0;
+            }
+            if (ReferenceEquals(null, other))
+            {
+                return 1;
+            }
+
+            return Points.CompareTo(other.Points);
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (ReferenceEquals(this, obj))
+            {
+                return 0;
+            }
+            if (ReferenceEquals(null, obj))
+            {
+                return 1;
+            }
+            if (obj is PointsDiscount other)
+            {
+                return CompareTo(other);
+            }
+            else
+            {
+                throw new ArgumentException();
+            }
         }
     }
 }
