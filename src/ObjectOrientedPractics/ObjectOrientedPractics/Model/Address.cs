@@ -10,10 +10,8 @@ namespace ObjectOrientedPractics.Model
     /// <summary>
     /// Хранит данные об адресе.
     /// </summary>
-    public class Address : ICloneable, IEquatable<Address>
+    public class Address
     {
-        public EventHandler<EventArgs> AddressChanged;
-
         /// <summary>
         /// Почтовый индекс.
         /// </summary>
@@ -86,11 +84,7 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertIntOnLength(nameof(Index), 6, value);
-                if (_index != value)
-                {
-                    _index = value;
-                    AddressChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _index = value;
             }
         }
 
@@ -107,11 +101,7 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(nameof(Country), 50, value);
-                if (_country != value)
-                {
-                    _country = value;
-                    AddressChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _country = value;
             }
         }
 
@@ -128,11 +118,7 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(nameof(City), 50, value);
-                if (_city != value)
-                {
-                    _city = value;
-                    AddressChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _city = value;
             }
         }
 
@@ -149,11 +135,7 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(nameof(Street), 100, value);
-                if (_street != value)
-                {
-                    _street = value;
-                    AddressChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _street = value;
             }
         }
 
@@ -170,11 +152,7 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(nameof(Building), 10, value);
-                if (_building != value)
-                {
-                    _building = value;
-                    AddressChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _building = value;
             }
         }
 
@@ -191,67 +169,8 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(nameof(Apartment), 10, value);
-                if (_apartment != value)
-                {
-                    _apartment = value;
-                    AddressChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _apartment = value;
             }
-        }
-
-        public object Clone()
-        {
-            Address address = new Address();
-            address.Index = Index;
-            address.Country = Country;
-            address.City = City;
-            address.Street = Street;
-            address.Building = Building;
-            address.Apartment = Apartment;
-            return address;
-        }
-
-        public bool Equals(Address other)
-        {
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-
-            return _index == other._index &&
-                   _country == other._country &&
-                   _city == other._city &&
-                   _street == other._street &&
-                   _building == other._building &&
-                   _apartment == other._apartment;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-
-            return obj.GetType() == this.GetType() && Equals((Address)obj);
-        }
-
-        public static bool operator ==(Address left, Address right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(Address left, Address right)
-        {
-            return !Equals(left, right);
         }
     }
 }

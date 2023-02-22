@@ -1,20 +1,17 @@
-﻿using ObjectOrientedPractics.Services;
-using System;
-using ObjectOrientedPractics.Model.Enums;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using ObjectOrientedPractics.Services;
 
 namespace ObjectOrientedPractics.Model
 {
     /// <summary>
     /// Хранит данные о товаре.
     /// </summary>
-    public class Item : ICloneable, IEquatable<Item>, IComparable, IComparable<Item>
+    public class Item
     {
-        public event EventHandler<EventArgs> NameChanged;
-
-        public event EventHandler<EventArgs> InfoChanged;
-
-        public event EventHandler<EventArgs> CostChanged;
-
         /// <summary>
         /// Количество товаров.
         /// </summary>
@@ -23,7 +20,7 @@ namespace ObjectOrientedPractics.Model
         /// <summary>
         /// Уникальный идентификатор для всех объектов данного класса.
         /// </summary>
-        private int _id;
+        private readonly int _id;
 
         /// <summary>
         /// Название товара.
@@ -74,10 +71,6 @@ namespace ObjectOrientedPractics.Model
             {
                 return _id;
             }
-            private set
-            {
-                _id = value;
-            }
         }
 
         /// <summary>
@@ -92,11 +85,7 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(nameof(Name), 200, value);
-                if (_name != value)
-                {
-                    _name = value;
-                    NameChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _name = value;
             }
         }
 
@@ -112,11 +101,7 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertStringOnLength(nameof(Name), 1000, value);
-                if (_info != value)
-                {
-                    _info = value;
-                    InfoChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _info = value;
             }
         }
 
@@ -132,11 +117,7 @@ namespace ObjectOrientedPractics.Model
             set
             {
                 ValueValidator.AssertValueInRange(nameof(Cost), 0, 100000, value);
-                if (_cost != value)
-                {
-                    _cost = value;
-                    CostChanged?.Invoke(this, EventArgs.Empty);
-                }
+                _cost = value;
             }
         }
 
@@ -144,94 +125,5 @@ namespace ObjectOrientedPractics.Model
         /// Возвращает и задаёт категорию товара.
         /// </summary>
         public Category Category { get; set; }
-
-        public object Clone()
-        {
-            Item item = new Item();
-            item.Name = Name;
-            item.Info = Info;
-            item.Cost = Cost;
-            item.Category = Category;
-            item.Id = Id;
-            return item;
-        }
-
-        public bool Equals(Item other)
-        {
-            if (ReferenceEquals(this, other))
-            {
-                return true;
-            }
-            if (ReferenceEquals(null, other))
-            {
-                return false;
-            }
-
-            return Name == other.Name &&
-                   Info == other.Info &&
-                   Cost == other.Cost &&
-                   Category == other.Category &&
-                   Id == other.Id;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-
-            return obj.GetType() == this.GetType() && Equals((Item)obj);
-        }
-
-        public int CompareTo(Item obj)
-        {
-            if (ReferenceEquals(this, obj))
-            {
-                return 0;
-            }
-            if (ReferenceEquals(null, obj))
-            {
-                return 1;
-            }
-            else
-            {
-                return _cost.CompareTo(obj._cost);
-            }
-        }
-
-        public int CompareTo(object obj)
-        {
-            if (ReferenceEquals(this, obj))
-            {
-                return 0;
-            }
-            if (ReferenceEquals(null, obj))
-            {
-                return 1;
-            }
-            if (obj is Item other)
-            {
-                return CompareTo((Item)obj);
-            }
-            else
-            {
-                throw new ArgumentException();
-            }
-        }
-
-        public static bool operator ==(Item left, Item right)
-        {
-            return Equals(left, right);
-        }
-
-        public static bool operator !=(Item left, Item right)
-        {
-            return !Equals(left, right);
-        }
     }
 }

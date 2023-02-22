@@ -1,7 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.IO;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ObjectOrientedPractics.Model;
-using ObjectOrientedPractics.Model.Discounts;
 
 namespace ObjectOrientedPractics.Services
 {
@@ -34,8 +40,6 @@ namespace ObjectOrientedPractics.Services
             Customer customer = new Customer();
             customer.Fullname = "Ivan Ivanovich Ivanov";
             customer.Address = address;
-            customer.Cart = new Cart();
-            customer.Discounts.Add(new PointsDiscount());
 
             return customer;
         }

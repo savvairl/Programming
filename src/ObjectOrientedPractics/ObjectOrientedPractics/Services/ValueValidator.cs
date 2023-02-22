@@ -12,20 +12,6 @@ namespace ObjectOrientedPractics.Services
     public static class ValueValidator
     {
         /// <summary>
-        /// Проверяет, что число положительное.
-        /// </summary>
-        /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>
-        /// <param name="value">Число.</param>
-        public static void AssertOnPositiveValue(string propertyName, double value)
-        {
-            if (value < 0)
-            {
-                throw new ArgumentException(
-                    $"Значение {propertyName} должен быть больше нуля");
-            }
-        }
-
-        /// <summary>
         /// Проверяет, что количество символов строки меньше определённого числа.
         /// </summary>
         /// <param name="propertyName">Имя свойства, откуда был вызван метод.</param>

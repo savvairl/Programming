@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
+using System.Drawing;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using ObjectOrientedPractics.Model;
 using ObjectOrientedPractics.Services;
 using System.Windows.Forms;
-using ObjectOrientedPractics.Model.Discounts;
-using ObjectOrientedPractics.View.Forms;
 
 namespace ObjectOrientedPractics.View.Tabs
 {
@@ -31,8 +33,6 @@ namespace ObjectOrientedPractics.View.Tabs
         public CustomersTab()
         {
             InitializeComponent();
-
-            PriorityCheckBox.Enabled = false;
         }
 
         /// <summary>
@@ -40,10 +40,7 @@ namespace ObjectOrientedPractics.View.Tabs
         /// </summary>
         public List<Customer> Customers
         {
-            get
-            {
-                return _customers;
-            }
+            get => _customers;
             set
             {
                 _customers = value;
@@ -74,16 +71,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             CustomersListBox.SelectedIndex = selectedIndex;
-        }
-
-        private void UpdateDiscountListBox()
-        {
-            DiscountListBox.Items.Clear();
-
-            foreach (var discount in _selectedCustomer.Discounts)
-            {
-                DiscountListBox.Items.Add(discount.Info);
-            }
         }
 
         /// <summary>
@@ -119,7 +106,6 @@ namespace ObjectOrientedPractics.View.Tabs
             IDTextBox.Clear();
             FullNameTextBox.Clear();
             addressControl1.Clear();
-            DiscountListBox.Items.Clear();
         }
 
         /// <summary>
@@ -155,21 +141,13 @@ namespace ObjectOrientedPractics.View.Tabs
         {
             int index = CustomersListBox.SelectedIndex;
 
-            if (index == -1)
-            {
-                PriorityCheckBox.Enabled = false;
-                addressControl1.Enabled = false;
-                return;
-            }
+            if (index == -1) return;
 
             _selectedCustomer = _customers[index];
 
             IDTextBox.Text = _selectedCustomer.Id.ToString();
             FullNameTextBox.Text = _selectedCustomer.Fullname;
             addressControl1.Address = _selectedCustomer.Address;
-            PriorityCheckBox.Enabled = true;
-            PriorityCheckBox.Checked = _selectedCustomer.IsPrioritized;
-            UpdateDiscountListBox();
         }
 
         private void FullNameTextBox_TextChanged(object sender, EventArgs e)
@@ -192,50 +170,6 @@ namespace ObjectOrientedPractics.View.Tabs
             }
 
             FullNameTextBox.BackColor = AppColor.CorrectColor;
-        }
-
-        private void PriorityCheckBox_CheckedChanged(object sender, EventArgs e)
-        {
-            _selectedCustomer.IsPrioritized = PriorityCheckBox.Checked;
-        }
-
-        private void AddDiscountButton_Click(object sender, EventArgs e)
-        {
-            AddDiscountForm addDiscountForm = new AddDiscountForm();
-
-            if (addDiscountForm.ShowDialog() == DialogResult.OK)
-            {
-                foreach (var discount in _selectedCustomer.Discounts)
-                {
-                    if (discount is PointsDiscount)
-                    {
-                        continue;
-                    }
-                    if (((PercentDiscount)discount).Category == addDiscountForm.PercentDiscount.Category)
-                    {
-                        return;
-                    }
-                }
-
-                _selectedCustomer.Discounts.Add(addDiscountForm.PercentDiscount);
-                UpdateDiscountListBox();
-            }
-        }
-
-        private void RemoveDiscountButton_Click(object sender, EventArgs e)
-        {
-            int index = DiscountListBox.SelectedIndex;
-            if (index == -1)
-            {
-                return;
-            }
-            if (index == 0)
-            {
-                return;
-            }
-
-            _selectedCustomer.Discounts.RemoveAt(index);
-            UpdateDiscountListBox();
         }
     }
 }
