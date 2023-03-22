@@ -14,6 +14,11 @@ namespace View.Model
 
         private string _email;
 
+        public Contact()
+        {
+
+        }
+
         public Contact(string name, string phoneNumber, string email)
         {
             Name = name;
