@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using System.IO;
 
 namespace View.Model.Services
 {
+    /// <summary>
+    /// Представляет реализацию по сериализации данных.
+    /// </summary>
     public static class ContactSerializer
     {
+        /// <summary>
+        /// Выполняет сериализацию данных.
+        /// </summary>
+        /// <param name="contact">Контакт.</param>
+        /// <param name="path">Путь.</param>
         public static void Serialize(Contact contact, string path)
         {
             if (!Directory.Exists(Path.GetDirectoryName(path)))
@@ -23,6 +26,11 @@ namespace View.Model.Services
             }
         }
 
+        /// <summary>
+        /// Выполняет десериализацию данных.
+        /// </summary>
+        /// <param name="path">Путь.</param>
+        /// <returns>Экземпляр класса <see cref="Contact"/>.</returns>
         public static Contact Deserialize(string path)
         {
             if (!Directory.Exists(Path.GetDirectoryName(path)))

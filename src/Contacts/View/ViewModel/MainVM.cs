@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.ComponentModel;
 using View.Model;
 using System.Windows.Input;
@@ -10,16 +6,32 @@ using View.Model.Services;
 
 namespace View.ViewModel
 {
+    /// <summary>
+    /// ViewModel для главное окна.
+    /// </summary>
     public class MainVM : INotifyPropertyChanged
     {
+        /// <summary>
+        /// Возвращает и задаёт путь сериализации. По умолчанию - "Мои документы".
+        /// </summary>
         public string Path { get; set; } = 
             Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
             + @"\Contacts\contacts.json";
 
+        /// <summary>
+        /// Возвращает и задаёт контакт.
+        /// </summary>
         public Contact Contact { get; private set; } = new Contact();
 
+        /// <summary>
+        /// Событие изменения свойства.
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// При вызове зажигает событие <see cref="PropertyChanged"/>.
+        /// </summary>
+        /// <param name="propertyName">Имя свойства, вызвавшего метод.</param>
         private void OnPropertyChanged(string propertyName = "")
         {
             if (PropertyChanged != null)
@@ -28,6 +40,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда сериализации контакта.
+        /// </summary>
         public ICommand SaveCommand
         {
             get
@@ -39,6 +54,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Команда десериализации контакта.
+        /// </summary>
         public ICommand LoadCommand
         {
             get
@@ -53,6 +71,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт имя контакта.
+        /// </summary>
         public string Name
         {
             get
@@ -66,6 +87,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт номер телефона контакта.
+        /// </summary>
         public string PhoneNumber
         {
             get
@@ -79,6 +103,9 @@ namespace View.ViewModel
             }
         }
 
+        /// <summary>
+        /// Возвращает и задаёт электронную почту контакта.
+        /// </summary>
         public string Email
         {
             get
