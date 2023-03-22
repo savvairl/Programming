@@ -41,34 +41,43 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Команда сериализации контакта.
+        /// Возвращает команду для сохранения данных в файл.
         /// </summary>
-        public ICommand SaveCommand
+        public ICommand SaveCommand { get; }
+
+        /// <summary>
+        /// Возвращает команду для загрузки данных из файла.
+        /// </summary>
+        public ICommand LoadCommand { get; }
+
+        /// <summary>
+        /// Создаёт экземпляр класса <see cref="MainVM"/>.
+        /// </summary>
+        public MainVM()
         {
-            get
-            {
-                return new RelayCommand((obj) =>
-                {
-                    ContactSerializer.Serialize(Contact, Path);
-                });
-            }
+            SaveCommand = new RelayCommand(SaveContact);
+            LoadCommand = new RelayCommand(LoadContact);
         }
 
         /// <summary>
-        /// Команда десериализации контакта.
+        /// Сохраняет данные в файл.
         /// </summary>
-        public ICommand LoadCommand
+        /// <param name="parameter">Параметр.</param>
+        private void SaveContact(object parameter)
         {
-            get
-            {
-                return new RelayCommand((obj) =>
-                {
-                    var contact = ContactSerializer.Deserialize(Path);
-                    Name = contact.Name;
-                    PhoneNumber = contact.PhoneNumber;
-                    Email = contact.Email;
-                });
-            }
+            ContactSerializer.Serialize(Contact, Path);
+        }
+
+        /// <summary>
+        /// Загружает данные из файла сериализации.
+        /// </summary>
+        /// <param name="parameter">Параметр.</param>
+        private void LoadContact(object parameter)
+        {
+            var contact = ContactSerializer.Deserialize(Path);
+            Name = contact.Name;
+            PhoneNumber = contact.PhoneNumber;
+            Email = contact.Email;
         }
 
         /// <summary>
