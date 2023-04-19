@@ -11,7 +11,7 @@ namespace View.Services
     {
         /// <summary>
         /// Конвертирует булевое значение
-        /// в соотвествующие значение из перечисления <see cref="Visibility"/>.
+        /// в соотвествующее значение из перечисления <see cref="Visibility"/>.
         /// </summary>
         /// <param name="value">Значение.</param>
         /// <param name="targetType">Целевой тип.</param>
@@ -44,7 +44,7 @@ namespace View.Services
 
         /// <summary>
         /// Конвертирует значение из перечисления <see cref="Visibility"/>
-        /// в соотвествующие булевое значение.
+        /// в соотвествующее булевое значение.
         /// </summary>
         /// <param name="value">Значение.</param>
         /// <param name="targetType">Целевой тип.</param>

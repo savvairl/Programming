@@ -33,6 +33,10 @@ namespace View.Services
                         JsonConvert.DeserializeObject<ObservableCollection<ContactVM>>(sr.ReadToEnd());
                 }
             }
+            else
+            {
+                File.Create(Path).Close();
+            }
 
             return contacts;
         }
