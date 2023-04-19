@@ -10,9 +10,8 @@ namespace View
     {
         public MainWindow()
         {
-            InitializeComponent();  
-            MainVM mainvm = new MainVM();
-            DataContext = mainvm;
+            InitializeComponent();
+            DataContext = new MainVM();
         }
     }
 }

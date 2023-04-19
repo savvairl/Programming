@@ -102,6 +102,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Resources\photo_placeholder_100x100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ContactsApp_96x96.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
