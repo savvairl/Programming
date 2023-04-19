@@ -65,7 +65,7 @@ namespace View.ViewModel
         public bool IsEdit { get; set; }
 
         /// <summary>
-        /// Возвращает и задает подтверждение изменений.
+        /// Возвращает и задает значение нажатия кнопки.
         /// </summary>
         public bool IsApply
         {
@@ -182,7 +182,7 @@ namespace View.ViewModel
             var contact = SelectedContact;
 
             SelectedContact = null;
-            SelectedContact = (ContactVM?)contact.Clone();
+            SelectedContact = (ContactVM)contact.Clone();
 
             IsApply = false;
         }
