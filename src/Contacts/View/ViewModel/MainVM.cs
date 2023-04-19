@@ -1,27 +1,95 @@
-﻿using System;
-using System.ComponentModel;
-using View.Model;
-using System.Windows.Input;
-using View.Model.Services;
+﻿using View.Model;
+using View.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 
 namespace View.ViewModel
 {
     /// <summary>
     /// ViewModel для главное окна.
     /// </summary>
-    public class MainVM : INotifyPropertyChanged
+    public partial class MainVM : ObservableObject
     {
         /// <summary>
-        /// Возвращает и задаёт путь сериализации. По умолчанию - "Мои документы".
+        /// Текущий контакт.
         /// </summary>
-        public string Path { get; set; } = 
-            Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)
-            + @"\Contacts\contacts.json";
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(EditContactCommand), nameof(RemoveContactCommand))]
+        private ContactVM _selectedContact;
+
+        /// <summary>
+        /// Значение свойства окна IsReadOnly.
+        /// </summary>
+        [ObservableProperty]
+        private bool _isReadOnly = true;
+
+        /// <summary>
+        /// Значение свойства окна Visibility.
+        /// </summary>
+        [ObservableProperty]
+        private bool _isVisible = false;
+
+        /// <summary>
+        /// Была ли нажата кнопка Apply.
+        /// </summary>
+        private bool _isApply = false;
+
+        /// <summary>
+        /// Создает экземпляр класса <see cref="MainVM"/>.
+        /// </summary>
+        public MainVM()
+        {
+            Contacts = ContactSerializer.Load();
+        }
+
+        /// <summary>
+        /// Возвращает и задает индекс текущего контакты.
+        /// </summary>
+        public int SelectedIndex { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт контакт.
         /// </summary>
         public Contact Contact { get; private set; } = new Contact();
+
+        /// <summary>
+        /// Возвращает список контактов.
+        /// </summary>
+        public ObservableCollection<ContactVM> Contacts { get; private set; }
+            = new ObservableCollection<ContactVM>();
+
+        /// <summary>
+        /// Возвращает и задает значение редактора контактов.
+        /// </summary>
+        public bool IsEdit { get; set; }
+
+        /// <summary>
+        /// Возвращает и задает подтверждение изменений.
+        /// </summary>
+        public bool IsApply
+        {
+            get
+            {
+                return _isApply;
+            }
+            set
+            {
+                _isApply = value;
+
+                if (value)
+                {
+                    IsEdit = false;
+                    IsVisible = false;
+                    IsReadOnly = true;
+                }
+                else
+                {
+                    IsVisible = true;
+                    IsReadOnly = false;
+                }
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт имя контакта.
@@ -72,57 +140,110 @@ namespace View.ViewModel
         }
 
         /// <summary>
-        /// Событие изменения свойства.
+        /// Принимает добавление/изменение контакта.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        /// <summary>
-        /// При вызове зажигает событие <see cref="PropertyChanged"/>.
-        /// </summary>
-        /// <param name="propertyName">Имя свойства, вызвавшего метод.</param>
-        protected void OnPropertyChanged(string propertyName)
+        [RelayCommand]
+        private void ApplyContact()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            if (!IsEdit)
+            {
+                Contacts.Add(SelectedContact);
+                SelectedContact = null;
+                SelectedContact = Contacts[Contacts.Count - 1];
+            }
+            else
+            {
+                Contacts[SelectedIndex] = SelectedContact;
+                SelectedContact = Contacts[SelectedIndex];
+            }
+
+            IsApply = true;
         }
 
         /// <summary>
-        /// Возвращает команду для сохранения данных в файл.
+        /// Добавляет контакт.
         /// </summary>
-        public ICommand SaveCommand { get; }
-
-        /// <summary>
-        /// Возвращает команду для загрузки данных из файла.
-        /// </summary>
-        public ICommand LoadCommand { get; }
-
-        /// <summary>
-        /// Создаёт экземпляр класса <see cref="MainVM"/>.
-        /// </summary>
-        public MainVM()
+        [RelayCommand]
+        private void AddContact()
         {
-            SaveCommand = new RelayCommand(SaveContact);
-            LoadCommand = new RelayCommand(LoadContact);
+            SelectedContact = ContactFactory.MakeContact();
+
+            IsApply = false;
         }
 
         /// <summary>
-        /// Сохраняет данные в файл.
-        /// </summary>
-        /// <param name="parameter">Параметр.</param>
-        private void SaveContact(object parameter)
+        /// Изменяет контакт.
+        /// </summary> 
+        [RelayCommand(CanExecute = nameof(CanExecuteEdit))]
+        private void EditContact()
         {
-            ContactSerializer.Serialize(Contact, Path);
+            IsEdit = true;
+
+            var contact = SelectedContact;
+
+            SelectedContact = null;
+            SelectedContact = (ContactVM?)contact.Clone();
+
+            IsApply = false;
         }
 
         /// <summary>
-        /// Загружает данные из файла сериализации.
+        /// Удаляет контакт.
         /// </summary>
-        /// <param name="parameter">Параметр.</param>
-        private void LoadContact(object parameter)
+        [RelayCommand(CanExecute = nameof(CanExecuteRemove))]
+        private void RemoveContact()
         {
-            var contact = ContactSerializer.Deserialize(Path);
-            Name = contact.Name;
-            PhoneNumber = contact.PhoneNumber;
-            Email = contact.Email;
+            if (Contacts.Count == 1)
+            {
+                Contacts.Remove(SelectedContact);
+            }
+            else if (SelectedIndex < Contacts.Count - 1)
+            {
+                Contacts.Remove(SelectedContact);
+                SelectedContact = Contacts[SelectedIndex];
+            }
+            else
+            {
+                Contacts.Remove(SelectedContact);
+                SelectedContact = Contacts[SelectedIndex - 1];
+            }
+        }
+
+        partial void OnSelectedContactChanged(ContactVM value)
+        {
+            if (!IsEdit && Contacts.Contains(value))
+            {
+                SelectedIndex = Contacts.IndexOf(value);
+            }
+
+            if (!IsApply)
+            {
+                IsApply = true;
+            }
+        }
+
+        /// <summary>
+        /// Определяет возможность выполнения команды <see cref="EditCommand"/>.
+        /// </summary>
+        private bool CanExecuteEdit()
+        {
+            return Contacts.Count > 0 && SelectedContact != null;
+        }
+
+        /// <summary>
+        /// Удаляет контакт.
+        /// </summary>
+        private bool CanExecuteRemove()
+        {
+            return Contacts.Count > 0 && SelectedContact != null;
+        }
+
+        /// <summary>
+        /// Сохраняет список контактов.
+        /// </summary>
+        public void Save()
+        {
+            ContactSerializer.Save(Contacts);
         }
     }
 }
