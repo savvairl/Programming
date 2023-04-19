@@ -148,7 +148,6 @@ namespace View.ViewModel
             if (!IsEdit)
             {
                 Contacts.Add(SelectedContact);
-                SelectedContact = null;
                 SelectedContact = Contacts[Contacts.Count - 1];
             }
             else
@@ -180,8 +179,6 @@ namespace View.ViewModel
             IsEdit = true;
 
             var contact = SelectedContact;
-
-            SelectedContact = null;
             SelectedContact = (ContactVM)contact.Clone();
 
             IsApply = false;
