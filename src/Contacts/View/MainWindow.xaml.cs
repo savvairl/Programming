@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using View.ViewModel;
-using View.Services;
+using View.Model.Services;
 
 namespace View
 {

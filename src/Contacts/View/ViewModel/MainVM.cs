@@ -1,5 +1,5 @@
 ﻿using View.Model;
-using View.Services;
+using View.Model.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 namespace View.ViewModel
 {
     /// <summary>
-    /// ViewModel для главное окна.
+    /// ViewModel для главного окна.
     /// </summary>
     public partial class MainVM : ObservableObject
     {
@@ -77,16 +77,11 @@ namespace View.ViewModel
             {
                 _isApply = value;
 
+                IsVisible = !value;
+                IsReadOnly = value;
                 if (value)
                 {
                     IsEdit = false;
-                    IsVisible = false;
-                    IsReadOnly = true;
-                }
-                else
-                {
-                    IsVisible = true;
-                    IsReadOnly = false;
                 }
             }
         }
