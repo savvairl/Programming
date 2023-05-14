@@ -1,7 +1,7 @@
 ﻿using View.ViewModel;
 using View.Model;
 
-namespace View.Services
+namespace View.Model.Services
 {
     /// <summary>
     /// Хранит логику для автоматического создания объектов.

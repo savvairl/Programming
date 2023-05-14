@@ -8,21 +8,6 @@ namespace View.Model
     public class Contact : ICloneable
     {
         /// <summary>
-        /// Имя контакта.
-        /// </summary>
-        private string _name;
-
-        /// <summary>
-        /// Номер телефона.
-        /// </summary>
-        private string _phoneNumber;
-
-        /// <summary>
-        /// Электронная почтаю
-        /// </summary>
-        private string _email;
-
-        /// <summary>
         /// Создаёт экземпляр класса <see cref="Contact"/>.
         /// </summary>
         public Contact()
@@ -46,48 +31,23 @@ namespace View.Model
         /// <summary>
         /// Возвращает и задаёт имя контакта.
         /// </summary>
-        public string Name
-        {
-            get
-            {
-                return _name;
-            }
-            set
-            {
-                _name = value;
-            }
-        }
+        public string Name { get; set; }
+
 
         /// <summary>
         /// Возвращает и задаёт номер телефона контакта.
         /// </summary>
-        public string PhoneNumber
-        {
-            get
-            {
-                return _phoneNumber;
-            }
-            set
-            {
-                _phoneNumber = value;
-            }
-        }
+        public string PhoneNumber { get; set; }
 
         /// <summary>
         /// Возвращает и задаёт электронную почту контакта.
         /// </summary>
-        public string Email
-        {
-            get
-            {
-                return _email;
-            }
-            set
-            {
-                _email = value;
-            }
-        }
+        public string Email { get; set; }
 
+        /// <summary>
+        /// Создает клон объекта.
+        /// </summary>
+        /// <returns>Объект класса <see cref="Contact"/>.</returns>
         public object Clone()
         {
             return new Contact(Name, PhoneNumber, Email);

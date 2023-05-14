@@ -2,7 +2,7 @@
 using System.Windows;
 using System.Windows.Data;
 
-namespace View.Services
+namespace View.Model.Services
 {
     /// <summary>
     /// Хранит логику для преобразования значений.
@@ -11,7 +11,7 @@ namespace View.Services
     {
         /// <summary>
         /// Конвертирует булевое значение
-        /// в соотвествующие значение из перечисления <see cref="Visibility"/>.
+        /// в соотвествующее значение из перечисления <see cref="Visibility"/>.
         /// </summary>
         /// <param name="value">Значение.</param>
         /// <param name="targetType">Целевой тип.</param>
@@ -23,28 +23,13 @@ namespace View.Services
                               object parameter, 
                               CultureInfo culture)
         {
-            var visibilityValue = Visibility.Hidden;
-
-            switch (value)
-            {
-                case true:
-                    {
-                        visibilityValue = Visibility.Visible;
-                        break;
-                    }
-                case false:
-                    {
-                        visibilityValue = Visibility.Hidden;
-                        break;
-                    }
-            }
-
-            return visibilityValue;
+            var asBool = (bool)value;
+            return asBool ? Visibility.Visible : Visibility.Hidden;
         }
 
         /// <summary>
         /// Конвертирует значение из перечисления <see cref="Visibility"/>
-        /// в соотвествующие булевое значение.
+        /// в соотвествующее булевое значение.
         /// </summary>
         /// <param name="value">Значение.</param>
         /// <param name="targetType">Целевой тип.</param>
@@ -56,28 +41,14 @@ namespace View.Services
                                   object parameter, 
                                   CultureInfo culture)
         {
-            var visibilityValue = false;
-
-            switch ((Visibility)value)
+            if ((Visibility)value == Visibility.Visible)
             {
-                case Visibility.Visible:
-                    {
-                        visibilityValue = true;
-                        break;
-                    }
-                case Visibility.Hidden:
-                    {
-                        visibilityValue = false;
-                        break;
-                    }
-                case Visibility.Collapsed:
-                    {
-                        visibilityValue = false;
-                        break;
-                    }
+                return true;
             }
-
-            return visibilityValue;
+            else
+            {
+                return false;
+            }
         }
     }
 }

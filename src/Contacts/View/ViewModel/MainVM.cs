@@ -1,5 +1,5 @@
 ﻿using View.Model;
-using View.Services;
+using View.Model.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -7,7 +7,7 @@ using System.Collections.ObjectModel;
 namespace View.ViewModel
 {
     /// <summary>
-    /// ViewModel для главное окна.
+    /// ViewModel для главного окна.
     /// </summary>
     public partial class MainVM : ObservableObject
     {
@@ -65,7 +65,7 @@ namespace View.ViewModel
         public bool IsEdit { get; set; }
 
         /// <summary>
-        /// Возвращает и задает подтверждение изменений.
+        /// Возвращает и задает значение нажатия кнопки.
         /// </summary>
         public bool IsApply
         {
@@ -77,16 +77,11 @@ namespace View.ViewModel
             {
                 _isApply = value;
 
+                IsVisible = !value;
+                IsReadOnly = value;
                 if (value)
                 {
                     IsEdit = false;
-                    IsVisible = false;
-                    IsReadOnly = true;
-                }
-                else
-                {
-                    IsVisible = true;
-                    IsReadOnly = false;
                 }
             }
         }
@@ -148,7 +143,6 @@ namespace View.ViewModel
             if (!IsEdit)
             {
                 Contacts.Add(SelectedContact);
-                SelectedContact = null;
                 SelectedContact = Contacts[Contacts.Count - 1];
             }
             else
@@ -180,9 +174,7 @@ namespace View.ViewModel
             IsEdit = true;
 
             var contact = SelectedContact;
-
-            SelectedContact = null;
-            SelectedContact = (ContactVM?)contact.Clone();
+            SelectedContact = (ContactVM)contact.Clone();
 
             IsApply = false;
         }

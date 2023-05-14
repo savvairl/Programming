@@ -3,7 +3,7 @@ using System.Collections.ObjectModel;
 using System.IO;
 using View.ViewModel;
 
-namespace View.Services
+namespace View.Model.Services
 {
     /// <summary>
     /// Представляет реализацию по сериализации данных.
@@ -32,6 +32,10 @@ namespace View.Services
                     contacts =
                         JsonConvert.DeserializeObject<ObservableCollection<ContactVM>>(sr.ReadToEnd());
                 }
+            }
+            else
+            {
+                File.Create(Path).Close();
             }
 
             return contacts;
