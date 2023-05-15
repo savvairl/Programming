@@ -21,4 +21,19 @@
     <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DefaultRadiusX">30</sys:Double>
     <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DefaultRadiusY">30</sys:Double>
     <ImageSource x:Key="PhotoPlaceholderImage"> ../Resources/photo_placeholder_100x100.png</ImageSource>
+    <Style x:Key="TextBoxError"
+               TargetType="TextBox">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError"
+                         Value="true">
+                <Setter Property="Background"
+                            Value="#FFDDDD" />
+                <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                    Path=(Validation.Errors)[0].ErrorContent}" />
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Validation.ErrorTemplate"
+                    Value="{x:Null}" />
+    </Style>
 </ResourceDictionary>

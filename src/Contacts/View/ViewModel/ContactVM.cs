@@ -1,97 +1,113 @@
 ﻿using View.Model;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using CommunityToolkit.Mvvm.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace View.ViewModel
 {
     /// <summary>
     /// ViewModel, агрегирующий в себе класс <see cref="Model.Contact"/>
     /// </summary>
-    public class ContactVM : INotifyPropertyChanged, ICloneable
-    {
-        /// <summary>
-        /// Возвращает и задаёт объект класса <see cref="Model.Contact"/>
+    public class ContactVM : ObservableValidator
+    {   /// <summary>
+        /// Хранит контакт.
         /// </summary>
-        public Contact Contact { get; set; }
+        private readonly Contact? _contact;
 
         /// <summary>
-        /// Событие изменения свойства.
+        /// Хранит значение, указывающее, что поля доступны только для чтения.
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        private bool _isReadOnly = true;
 
-        /// <summary>
-        /// Создает экземпляр класса <see cref="ContactVM"/>.
-        /// </summary>
-        /// <param name="contact">Объект класса <see cref="Model.Contact"/>.</param>
-        public ContactVM(Contact contact)
+        /// <inheritdoc />
+        public ContactVM(Contact? contact)
         {
-            Contact = contact;
+            _contact = contact;
+            ValidateAllProperties();
+        }
+
+        /// <inheritdoc />
+        public ContactVM()
+        {
+            _contact = null;
         }
 
         /// <summary>
-        /// Возвращает и задаёт имя контакта.
+        /// Устанавливает и возвращает значение Имени контакта.
         /// </summary>
-        public string Name
+        [MaxLength(100)]
+        [Required(AllowEmptyStrings = false)]
+        public string? Name
         {
             get
             {
-                return Contact.Name;
+                return _contact?.Name;
             }
             set
             {
-                Contact.Name = value;
-                OnPropertyChanged(nameof(Name));
+                if (_contact == null) return;
+                _contact.Name = value;
+                ValidateProperty(value);
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт номер телефона контакта.
+        /// Устанавливает и возвращает значение номера телефона контакта.
         /// </summary>
-        public string PhoneNumber
+        [MaxLength(100)]
+        [Required(AllowEmptyStrings = false)]
+        [Phone(ErrorMessage = "Phone Number can contains only digits and symbols '+()- '. Example: +7 (999) 111-22-33")]
+        public string? PhoneNumber
         {
             get
             {
-                return Contact.PhoneNumber;
+                return _contact?.PhoneNumber;
             }
             set
             {
-                Contact.PhoneNumber = value;
-                OnPropertyChanged(nameof(PhoneNumber));
+                if (_contact == null) return;
+                _contact.PhoneNumber = value;
+                ValidateProperty(value);
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт электронную почту контакта.
+        /// Устанавливает и возвращает значение адреса электронной почты контакта.
         /// </summary>
-        public string Email
+        [EmailAddress]
+        [MaxLength(100)]
+        [Required(AllowEmptyStrings = false)]
+        public string? Email
         {
             get
             {
-                return Contact.Email;
+                return _contact?.Email;
             }
             set
             {
-                Contact.Email = value;
-                OnPropertyChanged(nameof(Email));
+                if (_contact == null) return;
+                _contact.Email = value;
+                ValidateProperty(value);
+                OnPropertyChanged();
             }
         }
 
         /// <summary>
-        /// Вызывает событие при изменении свойств объекта.
+        /// Устанавливает и возвращает значение, указывающее, что поля доступны только для чтения.
         /// </summary>
-        /// <param name="propertyName">Свойство, вызвавшее событие.</param>
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = "")
+        public bool IsReadOnly
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        /// <summary>
-        /// Создает клон объекта.
-        /// </summary>
-        /// <returns>Объект класса <see cref="ContactVM"/>.</returns>
-        public object Clone()
-        {
-            return new ContactVM((Contact)Contact.Clone());
+            get
+            {
+                return _isReadOnly;
+            }
+            set
+            {
+                SetProperty(ref _isReadOnly, value);
+            }
         }
     }
 }

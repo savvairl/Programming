@@ -1,48 +1,79 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace View.Model
 {
     /// <summary>
     /// Хранит данные о контакте.
     /// </summary>
-    public class Contact : ICloneable
+    public class Contact : INotifyPropertyChanged, ICloneable
     {
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Contact"/>.
+        /// Хранит имя.
         /// </summary>
-        public Contact()
-        {
-
-        }
+        private string? _name = "";
 
         /// <summary>
-        /// Создаёт экземпляр класса <see cref="Contact"/>.
+        /// Хранит адрес электронной почты.
         /// </summary>
-        /// <param name="name">Имя.</param>
-        /// <param name="phoneNumber">Номер телефона.</param>
-        /// <param name="email">Электронная почта.</param>
-        public Contact(string name, string phoneNumber, string email)
-        {
-            Name = name;
-            PhoneNumber = phoneNumber;
-            Email = email;
-        }
+        private string? _email = "";
+
+        /// <summary>
+        /// Хранит номер телефона.
+        /// </summary>
+        private string? _phoneNumber = "";
+
+        /// <summary>
+        /// Задает значение поля и вызывает событие <see cref="PropertyChanged"/>.
+        /// </summary>
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Возвращает и задаёт имя контакта.
         /// </summary>
-        public string Name { get; set; }
+        public string Name
+        {
+            get
+            {
+                return _name;
+            }
+            set
+            {
+                SetField(ref _name, value);
+            }
+        }
 
 
         /// <summary>
         /// Возвращает и задаёт номер телефона контакта.
         /// </summary>
-        public string PhoneNumber { get; set; }
+        public string PhoneNumber
+        {
+            get
+            {
+                return _phoneNumber;
+            }
+            set
+            {
+                SetField(ref _phoneNumber, value);
+            }
+        }
 
         /// <summary>
         /// Возвращает и задаёт электронную почту контакта.
         /// </summary>
-        public string Email { get; set; }
+        public string Email
+        {
+            get
+            {
+                return _email;
+            }
+            set
+            {
+                SetField(ref _email, value);
+            }
+        }
 
         /// <summary>
         /// Создает клон объекта.
@@ -50,7 +81,37 @@ namespace View.Model
         /// <returns>Объект класса <see cref="Contact"/>.</returns>
         public object Clone()
         {
-            return new Contact(Name, PhoneNumber, Email);
+            return new Contact
+            {
+                Name = Name,
+                PhoneNumber = PhoneNumber,
+                Email = Email
+            };
+        }
+
+        /// <summary>
+        /// Вызывает событие <see cref="PropertyChanged"/>.
+        /// </summary>
+        /// <param name="propertyName">Имя свойства.</param>
+        private void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        /// <summary>
+        /// Устанавливает значение поля и вызывает событие <see cref="PropertyChanged"/>.
+        /// </summary>
+        /// <param name="field">Имя поля.</param>
+        /// <param name="value">Значение.</param>
+        /// <param name="propertyName">Имя свойства.</param>
+        /// <typeparam name="T">Тип поля.</typeparam>
+        /// <returns>Возвращает <see langword="true"/> если значение поля было изменено, иначе <see langword="false"/>.</returns>
+        private bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
+        {
+            if (EqualityComparer<T>.Default.Equals(field, value)) return false;
+            field = value;
+            OnPropertyChanged(propertyName);
+            return true;
         }
     }
 }

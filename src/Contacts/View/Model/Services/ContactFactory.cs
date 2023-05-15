@@ -12,15 +12,14 @@ namespace View.Model.Services
         /// Создает объект с данными.
         /// </summary>
         /// <returns>Объект класса <see cref="ContactVM"/>.</returns>
-        public static ContactVM MakeContact()
+        public static Contact MakeContact()
         {
             var contact = new Contact();
             contact.Name = "Jesus Christ Евгеньевич";
             contact.PhoneNumber = "89889881604";
             contact.Email = "jesuschrist@gmail.com";
-            var contactVM = new ContactVM(contact);
 
-            return contactVM;
+            return contact;
         }
     }
 }

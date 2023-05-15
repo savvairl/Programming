@@ -1,12 +1,52 @@
-﻿<UserControl x:Class="View.Controls.ContactControl"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:View.Controls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+﻿<UserControl
+    x:Class="View.Controls.ContactControl"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:extensions="http://schemas.xceed.com/wpf/xaml/toolkit"
+    xmlns:viewModel="clr-namespace:View.ViewModel"
+    d:DataContext="{d:DesignInstance viewModel:ContactVM}"
+    d:DesignWidth="300"
+    mc:Ignorable="d"
+    Validation.ErrorTemplate="{x:Null}">
+    <UserControl.Resources>
+        <ResourceDictionary Source="../Resources/StyleDictionary.xaml"/>
+    </UserControl.Resources>
     <Grid>
-            
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <StackPanel>
+                <TextBlock Margin="{StaticResource DefaultMargin}"/>
+                <Image
+                    Width="100"
+                    Height="100"
+                    Margin="{StaticResource DefaultMargin}"
+                    Source="{StaticResource PhotoPlaceholderImage}"/>
+            </StackPanel>
+            <StackPanel Grid.Column="1">
+                <TextBlock Margin="{StaticResource DefaultMargin}" Text="Name: "/>
+                <TextBox
+                    Margin="{StaticResource DefaultMargin}"
+                    IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                    />
+                <TextBlock Margin="{StaticResource DefaultMargin}" Text="Phone Number: "/>
+                <extensions:MaskedTextBox Mask="+7 (000) 000-00-00"
+                                          Margin="{StaticResource DefaultMargin}"
+                                          Style="{StaticResource TextBoxError}"
+                                          IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                                          Text="{Binding PhoneNumber, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Margin="{StaticResource DefaultMargin}" Text="Email: "/>
+                <TextBox
+                    Margin="{StaticResource DefaultMargin}"
+                    IsReadOnly="{Binding IsReadOnly, UpdateSourceTrigger=PropertyChanged}"
+                    Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"
+                    />
+            </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>

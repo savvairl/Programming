@@ -12,28 +12,29 @@ namespace View.ViewModel
     public partial class MainVM : ObservableObject
     {
         /// <summary>
-        /// Текущий контакт.
+        /// Хранит значение, указывающее, что поля доступны только для чтения.
         /// </summary>
-        [ObservableProperty]
-        [NotifyCanExecuteChangedFor(nameof(EditContactCommand), nameof(RemoveContactCommand))]
-        private ContactVM _selectedContact;
-
-        /// <summary>
-        /// Значение свойства окна IsReadOnly.
-        /// </summary>
-        [ObservableProperty]
         private bool _isReadOnly = true;
 
         /// <summary>
-        /// Значение свойства окна Visibility.
+        /// Хранит значение, указывающее, что выбран контакт из списка.
         /// </summary>
-        [ObservableProperty]
-        private bool _isVisible = false;
+        private bool _isSelected;
 
         /// <summary>
-        /// Была ли нажата кнопка Apply.
+        /// Хранит выбранный контакт.
         /// </summary>
-        private bool _isApply = false;
+        private Contact? _selectedContact;
+
+        /// <summary>
+        /// Хранит копию контакта.
+        /// </summary>
+        private Contact? _contactCopy;
+
+        /// <summary>
+        /// Хранит экземпляр класса <see cref="ContactViewModel"/>.
+        /// </summary>
+        private ContactVM _contactVM = new ContactVM();
 
         /// <summary>
         /// Создает экземпляр класса <see cref="MainVM"/>.
@@ -41,193 +42,199 @@ namespace View.ViewModel
         public MainVM()
         {
             Contacts = ContactSerializer.Load();
+
+            AddContactCommand = new RelayCommand(AddContactCommandExecute);
+            EditContactCommand = new RelayCommand(EditContactCommandExecute);
+            RemoveContactCommand = new RelayCommand(RemoveContactCommandExecute);
+            ApplyContactCommand = new RelayCommand(ApplyContactCommandExecute);
+            GenerateContactCommand = new RelayCommand(GenerateContactCommandExecute);
         }
 
         /// <summary>
-        /// Возвращает и задает индекс текущего контакты.
+        /// Возвращает коллекцию контактов.
         /// </summary>
-        public int SelectedIndex { get; set; }
+        public ObservableCollection<Contact> Contacts { get; }
 
         /// <summary>
-        /// Возвращает и задаёт контакт.
+        /// Устанавливает и возвращает значение, указывающее, что выбран контакт.
         /// </summary>
-        public Contact Contact { get; private set; } = new Contact();
-
-        /// <summary>
-        /// Возвращает список контактов.
-        /// </summary>
-        public ObservableCollection<ContactVM> Contacts { get; private set; }
-            = new ObservableCollection<ContactVM>();
-
-        /// <summary>
-        /// Возвращает и задает значение редактора контактов.
-        /// </summary>
-        public bool IsEdit { get; set; }
-
-        /// <summary>
-        /// Возвращает и задает значение нажатия кнопки.
-        /// </summary>
-        public bool IsApply
+        public bool IsSelected
         {
             get
             {
-                return _isApply;
+                return _isSelected;
             }
             set
             {
-                _isApply = value;
+                SetProperty(ref _isSelected, value);
+            }
+        }
 
-                IsVisible = !value;
-                IsReadOnly = value;
-                if (value)
+        /// <summary>
+        /// Устанавливает и возвращает значение, указывающее, что поля доступны только для чтения.
+        /// </summary>
+        public bool IsReadOnly
+        {
+            get
+            {
+                return _isReadOnly;
+            }
+            private set
+            {
+                SetProperty(ref _isReadOnly, value);
+            }
+        }
+
+        /// <summary>
+        /// Устанавливает и возвращает значение выбранного контакта.
+        /// </summary>
+        public Contact? SelectedContact
+        {
+            get
+            {
+                return _selectedContact;
+            }
+            set
+            {
+                IsReadOnly = true;
+                IsSelected = true;
+                RestoreContact();
+
+                if (!SetProperty(ref _selectedContact, value)) return;
+                if (_selectedContact != null)
                 {
-                    IsEdit = false;
+                    ContactVM = new ContactVM(_selectedContact);
                 }
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт имя контакта.
+        /// Устанавливает и возвращает экземпляр модели представления контакта.
         /// </summary>
-        public string Name
+        public ContactVM ContactVM
         {
             get
             {
-                return Contact.Name;
+                return _contactVM;
             }
-            set
+            private set
             {
-                Contact.Name = value;
-                OnPropertyChanged(nameof(Name));
+                SetProperty(ref _contactVM, value);
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт номер телефона контакта.
+        /// Возвращает команду добавления контакта.
         /// </summary>
-        public string PhoneNumber
+        public RelayCommand? AddContactCommand { get; }
+
+        /// <summary>
+        /// Возвращает команду применения изменений.
+        /// </summary>
+        public RelayCommand? ApplyContactCommand { get; }
+
+        /// <summary>
+        /// Возвращает команду редактирования контакта.
+        /// </summary>
+        public RelayCommand? EditContactCommand { get; }
+
+        /// <summary>
+        /// Возвращает команду удаления контакта.
+        /// </summary>
+        public RelayCommand? RemoveContactCommand { get; }
+
+        /// <summary>
+        /// Возвращает команду создания рандомного контакта.
+        /// </summary>
+        public RelayCommand? GenerateContactCommand { get; }
+
+        /// <summary>
+        /// Выполняет команду удаления контакта.
+        /// </summary>
+        private void RemoveContactCommandExecute()
         {
-            get
+            if (SelectedContact == null) return;
+
+            var indexOf = Contacts.IndexOf(SelectedContact);
+            Contacts.Remove(SelectedContact);
+            IsSelected = indexOf < Contacts.Count;
+            if (indexOf < Contacts.Count)
             {
-                return Contact.PhoneNumber;
+                SelectedContact = Contacts[indexOf];
             }
-            set
+            else
             {
-                Contact.PhoneNumber = value;
-                OnPropertyChanged(nameof(PhoneNumber));
+                IsSelected = false;
+                ContactVM = new ContactVM();
             }
         }
 
         /// <summary>
-        /// Возвращает и задаёт электронную почту контакта.
+        /// Выполняет команду редактирования контакта.
         /// </summary>
-        public string Email
+        private void EditContactCommandExecute()
         {
-            get
-            {
-                return Contact.Email;
-            }
-            set
-            {
-                Contact.Email = value;
-                OnPropertyChanged(nameof(Email));
-            }
+            _contactCopy = SelectedContact?.Clone() as Contact;
+            ContactVM.IsReadOnly = false;
+            IsReadOnly = false;
+            IsSelected = false;
         }
 
         /// <summary>
-        /// Принимает добавление/изменение контакта.
+        /// Выполняет команду применения изменений.
         /// </summary>
-        [RelayCommand]
-        private void ApplyContact()
+        private void ApplyContactCommandExecute()
         {
-            if (!IsEdit)
+            ContactVM.IsReadOnly = true;
+            IsReadOnly = true;
+            IsSelected = true;
+
+            if (_contactCopy == null)
             {
+                if (SelectedContact == null) return;
                 Contacts.Add(SelectedContact);
-                SelectedContact = Contacts[Contacts.Count - 1];
             }
             else
             {
-                Contacts[SelectedIndex] = SelectedContact;
-                SelectedContact = Contacts[SelectedIndex];
+                _contactCopy = null;
             }
-
-            IsApply = true;
         }
 
         /// <summary>
-        /// Добавляет контакт.
+        /// Выполняет команду добавления контакта.
         /// </summary>
-        [RelayCommand]
-        private void AddContact()
+        private void AddContactCommandExecute()
         {
-            SelectedContact = ContactFactory.MakeContact();
-
-            IsApply = false;
+            SelectedContact = new Contact();
+            ContactVM.IsReadOnly = false;
+            IsReadOnly = false;
+            IsSelected = false;
         }
 
         /// <summary>
-        /// Изменяет контакт.
-        /// </summary> 
-        [RelayCommand(CanExecute = nameof(CanExecuteEdit))]
-        private void EditContact()
-        {
-            IsEdit = true;
-
-            var contact = SelectedContact;
-            SelectedContact = (ContactVM)contact.Clone();
-
-            IsApply = false;
-        }
-
-        /// <summary>
-        /// Удаляет контакт.
+        /// Сбрасывает изменения.
         /// </summary>
-        [RelayCommand(CanExecute = nameof(CanExecuteRemove))]
-        private void RemoveContact()
+        private void RestoreContact()
         {
-            if (Contacts.Count == 1)
-            {
-                Contacts.Remove(SelectedContact);
-            }
-            else if (SelectedIndex < Contacts.Count - 1)
-            {
-                Contacts.Remove(SelectedContact);
-                SelectedContact = Contacts[SelectedIndex];
-            }
-            else
-            {
-                Contacts.Remove(SelectedContact);
-                SelectedContact = Contacts[SelectedIndex - 1];
-            }
-        }
+            if (_contactCopy == null) return;
 
-        partial void OnSelectedContactChanged(ContactVM value)
-        {
-            if (!IsEdit && Contacts.Contains(value))
+            if (SelectedContact != null)
             {
-                SelectedIndex = Contacts.IndexOf(value);
+                var indexOf = Contacts.IndexOf(SelectedContact);
+                Contacts[indexOf] = _contactCopy;
             }
 
-            if (!IsApply)
-            {
-                IsApply = true;
-            }
+            _contactCopy = null;
         }
 
         /// <summary>
-        /// Определяет возможность выполнения команды <see cref="EditCommand"/>.
+        /// Выполняет команду генерации случайного контакта.
         /// </summary>
-        private bool CanExecuteEdit()
+        private void GenerateContactCommandExecute()
         {
-            return Contacts.Count > 0 && SelectedContact != null;
-        }
-
-        /// <summary>
-        /// Удаляет контакт.
-        /// </summary>
-        private bool CanExecuteRemove()
-        {
-            return Contacts.Count > 0 && SelectedContact != null;
+            var contact = ContactFactory.MakeContact();
+            if (contact == null) return;
+            Contacts.Add(contact);
         }
 
         /// <summary>
