@@ -1,8 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace View.Model.Services
+namespace View
 {
     /// <summary>
     /// Хранит логику для преобразования значений.
@@ -18,13 +19,9 @@ namespace View.Model.Services
         /// <param name="parameter">Параметр.</param>
         /// <param name="culture">Региональная культура</param>
         /// <returns>Значение из перечисления <see cref="Visibility"/>.</returns>
-        public object Convert(object value, 
-                              Type targetType, 
-                              object parameter, 
-                              CultureInfo culture)
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var asBool = (bool)value;
-            return asBool ? Visibility.Visible : Visibility.Hidden;
+            return !bool.Parse(value.ToString() ?? bool.FalseString) ? Visibility.Visible : Visibility.Hidden;
         }
 
         /// <summary>
@@ -36,19 +33,9 @@ namespace View.Model.Services
         /// <param name="parameter">Параметр.</param>
         /// <param name="culture">Региональная культура</param>
         /// <returns>Булевое значение.</returns>
-        public object ConvertBack(object value, 
-                                  Type targetType, 
-                                  object parameter, 
-                                  CultureInfo culture)
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if ((Visibility)value == Visibility.Visible)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return !Visibility.Visible.Equals(value);
         }
     }
 }

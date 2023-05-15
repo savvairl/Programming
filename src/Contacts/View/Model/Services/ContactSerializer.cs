@@ -21,16 +21,16 @@ namespace View.Model.Services
         /// Загружает данные из файла.
         /// </summary>
         /// <returns>Список контактов.</returns>
-        public static ObservableCollection<ContactVM> Load()
+        public static ObservableCollection<Contact> Load()
         {
-            var contacts = new ObservableCollection<ContactVM>();
+            var contacts = new ObservableCollection<Contact>();
 
             if (File.Exists(Path))
             {
                 using (StreamReader sr = new StreamReader(Path))
                 {
                     contacts =
-                        JsonConvert.DeserializeObject<ObservableCollection<ContactVM>>(sr.ReadToEnd());
+                        JsonConvert.DeserializeObject<ObservableCollection<Contact>>(sr.ReadToEnd());
                 }
             }
             else
@@ -45,7 +45,7 @@ namespace View.Model.Services
         /// Сохраняет список объектов в файл.
         /// </summary>
         /// <param name="contacts">Список контактов.</param>
-        public static void Save(ObservableCollection<ContactVM> contacts)
+        public static void Save(ObservableCollection<Contact> contacts)
         {
             if (!File.Exists(Path))
             {

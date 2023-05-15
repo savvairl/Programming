@@ -1,0 +1,39 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DefaultMarginValue">3</sys:Double>
+    <Thickness
+        x:Key="DefaultMargin"
+        Bottom="{StaticResource DefaultMarginValue}"
+        Left="{StaticResource DefaultMarginValue}"
+        Right="{StaticResource DefaultMarginValue}"
+        Top="{StaticResource DefaultMarginValue}"/>
+
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DefaultColumnMarginValue">8</sys:Double>
+    <Thickness
+        x:Key="DefaultColumnMargin"
+        Bottom="{StaticResource DefaultColumnMarginValue}"
+        Left="{StaticResource DefaultColumnMarginValue}"
+        Right="{StaticResource DefaultColumnMarginValue}"
+        Top="{StaticResource DefaultColumnMarginValue}"/>
+    
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DefaultButtonWidth">75</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DefaultButtonHeight">25</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DefaultRadiusX">30</sys:Double>
+    <sys:Double xmlns:sys="clr-namespace:System;assembly=mscorlib" x:Key="DefaultRadiusY">30</sys:Double>
+    <ImageSource x:Key="PhotoPlaceholderImage"> ../Resources/photo_placeholder_100x100.png</ImageSource>
+    <Style x:Key="TextBoxError"
+               TargetType="TextBox">
+        <Style.Triggers>
+            <Trigger Property="Validation.HasError"
+                         Value="true">
+                <Setter Property="Background"
+                            Value="#FFDDDD" />
+                <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                    Path=(Validation.Errors)[0].ErrorContent}" />
+            </Trigger>
+        </Style.Triggers>
+        <Setter Property="Validation.ErrorTemplate"
+                    Value="{x:Null}" />
+    </Style>
+</ResourceDictionary>
