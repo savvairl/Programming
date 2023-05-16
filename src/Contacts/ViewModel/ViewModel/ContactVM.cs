@@ -7,7 +7,7 @@ namespace ViewModel.ViewModel
     /// <summary>
     /// ViewModel, агрегирующий в себе класс <see cref="Model.Contact"/>
     /// </summary>
-    public class ContactVM : ObservableValidator
+    public partial class ContactVM : ObservableValidator
     {   /// <summary>
         /// Хранит контакт.
         /// </summary>
@@ -16,16 +16,21 @@ namespace ViewModel.ViewModel
         /// <summary>
         /// Хранит значение, указывающее, что поля доступны только для чтения.
         /// </summary>
+        [ObservableProperty]
         private bool _isReadOnly = true;
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Создает экземпляр класса <see cref="ContactVM"/>.
+        /// </summary>
         public ContactVM(Contact? contact)
         {
             _contact = contact;
             ValidateAllProperties();
         }
 
-        /// <inheritdoc />
+        /// <summary>
+        /// Создает экземпляр класса <see cref="ContactVM"/>.
+        /// </summary>
         public ContactVM()
         {
             _contact = null;
@@ -90,21 +95,6 @@ namespace ViewModel.ViewModel
                 _contact.Email = value;
                 ValidateProperty(value);
                 OnPropertyChanged();
-            }
-        }
-
-        /// <summary>
-        /// Устанавливает и возвращает значение, указывающее, что поля доступны только для чтения.
-        /// </summary>
-        public bool IsReadOnly
-        {
-            get
-            {
-                return _isReadOnly;
-            }
-            set
-            {
-                SetProperty(ref _isReadOnly, value);
             }
         }
     }
