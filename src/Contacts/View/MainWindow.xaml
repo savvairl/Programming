@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:View.Controls" 
-        xmlns:viewModel="clr-namespace:View.ViewModel"
+        xmlns:viewModel="clr-namespace:ViewModel.ViewModel;assembly=ViewModel"
         xmlns:view="clr-namespace:View"
         d:DataContext="{d:DesignInstance viewModel:MainVM}"
         mc:Ignorable="d"

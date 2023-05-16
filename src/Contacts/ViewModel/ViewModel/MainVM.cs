@@ -1,10 +1,10 @@
-﻿using View.Model;
-using View.Model.Services;
+﻿using Model.Model;
+using Model.Model.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
-namespace View.ViewModel
+namespace ViewModel.ViewModel
 {
     /// <summary>
     /// ViewModel для главного окна.
@@ -14,11 +14,13 @@ namespace View.ViewModel
         /// <summary>
         /// Хранит значение, указывающее, что поля доступны только для чтения.
         /// </summary>
+        [ObservableProperty]
         private bool _isReadOnly = true;
 
         /// <summary>
         /// Хранит значение, указывающее, что выбран контакт из списка.
         /// </summary>
+        [ObservableProperty]
         private bool _isSelected;
 
         /// <summary>
@@ -29,11 +31,13 @@ namespace View.ViewModel
         /// <summary>
         /// Хранит копию контакта.
         /// </summary>
+        [ObservableProperty]
         private Contact? _contactCopy;
 
         /// <summary>
-        /// Хранит экземпляр класса <see cref="ContactViewModel"/>.
+        /// Хранит экземпляр класса <see cref="ContactVM"/>.
         /// </summary>
+        [ObservableProperty]
         private ContactVM _contactVM = new ContactVM();
 
         /// <summary>
@@ -56,36 +60,6 @@ namespace View.ViewModel
         public ObservableCollection<Contact> Contacts { get; }
 
         /// <summary>
-        /// Устанавливает и возвращает значение, указывающее, что выбран контакт.
-        /// </summary>
-        public bool IsSelected
-        {
-            get
-            {
-                return _isSelected;
-            }
-            set
-            {
-                SetProperty(ref _isSelected, value);
-            }
-        }
-
-        /// <summary>
-        /// Устанавливает и возвращает значение, указывающее, что поля доступны только для чтения.
-        /// </summary>
-        public bool IsReadOnly
-        {
-            get
-            {
-                return _isReadOnly;
-            }
-            private set
-            {
-                SetProperty(ref _isReadOnly, value);
-            }
-        }
-
-        /// <summary>
         /// Устанавливает и возвращает значение выбранного контакта.
         /// </summary>
         public Contact? SelectedContact
@@ -105,21 +79,6 @@ namespace View.ViewModel
                 {
                     ContactVM = new ContactVM(_selectedContact);
                 }
-            }
-        }
-
-        /// <summary>
-        /// Устанавливает и возвращает экземпляр модели представления контакта.
-        /// </summary>
-        public ContactVM ContactVM
-        {
-            get
-            {
-                return _contactVM;
-            }
-            private set
-            {
-                SetProperty(ref _contactVM, value);
             }
         }
 
@@ -174,7 +133,7 @@ namespace View.ViewModel
         /// </summary>
         private void EditContactCommandExecute()
         {
-            _contactCopy = SelectedContact?.Clone() as Contact;
+            ContactCopy = SelectedContact?.Clone() as Contact;
             ContactVM.IsReadOnly = false;
             IsReadOnly = false;
             IsSelected = false;
@@ -189,14 +148,14 @@ namespace View.ViewModel
             IsReadOnly = true;
             IsSelected = true;
 
-            if (_contactCopy == null)
+            if (ContactCopy == null)
             {
                 if (SelectedContact == null) return;
                 Contacts.Add(SelectedContact);
             }
             else
             {
-                _contactCopy = null;
+                ContactCopy = null;
             }
         }
 
@@ -216,15 +175,15 @@ namespace View.ViewModel
         /// </summary>
         private void RestoreContact()
         {
-            if (_contactCopy == null) return;
+            if (ContactCopy == null) return;
 
             if (SelectedContact != null)
             {
                 var indexOf = Contacts.IndexOf(SelectedContact);
-                Contacts[indexOf] = _contactCopy;
+                Contacts[indexOf] = ContactCopy;
             }
 
-            _contactCopy = null;
+            ContactCopy = null;
         }
 
         /// <summary>
