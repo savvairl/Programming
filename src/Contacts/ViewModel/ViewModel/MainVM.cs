@@ -1,10 +1,10 @@
-﻿using View.Model;
-using View.Model.Services;
+﻿using Model.Model;
+using Model.Model.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 
-namespace View.ViewModel
+namespace ViewModel.ViewModel
 {
     /// <summary>
     /// ViewModel для главного окна.

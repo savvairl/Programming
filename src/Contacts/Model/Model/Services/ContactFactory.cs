@@ -1,7 +1,4 @@
-﻿using View.ViewModel;
-using View.Model;
-
-namespace View.Model.Services
+﻿namespace Model.Model.Services
 {
     /// <summary>
     /// Хранит логику для автоматического создания объектов.
@@ -16,7 +13,7 @@ namespace View.Model.Services
         {
             var contact = new Contact();
             contact.Name = "Jesus Christ Евгеньевич";
-            contact.PhoneNumber = "89889881604";
+            contact.PhoneNumber = "+7 (988) 988-16-04";
             contact.Email = "jesuschrist@gmail.com";
 
             return contact;

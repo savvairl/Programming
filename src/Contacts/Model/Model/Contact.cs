@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace View.Model
+namespace Model.Model
 {
     /// <summary>
     /// Хранит данные о контакте.
