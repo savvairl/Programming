@@ -1,8 +1,8 @@
-﻿using Model.Model;
+﻿using Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace ViewModel.ViewModel
+namespace ViewModel
 {
     /// <summary>
     /// ViewModel, агрегирующий в себе класс <see cref="Model.Contact"/>

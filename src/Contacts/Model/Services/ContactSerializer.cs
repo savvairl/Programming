@@ -1,7 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System.Collections.ObjectModel;
 
-namespace Model.Model.Services
+namespace Model.Services
 {
     /// <summary>
     /// Представляет реализацию по сериализации данных.
