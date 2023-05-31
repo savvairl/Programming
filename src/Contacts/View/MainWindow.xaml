@@ -20,7 +20,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/StyleDictionary.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-            <view:EnablementConverter x:Key="EnablementConverter"/>
+            <view:InverseBoolConverter x:Key="InverseBoolConverter"/>
             <view:VisibilityConverter x:Key="VisibilityConverter"/>
             <DataTemplate x:Key="ContactTemplate">
                 <Grid>
@@ -117,7 +117,7 @@
                     Margin="3 50"
                     HorizontalAlignment="Left"
                     Content="Apply"
-                    IsEnabled="{Binding ContactVM.HasErrors, Converter={StaticResource EnablementConverter}}"
+                    IsEnabled="{Binding ContactVM.HasErrors, Converter={StaticResource InverseBoolConverter}}"
                     Visibility="{Binding IsReadOnly, Converter={StaticResource VisibilityConverter}}"
                     Command="{Binding ApplyContactCommand}"
                     />

@@ -39,7 +39,8 @@ namespace ViewModel
         /// <summary>
         /// Устанавливает и возвращает значение Имени контакта.
         /// </summary>
-        [MaxLength(100)]
+        [MaxLength(100,
+            ErrorMessage = "Name should be shorter than 100 characters")]
         [Required(AllowEmptyStrings = false)]
         public string? Name
         {
@@ -81,7 +82,8 @@ namespace ViewModel
         /// Устанавливает и возвращает значение адреса электронной почты контакта.
         /// </summary>
         [EmailAddress]
-        [MaxLength(100)]
+        [MaxLength(100,
+            ErrorMessage = "Email should be shorter than 100 characters")]
         [Required(AllowEmptyStrings = false)]
         public string? Email
         {
