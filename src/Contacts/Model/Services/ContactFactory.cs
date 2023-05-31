@@ -1,4 +1,4 @@
-﻿namespace Model.Model.Services
+﻿namespace Model.Services
 {
     /// <summary>
     /// Хранит логику для автоматического создания объектов.

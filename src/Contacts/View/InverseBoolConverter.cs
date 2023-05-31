@@ -7,7 +7,7 @@ namespace View
     /// <summary>
     /// Хранит логику для преобразования значений.
     /// </summary>
-    public class EnablementConverter : IValueConverter
+    public class InverseBoolConverter : IValueConverter
     {
         /// <summary>
         /// Конвертирует булевое значение

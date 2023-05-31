@@ -1,5 +1,5 @@
 ﻿using System.Windows;
-using ViewModel.ViewModel;
+using ViewModel;
 
 namespace View
 {

@@ -1,10 +1,11 @@
-﻿using Model.Model;
-using Model.Model.Services;
+﻿using Model;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
+using Model.Services;
+using Newtonsoft.Json.Linq;
 
-namespace ViewModel.ViewModel
+namespace ViewModel
 {
     /// <summary>
     /// ViewModel для главного окна.
@@ -74,7 +75,9 @@ namespace ViewModel.ViewModel
                 IsSelected = true;
                 RestoreContact();
 
-                if (!SetProperty(ref _selectedContact, value)) return;
+                _selectedContact = value;
+                OnPropertyChanged();
+
                 if (_selectedContact != null)
                 {
                     ContactVM = new ContactVM(_selectedContact);
@@ -176,11 +179,13 @@ namespace ViewModel.ViewModel
         private void RestoreContact()
         {
             if (ContactCopy == null) return;
-
             if (SelectedContact != null)
             {
                 var indexOf = Contacts.IndexOf(SelectedContact);
-                Contacts[indexOf] = ContactCopy;
+                if (indexOf != -1)
+                {
+                    Contacts[indexOf] = ContactCopy;
+                }
             }
 
             ContactCopy = null;
